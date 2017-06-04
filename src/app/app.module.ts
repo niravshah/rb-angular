@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { TimeleftDirective } from './timeleft.directive';
-import { ParallexAboutComponent } from './parallex-about/parallex-about.component';
+import { HomeDifferenceComponent } from './home-difference/home-difference.component';
 import { HomeOverlayComponent } from './home-overlay/home-overlay.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { HomeOverlayComponent } from './home-overlay/home-overlay.component';
     HeaderComponent,
     HomeSliderComponent,
     TimeleftDirective,
-    ParallexAboutComponent,
+    HomeDifferenceComponent,
     HomeOverlayComponent
   ],
   imports: [
@@ -31,6 +31,6 @@ import { HomeOverlayComponent } from './home-overlay/home-overlay.component';
     HttpModule
   ],
   providers: [PostsService],
-  bootstrap: [AppComponent, OngoingFundraisersComponent, FooterComponent, HeaderComponent, HomeSliderComponent, ParallexAboutComponent, HomeOverlayComponent]
+  bootstrap: [AppComponent, OngoingFundraisersComponent, FooterComponent, HeaderComponent, HomeSliderComponent, HomeDifferenceComponent, HomeOverlayComponent]
 })
 export class AppModule { }

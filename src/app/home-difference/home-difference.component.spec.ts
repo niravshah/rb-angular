@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParallexAboutComponent } from './parallex-about.component';
+import { ParallexAboutComponent } from './home-difference.component';
 
 describe('ParallexAboutComponent', () => {
   let component: ParallexAboutComponent;
