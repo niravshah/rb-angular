@@ -15,15 +15,15 @@ jQuery(function($) {
   $(".toggler").on("click", function() {
     $(".property-query-area").slideToggle(300);
   });
-  
-  
+
+
   // +++++ Toggle for Form
   $(".advanced").on("click", function() {
     $(".opened").slideToggle();
     return false;
   });
-  
-  
+
+
   // +++++ open the testimonials modal
   var testimonial = $(".cd-testimonials-all");
   $('.cd-see-all').on("click", function() {
@@ -40,8 +40,8 @@ jQuery(function($) {
   $('.cd-testimonials-all-wrapper').children('ul').masonry({
     itemSelector: '.cd-testimonials-item'
   });
-  
-  
+
+
   // +++++Back to Top
   $("body").append('<a href="#" class="back-to"><i class="icon-arrow-up2"></i></a>');
   var amountScrolled = 700;
@@ -59,8 +59,8 @@ jQuery(function($) {
     }, 700);
     return false;
   });
-  
-  
+
+
   // +++++ Advance Search
   $(window).on("scroll", function() {
     var scrollTop = $(window).scrollTop();
@@ -71,21 +71,21 @@ jQuery(function($) {
     }
     return false;
   });
-  
-  
-  
+
+
+
   //Full Height Banner BG
   function resizebanner(){
      $(".fullscreen").css("height", $(window).height());
   }
    $(window).resize(function(){
-        resizebanner(); 
+        resizebanner();
     });
 	 resizebanner();
-	 
-	 
-	 
-  
+
+
+
+
 
 
   // bottom header custom fixed
@@ -121,13 +121,13 @@ jQuery(function($) {
 	var winHeight = $(window).height()-formoffset;
 	$(".tp_overlay, .banner form.callus").css({"height": winHeight,});
   }
- 
- 
+
+
    $(".form_opener").on("click", function(){
 	 $(".tp_overlay").fadeToggle();
    });
-   
-   
+
+
    /*Accordions*/
   var $active = $('#accordion .panel-collapse.in').prev().addClass('active');
   $active.find('a').append('<i class="fa fa-minus-circle"></i>');
@@ -136,9 +136,9 @@ jQuery(function($) {
     $('#accordion .panel-heading.active').removeClass('active').find('.fa').toggleClass('fa-plus-circle fa-minus-circle');
     $(e.target).prev().addClass('active').find('.fa').toggleClass('fa-plus-circle fa-minus-circle');
   })
-     
 
-  
+
+
   // ********* OWL Carousel *********
   //For Single Slide
   $("#full-slider, #agent-slider, #agent-2-slider").owlCarousel({
@@ -150,7 +150,7 @@ jQuery(function($) {
     pagination: false,
     singleItem: true
   });
-  
+
   //For Three Slide
   $(".three-item, #nav_slider").owlCarousel({
     autoPlay: true,
@@ -162,7 +162,7 @@ jQuery(function($) {
     itemsDesktop: [1199, 3],
     itemsDesktopSmall: [979, 2]
   });
-  
+
   // Partners(logos)
   $("#partner-slider").owlCarousel({
     autoPlay: true,
@@ -173,7 +173,7 @@ jQuery(function($) {
     itemsDesktop: [1199, 3],
     itemsDesktopSmall: [979, 3]
   });
-  
+
   // Partners(logos)
   $("#partners").owlCarousel({
     autoPlay: true,
@@ -185,7 +185,7 @@ jQuery(function($) {
     itemsDesktop: [1199, 3],
     itemsDesktopSmall: [979, 3]
   });
-  
+
   //Testinomial (Home2)
   $("#testinomial-slider").owlCarousel({
     autoPlay: false,
@@ -197,7 +197,7 @@ jQuery(function($) {
     transitionStyle: "fade",
     singleItem: true
   });
-  
+
   //For Three Slide
   $("#two-col-slider").owlCarousel({
     autoPlay: true,
@@ -209,7 +209,7 @@ jQuery(function($) {
     itemsDesktopSmall: [979, 2],
     itemsMobile: [480, 1],
   });
-  
+
   //For Four Slide
   $("#news_slider").owlCarousel({
     autoPlay: true,
@@ -220,7 +220,7 @@ jQuery(function($) {
     itemsDesktop: [1199, 2],
     itemsDesktopSmall: [979, 2]
   });
-  
+
   //Property Details
   var sync1 = $("#property-d-1");
   var sync2 = $("#property-d-1-2");
@@ -236,7 +236,7 @@ jQuery(function($) {
     responsiveRefreshRate: 200,
   });
   sync2.owlCarousel({
-	autoPlay: true,  
+	autoPlay: true,
     items: 5,
     itemsDesktop: [1199, 10],
     itemsDesktopSmall: [979, 10],
@@ -286,11 +286,11 @@ jQuery(function($) {
       sync2.trigger("owl.goTo", num - 1)
     }
   }
-  
-  
+
+
   // ********* for select box
   $(".selectbox").selectbox();
-  
+
   //********* Range Slider
   $('.nstSlider').nstSlider({
     "left_grip_selector": ".leftGrip",
@@ -301,17 +301,17 @@ jQuery(function($) {
       $(this).parent().find('.rightLabel').text(rightValue);
     }
   });
-  
-  
-  // *********SHOW FILTER 
+
+
+  // *********SHOW FILTER
   $('.more-filter').on("click", function() {
     $('.more-filter').toggleClass('show-more');
     $('.more-filter .text-1').toggleClass('hide');
     $('.more-filter .text-2').toggleClass('hide');
   });
-  
-  
-  // ********* Check Box 
+
+
+  // ********* Check Box
   $('input[name="radio-btn"]').wrap('<div class="radio-btn"><i></i></div>');
   $(".radio-btn").on("click", function() {
     var _this = $(this),
@@ -329,10 +329,10 @@ jQuery(function($) {
     $(this).find(':checkbox').toggleCheckbox();
     $(this).toggleClass('checkedBox');
   });
-  
-  
+
+
   // ********* Revolution Slider *********
-  //Main Slider Home 
+  //Main Slider Home
   var revapi;
   revapi = jQuery("#rev_slider").revolution({
     sliderType: "standard",
@@ -353,7 +353,7 @@ jQuery(function($) {
     gridwidth: 1170,
     gridheight: 770
   });
-  
+
   //Main Slider Home Four
   var revapi;
   revapi = jQuery("#rev_slider_full").revolution({
@@ -377,7 +377,7 @@ jQuery(function($) {
 	disableProgressBar: "on",
 	spinner: "off",
   });
-  
+
   //Home Three
   var revapi;
   revapi = jQuery("#rev_slider_third").revolution({
@@ -402,8 +402,8 @@ jQuery(function($) {
 	disableProgressBar: "on",
 	spinner: "off",
   });
-  
-  
+
+
   var revapi = $("#rev_overlaped").show().revolution({
 	sliderType: "standard",
     sliderLayout: "fullscreen",
@@ -422,9 +422,10 @@ jQuery(function($) {
       }
     },
 	disableProgressBar: "on",
-	spinner: "off",
+    responsiveLevels: [1240, 1024, 778, 480],
+    spinner: "off",
   });
-  
+
   //Home Three
   var revapi;
   revapi = jQuery("#rev_eight").revolution({
@@ -462,7 +463,7 @@ jQuery(function($) {
 	disableProgressBar: "on",
 	spinner: "off",
   });
-  
+
   //Bullets
   revapi = jQuery("#revo_thumb").show().revolution({
                             sliderType: "standard",
@@ -523,9 +524,9 @@ jQuery(function($) {
                                 disableFocusListener: false,
                             }
                         });
-  
-  
-  
+
+
+
 
   // +++++ Cubeportfolio
   // Types Grid
@@ -534,7 +535,7 @@ jQuery(function($) {
     gapHorizontal: 30,
     gapVertical: 30,
   });
-  
+
   //home Gallery
   $('#photo-gallery').cubeportfolio({
     filters: '#filters-gallery',
@@ -568,7 +569,7 @@ jQuery(function($) {
     lightboxDelegate: '.cbp-lightbox',
     lightboxGallery: true,
   });
-  
+
   //Filter Property
   $('#property-gallery').cubeportfolio({
     filters: '#filters-property',
@@ -598,7 +599,7 @@ jQuery(function($) {
     displayType: 'sequentially',
     displayTypeSpeed: 100,
   });
-  
+
   //Testinomial Page
   $('#testinomial-masonry').cubeportfolio({
     layoutMode: 'grid',
@@ -622,9 +623,9 @@ jQuery(function($) {
       cols: 1
     }],
   });
-  
-  
- 
+
+
+
   // +++++ Fact Counters
   $(".number-counters").appear(function() {
     $(".number-counters [data-to]").each(function() {
@@ -637,8 +638,8 @@ jQuery(function($) {
       })
     })
   });
-  
-  
+
+
   // +++++ Parallax Backgrounds
   $("#parallax").parallax('50%', 0.3);
   $("#parallax_two").parallax('50%', 0.3);
@@ -646,8 +647,8 @@ jQuery(function($) {
   $("#testinomial").parallax('50%', -0.2);
   $("#parallax_four").parallax('50%', 0.1);
   $(".page-banner").parallax('50%', -0.3);
-  
-  
-  
+
+
+
   $('.fancybox').fancybox();
 });
