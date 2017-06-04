@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import {PostsService} from './posts.service';
+
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,7 +24,7 @@ import { HomeSliderComponent } from './home-slider/home-slider.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [PostsService],
   bootstrap: [AppComponent, PostsComponent, FooterComponent, HeaderComponent, HomeSliderComponent]
 })
 export class AppModule { }

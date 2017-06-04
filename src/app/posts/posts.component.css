@@ -1,0 +1,12 @@
+.post-bb {
+  border-bottom: 1px solid #e5e5e5
+}
+
+ul.time-left{
+  line-height: 44px;
+}
+
+ul.time-left li{
+  width:auto;
+  margin:0px 10px;
+}
