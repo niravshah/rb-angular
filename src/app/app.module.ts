@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
 import { TimeleftDirective } from './timeleft.directive';
+import { ParallexAboutComponent } from './parallex-about/parallex-about.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TimeleftDirective } from './timeleft.directive';
     FooterComponent,
     HeaderComponent,
     HomeSliderComponent,
-    TimeleftDirective
+    TimeleftDirective,
+    ParallexAboutComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,6 @@ import { TimeleftDirective } from './timeleft.directive';
     HttpModule
   ],
   providers: [PostsService],
-  bootstrap: [AppComponent, PostsComponent, FooterComponent, HeaderComponent, HomeSliderComponent]
+  bootstrap: [AppComponent, PostsComponent, FooterComponent, HeaderComponent, HomeSliderComponent, ParallexAboutComponent]
 })
 export class AppModule { }
