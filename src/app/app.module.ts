@@ -10,6 +10,7 @@ import { PostsComponent } from './posts/posts.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeSliderComponent } from './home-slider/home-slider.component';
+import { TimeleftDirective } from './timeleft.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeSliderComponent } from './home-slider/home-slider.component';
     PostsComponent,
     FooterComponent,
     HeaderComponent,
-    HomeSliderComponent
+    HomeSliderComponent,
+    TimeleftDirective
   ],
   imports: [
     BrowserModule,

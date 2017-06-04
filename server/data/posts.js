@@ -9,7 +9,8 @@ const posts = [
     "title":"Park avenue apartment",
     "subTitle":"45 Regent Street, London, UK",
     "supporters" : 700,
-    "author":"Nirav Shah"
+    "author":"Nirav Shah",
+    "created":"2016-05-17"
   },
   {
     "sale":false,
@@ -21,7 +22,8 @@ const posts = [
     "title":"Park avenue apartment",
     "subTitle":"45 Regent Street, London, UK",
     "supporters" : 400,
-    "author":"Radhika Shah"
+    "author":"Radhika Shah",
+    "created":"2017-05-18"
   }
 
 ];

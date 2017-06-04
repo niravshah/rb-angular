@@ -36,7 +36,7 @@
             <div class="favroute clearfix post-bb">
               <p><i class="icon-user"></i>&nbsp; {{post.author}}</p>
               <ul class="pull-right time-left">
-                <li><span><i class="icon-clock"></i> 31 days left</span></li>
+                <li><span><i class="icon-clock"></i> <span appTimeleft [dateCreated]="post.created">31 days left</span></span></li>
               </ul>
             </div>
 
