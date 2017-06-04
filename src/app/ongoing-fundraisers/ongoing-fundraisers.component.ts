@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {PostsService} from '../posts.service';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  selector: 'app-ongoing-fundraisers',
+  templateUrl: './ongoing-fundraisers.component.html',
+  styleUrls: ['./ongoing-fundraisers.component.css']
 })
-export class PostsComponent implements OnInit {
+export class OngoingFundraisersComponent implements OnInit {
 
   posts: any = [];
 
@@ -20,9 +20,5 @@ export class PostsComponent implements OnInit {
       console.log('Got Posts!', posts);
     });
   };
-
-  isPostFeatured(post) {
-    return post.featured;
-  }
 
 }
