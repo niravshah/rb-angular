@@ -17,7 +17,6 @@ export class OngoingFundraisersComponent implements OnInit {
 
     this.postService.getAllPosts().subscribe(posts => {
       this.posts = posts;
-      console.log('Got Posts!', posts);
     });
   };
 

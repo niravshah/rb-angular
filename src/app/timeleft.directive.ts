@@ -10,7 +10,6 @@ export class TimeleftDirective implements OnInit{
   constructor(public el: ElementRef) {}
 
   ngOnInit() {
-    console.log(this.date);
     this.el.nativeElement.style.backgroundColor = 'yellow';
     const date1 = new Date().getTime();
     const date2 = Date.parse(this.date);
