@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "ng build && node server.js"
+    "build": "ng build && node server.js",
+    "dev":"ng server --proxy-config proxy.conf.json"
   },
   "private": true,
   "dependencies": {

@@ -7,7 +7,7 @@ export class PostsService {
 
   constructor(private http: Http) { }
 
-  // Get all ongoing-fundraisers from the API
+  // Get all home-fundraisers from the API
   getAllPosts() {
     return this.http.get('/api/posts')
       .map(res => res.json());

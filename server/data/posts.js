@@ -1,6 +1,7 @@
 const posts = [
 
   {
+    "id":1,
     "sale":true,
     "rent":false,
     "featured": true,
@@ -13,6 +14,7 @@ const posts = [
     "created":"2016-05-17"
   },
   {
+    "id":2,
     "sale":false,
     "rent":true,
     "type": "For Sale",

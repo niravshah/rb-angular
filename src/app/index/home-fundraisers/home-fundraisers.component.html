@@ -25,7 +25,7 @@
       <div class="cbp-item latest" [ngClass]="{'sale':post.sale, 'rent': post.rent}" *ngFor="let post of posts">
         <div class="property_item">
           <div class="image">
-            <a href="property_detail1.html"><img [src]="post.imageUrl" alt="latest property" class="img-responsive"></a>
+            <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.imageUrl" alt="latest property" class="img-responsive"></a>
             <div class="price clearfix">
               <span class="tag pull-right">{{post.price}}</span>
             </div>

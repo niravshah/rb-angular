@@ -536,7 +536,7 @@ jQuery(function($) {
     gapVertical: 30,
   });
 
-  //home Gallery
+  //index Gallery
   $('#photo-gallery').cubeportfolio({
     filters: '#filters-gallery',
     loadMore: '#loadMore-gallery',

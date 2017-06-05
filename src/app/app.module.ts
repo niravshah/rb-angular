@@ -6,31 +6,42 @@ import { HttpModule } from '@angular/http';
 import {PostsService} from './posts.service';
 
 import { AppComponent } from './app.component';
-import { OngoingFundraisersComponent } from './ongoing-fundraisers/ongoing-fundraisers.component';
+import { HomeFundraisersComponent } from './index/home-fundraisers/home-fundraisers.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeSliderComponent } from './home-slider/home-slider.component';
+import { HomeSliderComponent } from './index/home-slider/home-slider.component';
 import { TimeleftDirective } from './timeleft.directive';
-import { HomeDifferenceComponent } from './home-difference/home-difference.component';
-import { HomeOverlayComponent } from './home-overlay/home-overlay.component';
+import { HomeDifferenceComponent } from './index/home-difference/home-difference.component';
+import { HomeOverlayComponent } from './index/home-overlay/home-overlay.component';
+import { IndexComponent } from './index/index.component';
+
+import {routing} from './app.routes';
+import { LoginComponent } from './login/login.component';
+import { HeaderTopComponent } from './header-top/header-top.component';
+import { FundraiserDetailsComponent } from './fundraiser-details/fundraiser-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OngoingFundraisersComponent,
+    HomeFundraisersComponent,
     FooterComponent,
     HeaderComponent,
     HomeSliderComponent,
     TimeleftDirective,
     HomeDifferenceComponent,
-    HomeOverlayComponent
+    HomeOverlayComponent,
+    IndexComponent,
+    LoginComponent,
+    HeaderTopComponent,
+    FundraiserDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [PostsService],
-  bootstrap: [AppComponent, OngoingFundraisersComponent, FooterComponent, HeaderComponent, HomeSliderComponent, HomeDifferenceComponent, HomeOverlayComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
