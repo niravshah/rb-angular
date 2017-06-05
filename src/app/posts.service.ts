@@ -7,9 +7,14 @@ export class PostsService {
 
   constructor(private http: Http) { }
 
-  // Get all home-fundraisers from the API
   getAllPosts() {
     return this.http.get('/api/posts')
       .map(res => res.json());
   }
+
+  getFundraiserById(id: String) {
+    return this.http.get('/api/posts/' + id)
+      .map(res => res.json());
+  }
+
 }

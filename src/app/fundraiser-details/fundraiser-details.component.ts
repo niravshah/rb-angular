@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+
+import {PostsService} from '../posts.service';
 
 @Component({
   selector: 'app-fundraiser-details',
   templateUrl: './fundraiser-details.component.html',
   styleUrls: ['./fundraiser-details.component.css']
 })
-export class FundraiserDetailsComponent implements OnInit {
+export class FundraiserDetailsComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  private sub: any;
+  private post: string[];
+
+  constructor(private service: PostsService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      const id = params['id'];
+      console.log(id);
+      this.service.getFundraiserById(id).subscribe(post => this.post = post);
+    });
   }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
 
 }

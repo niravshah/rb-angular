@@ -35,7 +35,7 @@
           </div>
           <div class="proerty_content">
             <div class="proerty_text">
-              <h3 class="captlize"><a href="property_detail1.html">{{post.title}}</a></h3>
+              <h3 class="captlize"><a [routerLink]="['/fundraisers', post.id]">{{post.title}}</a></h3>
               <p>{{post.subTitle}}</p>
             </div>
             <div class="favroute clearfix post-bb">
