@@ -2,8 +2,8 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
-import { FundraiserDetailsComponent } from './fundraiser-details/fundraiser-details.component';
-import {AuthGuard} from './app.authguard';
+import { FundraiserDetailsComponent } from './fundraiser-detail/fundraiser-detail.component';
+import { AuthGuard } from './app.authguard';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },

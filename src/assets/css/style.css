@@ -202,6 +202,9 @@ p{
 .border_radius{
 	border-radius:4px;
 }
+.lowercase{
+  text-transform:lowercase;
+}
 .uppercase{
 	text-transform:uppercase;
 }
@@ -1679,7 +1682,7 @@ i.icon-safety-shower{font-size:16px !important;}
   padding: 15px 10px 15px 25px;
 }
 .property-details .pro-list > li {
-	list-style-image:url(assets/images/p-d-1-list.jpg);
+	list-style-image:url(/assets/images/p-d-1-list.jpg);
 	margin-bottom:20px;
 	padding: 0 0 0 8px;
 	transition: all 0.7s ease 0s;

@@ -5,8 +5,8 @@ import {PostsService} from '../posts.service';
 
 @Component({
   selector: 'app-fundraiser-details',
-  templateUrl: './fundraiser-details.component.html',
-  styleUrls: ['./fundraiser-details.component.css']
+  templateUrl: './fundraiser-detail.component.html',
+  styleUrls: ['./fundraiser-detail.component.css']
 })
 export class FundraiserDetailsComponent implements OnInit, OnDestroy {
 

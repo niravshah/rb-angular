@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {PostsService} from '../../posts.service';
+import {PostsService} from '../posts.service';
 
 @Component({
-  selector: 'app-home-fundraisers',
-  templateUrl: './home-fundraisers.component.html',
-  styleUrls: ['./home-fundraisers.component.css']
+  selector: 'app-fundraiser-listing',
+  templateUrl: './fundraiser-listing.component.html',
+  styleUrls: ['./fundraiser-listing.component.css']
 })
-export class HomeFundraisersComponent implements OnInit {
+export class FundraiseListingComponent implements OnInit {
 
   posts: any = [];
 

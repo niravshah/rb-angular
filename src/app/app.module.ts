@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import {PostsService} from './posts.service';
 
 import { AppComponent } from './app.component';
-import { HomeFundraisersComponent } from './index/home-fundraisers/home-fundraisers.component';
+import { FundraiseListingComponent } from './fundraiser-listing/fundraiser-listing.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeSliderComponent } from './index/home-slider/home-slider.component';
@@ -18,12 +18,14 @@ import { IndexComponent } from './index/index.component';
 import {routing} from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { HeaderTopComponent } from './header-top/header-top.component';
-import { FundraiserDetailsComponent } from './fundraiser-details/fundraiser-details.component';
+import { FundraiserDetailsComponent } from './fundraiser-detail/fundraiser-detail.component';
+import {AuthGuard} from './app.authguard';
+import { FundraiserHeaderComponent } from './fundraiser-header/fundraiser-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeFundraisersComponent,
+    FundraiseListingComponent,
     FooterComponent,
     HeaderComponent,
     HomeSliderComponent,
@@ -33,7 +35,8 @@ import { FundraiserDetailsComponent } from './fundraiser-details/fundraiser-deta
     IndexComponent,
     LoginComponent,
     HeaderTopComponent,
-    FundraiserDetailsComponent
+    FundraiserDetailsComponent,
+    FundraiserHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { FundraiserDetailsComponent } from './fundraiser-details/fundraiser-deta
     HttpModule,
     routing
   ],
-  providers: [PostsService],
+  providers: [PostsService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
