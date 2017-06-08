@@ -7,3 +7,12 @@
 .bb1p{
   border-bottom:1px solid #d3d8dd;
 }
+
+.post_meta span {
+  padding: 0px 10px;
+  border-right: 1px solid gray;
+}
+
+.post_meta span:first-child{
+  border-left: 1px solid gray;
+}

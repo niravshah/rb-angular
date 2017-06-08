@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const post = require('../data/posts');
+const posts = require('../data/posts');
+const post1 = require('../data/post1');
 
 /* GET api listing. */
 router.get('/', (req, res) => {
@@ -8,7 +9,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/posts',(req,res) => {
-  res.json(post);
+  res.json(posts);
 });
+
+router.get('/posts/:id',(req,res) => {
+  res.json(post1);
+});
+
 
 module.exports = router;

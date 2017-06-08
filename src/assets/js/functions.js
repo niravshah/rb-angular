@@ -11,6 +11,9 @@ $(window).on("load", function() {
 // JavaScript Document
 jQuery(function($) {
   "use strict";
+
+  $('#donateBtn').sticky({topSpacing:10});
+
   // +++++ open for Search section
   $(".toggler").on("click", function() {
     $(".property-query-area").slideToggle(300);

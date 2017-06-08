@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {Fundraiser} from './../fundraiser';
 
 import {PostsService} from '../posts.service';
 
@@ -11,7 +12,8 @@ import {PostsService} from '../posts.service';
 export class FundraiserDetailsComponent implements OnInit, OnDestroy {
 
   private sub: any;
-  private post: string[];
+  private post: Fundraiser;
+  private title = 'Hello World!';
 
   constructor(private service: PostsService, private route: ActivatedRoute) {
   }
