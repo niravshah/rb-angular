@@ -4,6 +4,7 @@ import {Fundraiser} from './../fundraiser';
 
 import {PostsService} from '../posts.service';
 
+
 @Component({
   selector: 'app-fundraiser-details',
   templateUrl: './fundraiser-detail.component.html',
@@ -13,7 +14,6 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private post: Fundraiser;
-  private title = 'Hello World!';
 
   constructor(private service: PostsService, private route: ActivatedRoute) {
   }

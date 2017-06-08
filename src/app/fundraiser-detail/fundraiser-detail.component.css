@@ -1,11 +1,11 @@
-.stat{
+.stat {
   padding: 10px;
   margin: 10px;
   border-radius: 4px;
 }
 
-.bb1p{
-  border-bottom:1px solid #d3d8dd;
+.bb1p {
+  border-bottom: 1px solid #d3d8dd;
 }
 
 .post_meta span {
@@ -13,6 +13,10 @@
   border-right: 1px solid gray;
 }
 
-.post_meta span:first-child{
+.post_meta span:first-child {
   border-left: 1px solid gray;
+}
+
+#donateBtn {
+  width: 100%;
 }
