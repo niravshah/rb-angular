@@ -2,6 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {StickyModule} from '../../node_modules/ng2-sticky-kit/ng2-sticky-kit';
+
 
 import {PostsService} from './posts.service';
 
@@ -21,6 +23,7 @@ import {HeaderTopComponent} from './header-top/header-top.component';
 import {FundraiserDetailsComponent} from './fundraiser-detail/fundraiser-detail.component';
 import {AuthGuard} from './app.authguard';
 import {FundraiserHeaderComponent} from './fundraiser-detail/fundraiser-header/fundraiser-header.component';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import {FundraiserHeaderComponent} from './fundraiser-detail/fundraiser-header/f
     BrowserModule,
     FormsModule,
     HttpModule,
+    StickyModule,
     routing
   ],
   providers: [PostsService, AuthGuard],

@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, AfterViewInit, ElementRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Fundraiser} from './../fundraiser';
 
@@ -15,10 +15,12 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
   private post: Fundraiser;
 
+
   constructor(private service: PostsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       console.log(id);
@@ -29,6 +31,4 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
-
 }

@@ -3,9 +3,6 @@ $(window).on("load", function () {
   "use strict";
   $(".loader").fadeOut(800);
 
-  $("#donateBtn").sticky({topSpacing: 15});
-
-
 });
 
 

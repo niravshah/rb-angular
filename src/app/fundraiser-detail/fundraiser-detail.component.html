@@ -17,21 +17,23 @@
     <div class="row bottom40">
       <div class="col-md-8 listing1">
         <div class="row">
-            <h2 class="text-uppercase">{{post.title}}</h2>
+          <h2 class="text-uppercase">{{post.title}}</h2>
         </div>
 
         <div class="row top15 post_meta">
-            <span><i class="icon-user"></i>{{post.author}}</span>
-            <span><i class=" icon-calendar"></i>{{post.created}}</span>
+          <span><i class="icon-user"></i>{{post.author}}</span>
+          <span><i class=" icon-calendar"></i>{{post.created}}</span>
         </div>
 
       </div>
       <div class="col-md-4">
-        <div class="row">
-          <button id="donateBtn" type="submit" class="border_radius btn-yellow text-uppercase">
-            Donate Now
-          </button>
-        </div>
+        <sticky [sticky-parent]=false [sticky-offset-top]="10" [sticky-zIndex]="999" [sticky-width]="'300px'">
+          <div class="row" id="donateRow">
+            <button id="donateBtn" type="submit" class="border_radius btn-yellow text-uppercase">
+              Donate Now
+            </button>
+          </div>
+        </sticky>
         <div class="row top15">
           <div class="social-networks">
             <div class="social-icons-2">
