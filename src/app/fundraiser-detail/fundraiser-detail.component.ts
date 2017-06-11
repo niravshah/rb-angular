@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy, AfterViewInit, ElementRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Fundraiser} from './../fundraiser';
+declare var $: any;
 
 import {PostsService} from '../posts.service';
 
@@ -20,7 +21,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    $(document).trigger('initializeBootsnav');
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       console.log(id);
