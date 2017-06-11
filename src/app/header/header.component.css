@@ -1,0 +1,14 @@
+.mib{
+
+  height:40px;
+  width:auto;
+  padding: 0px 10px;
+}
+
+.navbar-brand img{
+  display: inline;
+}
+
+a.navbar-brand{
+  white-space: nowrap;
+}
