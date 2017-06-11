@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HomeOverlayForm} from './home-overlay.form';
 
 @Component({
   selector: 'app-home-overlay',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeOverlayComponent implements OnInit {
 
-  constructor() { }
+  public overlayForm: HomeOverlayForm;
+
+  constructor() {
+  }
 
   ngOnInit() {
+
+    this.overlayForm = {
+      amount: '',
+      title: '',
+      email: '',
+      category: ''
+    };
+  }
+
+  save(model: HomeOverlayForm, isValid: Boolean) {
+    console.log(model, isValid);
   }
 
 }
