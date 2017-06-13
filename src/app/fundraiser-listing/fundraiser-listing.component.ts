@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {PostsService} from '../posts.service';
 
 @Component({
@@ -8,15 +8,18 @@ import {PostsService} from '../posts.service';
 })
 export class FundraiseListingComponent implements OnInit {
 
-  posts: any = [];
+  posts: any;
 
-  constructor(private postService: PostsService) {
+  constructor(private postService: PostsService, private zone: NgZone) {
+    this.posts = [];
   }
 
   ngOnInit() {
-
     this.postService.getAllPosts().subscribe(posts => {
-      this.posts = posts;
+      this.zone.run(() => {
+        this.posts = posts;
+        console.log(this.posts.length);
+      });
     });
   };
 

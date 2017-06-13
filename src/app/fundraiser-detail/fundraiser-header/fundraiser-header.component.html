@@ -9,7 +9,6 @@
               <img alt="" src="/assets/images/logo.png">
               <img alt="" src="/assets/images/made-in-britain.jpg" class="mib">
             </a>
-
           </div>
         </div>
       </div>
@@ -22,10 +21,22 @@
         <div class="col-md-12">
           <!-- Start Header Navigation -->
           <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+              <i class="fa fa-bars"></i>
+            </button>
+
             <a class="navbar-brand sticky_logo" href="/" style="width: 226px;">
               <img src="/assets/images/logo-white.png" class="logo" alt="">
             </a>
           </div> <!-- End Header Navigation -->
+
+          <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
+              <li><a *ngIf="!isLogin()" routerLink="/login">Login</a></li>
+              <li><a *ngIf="isLogin()" href="#" (click)="logout()">Logout</a></li>
+              <li><a *ngIf="!isLogin()" href="#.">Sign Up</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

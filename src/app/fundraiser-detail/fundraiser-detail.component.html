@@ -1,4 +1,6 @@
 <app-fundraiser-header></app-fundraiser-header>
+<simple-notifications [options]="options"></simple-notifications>
+
 <!-- Page Banner Start-->
 <section class="page-banner padding">
   <div class="container">
@@ -9,7 +11,6 @@
   </div>
 </section>
 <!-- Page Banner End -->
-
 <!-- Property Detail Start -->
 <section id="property" class="padding">
   <div class="container property-details" *ngIf="post">
@@ -27,7 +28,7 @@
 
       </div>
       <div class="col-md-4">
-        <sticky [sticky-parent]=false [sticky-offset-top]="10" [sticky-zIndex]="999" [sticky-width]="'300px'">
+        <sticky [sticky-parent]=false [sticky-offset-top]="10" [sticky-zIndex]="999">
           <div class="row" id="donateRow">
             <button id="donateBtn" type="submit" class="border_radius btn-yellow text-uppercase">
               Donate Now

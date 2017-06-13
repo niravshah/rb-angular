@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../../login/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-fundraiser-header',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FundraiserHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  isLogin() {
+    return this.authService.loggedIn();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }

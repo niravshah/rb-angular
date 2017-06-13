@@ -21,3 +21,11 @@
   width: 100%;
 }
 
+.sticky #donateRow{
+  float:left;
+}
+
+.sticky #donateBtn{
+  width:200px;
+}
+
