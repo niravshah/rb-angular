@@ -1,12 +1,13 @@
-<section id="property" class="padding">
+<section id="property" class="padding bg_edit">
   <div class="container property-details">
-    <div class="row bottom40">
-      <h1>Edit Fundraiser Details</h1>
-
-
+    <div class="row pb20">
+      <h2 class="text-uppercase" style="display: inline;">Edit Fundraiser Details</h2>
+      <button class="float-right btn-blue btn-slim" data-toggle="modal" data-target="#myModal">Close</button>
+      <button class="float-right btn-yellow btn-slim mr10" (click)="saveBtn()">Save</button>
+    </div>
+    <div class="row">
       <form-wizard>
         <wizard-step [title]="'Step1'" [isValid]="emailForm.form.valid" (onNext)="onStep1Next($event)">
-          <h1>Step1</h1>
           <form #emailForm="ngForm">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
@@ -18,15 +19,13 @@
           </form>
         </wizard-step>
         <wizard-step [title]="'Step2'" (onNext)="onStep2Next($event)">
-          <h1>Step2</h1>
         </wizard-step>
         <wizard-step [title]="'Step3'" (onNext)="onStep3Next($event)">
-          <h1>Step3</h1>
         </wizard-step>
-        <wizard-step [title]="'Step4'" (onComplete)="onComplete($event)">
+        <wizard-step [title]="'Step4'" [showNext]="'false'" (onComplete)="onComplete($event)">
           <div [ngSwitch]="isCompleted">
             <div *ngSwitchDefault>
-              <h1>Step4</h1>
+              Form incomplete
             </div>
             <div *ngSwitchCase="true">
               <h4>Thank you! You have completed all the steps.</h4>
@@ -37,3 +36,26 @@
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Changes will not be saved?</h4>
+      </div>
+      <div class="modal-body">
+        <p>You pressed the Close button. Changes will not be save.</p>
+        <p>Click Close to discard changes. Or Cancel to return to editing</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeBtn('close')" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" (click)="closeBtn('cancel')" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

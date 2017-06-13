@@ -1,0 +1,28 @@
+.pt20{
+  padding-top: 20px;
+}
+
+.pb20{
+  padding-bottom: 20px;
+}
+
+.pr20{
+  padding-right: 20px;
+}
+
+.mr10{
+  margin-right: 10px;
+}
+
+.float-right{
+  float:right
+}
+
+.btn-slim{
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+[hidden] {
+  display: none;
+}

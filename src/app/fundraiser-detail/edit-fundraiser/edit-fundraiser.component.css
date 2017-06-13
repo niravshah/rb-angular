@@ -1,0 +1,12 @@
+.bg_edit {
+  background-color: #edf3f8;
+}
+
+/deep/ form-wizard .card .card-block {
+  background-color: white;
+  padding: 20px;
+}
+
+/deep/ form-wizard .card .card-footer {
+  padding: 20px;
+}

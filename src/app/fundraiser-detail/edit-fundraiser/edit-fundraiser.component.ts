@@ -1,4 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+
 declare var $: any;
 
 
@@ -12,7 +14,7 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
   data: {};
   isCompleted = false;
 
-  constructor() {
+  constructor(public _location: Location) {
     this.data = {
       email: ''
     };
@@ -38,4 +40,15 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
   }
 
   onComplete() {}
+
+  closeBtn(command) {
+    console.log('Close Button Clicked!', command);
+    if (command === 'close') {
+      this._location.back();
+    }
+  }
+
+  saveBtn() {
+    console.log('Save Button Clicked!');
+  }
 }
