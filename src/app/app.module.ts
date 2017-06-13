@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
+import {FormWizardModule} from 'angular2-wizard/dist';
 
 import {StickyModule} from '../../node_modules/ng2-sticky-kit/ng2-sticky-kit';
 
@@ -24,7 +25,9 @@ import {HeaderTopComponent} from './header-top/header-top.component';
 import {FundraiserDetailsComponent} from './fundraiser-detail/fundraiser-detail.component';
 import {AuthGuard} from './app.authguard';
 import {FundraiserHeaderComponent} from './fundraiser-detail/fundraiser-header/fundraiser-header.component';
-import {LoginService} from "./login/login.service";
+import {LoginService} from './login/login.service';
+import { EditFundraiserComponent } from './fundraiser-detail/edit-fundraiser/edit-fundraiser.component';
+
 
 
 
@@ -42,7 +45,8 @@ import {LoginService} from "./login/login.service";
     LoginComponent,
     HeaderTopComponent,
     FundraiserDetailsComponent,
-    FundraiserHeaderComponent
+    FundraiserHeaderComponent,
+    EditFundraiserComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import {LoginService} from "./login/login.service";
     HttpModule,
     StickyModule,
     routing,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    FormWizardModule
   ],
   providers: [PostsService, AuthGuard, LoginService],
   bootstrap: [AppComponent]
