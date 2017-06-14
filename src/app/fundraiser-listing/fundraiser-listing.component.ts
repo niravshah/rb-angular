@@ -20,7 +20,6 @@ export class FundraiseListingComponent implements OnInit {
         console.log(this.posts.length);
         this.cdRef.detectChanges();
       });
-
   };
 
 }
