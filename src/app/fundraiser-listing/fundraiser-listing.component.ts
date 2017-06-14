@@ -8,10 +8,9 @@ import {PostsService} from '../posts.service';
 })
 export class FundraiseListingComponent implements OnInit {
 
-  posts: any;
+  posts: any = [];
 
   constructor(private postService: PostsService, private zone: NgZone) {
-    this.posts = [];
   }
 
   ngOnInit() {
