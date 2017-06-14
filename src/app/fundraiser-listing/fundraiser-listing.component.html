@@ -9,32 +9,12 @@
         <p class="heading_space">Below causes are currently using Raise Better to meet their goals.</p>
       </div>
     </div>
-    <div class="clearfix">
-      <div id="filters-property" class="cbp-l-filters-button text-center">
-        <div data-filter=".latest" class="cbp-filter-item-active cbp-filter-item">Animal Welfare</div>
-        <div data-filter=".children-youth" class="cbp-filter-item">Children & Youth</div>
-        <div data-filter=".disability-support" class="cbp-filter-item">Disability Support</div>
-        <div data-filter=".emergencies" class="cbp-filter-item">Emergencies</div>
-        <div data-filter=".in-memory" class="cbp-filter-item">In Memory</div>
-        <div data-filter=".local-community" class="cbp-filter-item">Local Community</div>
-        <div data-filter=".social-welfare" class="cbp-filter-item">Social Welfare</div>
-        <div data-filter=".others" class="cbp-filter-item">Others</div>
-      </div>
-    </div>
-    <div id="property-gallery" class="cbp listing1">
 
+    <div id="property-gallery" class="cbp listing1">
 
       <div class="cbp-item latest" [ngClass]="{'sale':post.sale, 'rent': post.rent}" *ngFor="let post of posts">
         <div class="property_item">
-          <div class="image">
-            <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.imageUrl" alt="latest property" class="img-responsive"></a>
-            <div class="price clearfix">
-              <span class="tag pull-right">{{post.price}}</span>
-            </div>
-            <span *ngIf="post.sale" class="tag_t">For Sale</span>
-            <span *ngIf="post.rent" class="tag_t">For Rent</span>
-            <span *ngIf="post.featured" class="tag_l">Featured</span>
-          </div>
+      <h2>{{post.title}}</h2>
         </div>
       </div>
     </div>
