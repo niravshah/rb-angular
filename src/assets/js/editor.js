@@ -1337,7 +1337,7 @@ You should have received a copy of the GNU General Public License along with thi
 								         		}).append($('<div>',{
 							            			class:"modal-content"
 									         		}).append($('<div>',{
-									           			class:"modal-header"
+									           			class:"modal-home-header"
 									           			}).append($('<button/>',{
 										                	type:"button",
 										                	class:"close",

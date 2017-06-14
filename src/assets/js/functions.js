@@ -84,7 +84,7 @@ jQuery(function ($) {
   resizebanner();
 
 
-  // bottom header custom fixed
+  // bottom home-header custom fixed
   var $window = $(window);
   var $mainMenuBar = $('.white_header');
   var $mainMenuBarAnchor = $('#mainMenuBarAnchor');

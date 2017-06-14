@@ -12,7 +12,7 @@ import {PostsService} from './posts.service';
 import {AppComponent} from './app.component';
 import {FundraiseListingComponent} from './fundraiser-listing/fundraiser-listing.component';
 import {FooterComponent} from './footer/footer.component';
-import {HeaderComponent} from './header/header.component';
+import {HomeHeaderComponent} from './index/home-header/header.component';
 import {HomeSliderComponent} from './index/home-slider/home-slider.component';
 import {TimeleftDirective} from './timeleft.directive';
 import {HomeDifferenceComponent} from './index/home-difference/home-difference.component';
@@ -27,6 +27,7 @@ import {AuthGuard} from './app.authguard';
 import {FundraiserHeaderComponent} from './fundraiser-detail/fundraiser-header/fundraiser-header.component';
 import {LoginService} from './login/login.service';
 import { EditFundraiserComponent } from './fundraiser-detail/edit-fundraiser/edit-fundraiser.component';
+import { DonateComponent } from './fundraiser-detail/donate/donate.component';
 
 
 
@@ -36,7 +37,7 @@ import { EditFundraiserComponent } from './fundraiser-detail/edit-fundraiser/edi
     AppComponent,
     FundraiseListingComponent,
     FooterComponent,
-    HeaderComponent,
+    HomeHeaderComponent,
     HomeSliderComponent,
     TimeleftDirective,
     HomeDifferenceComponent,
@@ -46,7 +47,8 @@ import { EditFundraiserComponent } from './fundraiser-detail/edit-fundraiser/edi
     HeaderTopComponent,
     FundraiserDetailsComponent,
     FundraiserHeaderComponent,
-    EditFundraiserComponent
+    EditFundraiserComponent,
+    DonateComponent
   ],
   imports: [
     BrowserModule,

@@ -48,7 +48,4 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
     }
   }
 
-  saveBtn() {
-    console.log('Save Button Clicked!');
-  }
 }
