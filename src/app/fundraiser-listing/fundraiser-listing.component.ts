@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
 import {PostsService} from '../posts.service';
+import {Post} from "../post.model";
 
 @Component({
   selector: 'app-fundraiser-listing',
@@ -8,7 +9,7 @@ import {PostsService} from '../posts.service';
 })
 export class FundraiseListingComponent implements OnInit {
 
-  posts: any;
+  posts: Post[];
 
   constructor(private postService: PostsService, private cdRef: ChangeDetectorRef) {
   }
