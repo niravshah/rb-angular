@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {PostsService} from '../posts.service';
-import {Post} from "../post.model";
+import {Post} from '../post.model';
 
 @Component({
   selector: 'app-fundraiser-listing',
@@ -11,15 +11,15 @@ export class FundraiseListingComponent implements OnInit {
 
   posts: Post[];
 
-  constructor(private postService: PostsService, private cdRef: ChangeDetectorRef) {
+  constructor(private postService: PostsService, private zone: NgZone) {
   }
 
   ngOnInit() {
-    this.postService.getAllPosts().subscribe(posts => {
+    this.zone.run(() => {
+      this.postService.getAllPosts().subscribe(posts => {
         this.posts = posts;
         console.log(this.posts.length);
-        this.cdRef.detectChanges();
       });
-  };
-
+    });
+  }
 }
