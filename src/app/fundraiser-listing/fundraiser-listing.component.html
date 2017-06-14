@@ -10,6 +10,10 @@
       </div>
     </div>
 
+    <div *ngFor="let post of posts">
+        <h2>{{post.title}}</h2>
+    </div>
+
     <div id="property-gallery" class="cbp listing1">
 
       <div class="cbp-item latest"  *ngFor="let post of posts">
