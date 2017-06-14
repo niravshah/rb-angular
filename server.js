@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./server.config')[env];
 
-mongoose.connect(config.mongoUrl);
+//mongoose.connect(config.mongoUrl);
 
 // Get our API routes
 const api = require('./server/routes/api');
