@@ -4,7 +4,6 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
-import {FormWizardModule} from 'angular2-wizard/dist';
 
 import {StickyModule} from '../../node_modules/ng2-sticky-kit/ng2-sticky-kit';
 
@@ -26,9 +25,10 @@ import {FundraiserDetailsComponent} from './fundraiser-detail/fundraiser-detail.
 import {AuthGuard} from './app.authguard';
 import {FundraiserHeaderComponent} from './fundraiser-detail/fundraiser-header/fundraiser-header.component';
 import {LoginService} from './login/login.service';
-import { EditFundraiserComponent } from './fundraiser-detail/edit-fundraiser/edit-fundraiser.component';
-import { DonateComponent } from './fundraiser-detail/donate/donate.component';
-
+import {EditFundraiserComponent} from './fundraiser-detail/edit-fundraiser/edit-fundraiser.component';
+import {DonateComponent} from './fundraiser-detail/donate/donate.component';
+import {WizardComponent} from './form-wizard/wizard.component';
+import {WizardStepComponent} from './form-wizard/wizard-step.component';
 
 
 
@@ -48,7 +48,9 @@ import { DonateComponent } from './fundraiser-detail/donate/donate.component';
     FundraiserDetailsComponent,
     FundraiserHeaderComponent,
     EditFundraiserComponent,
-    DonateComponent
+    DonateComponent,
+    WizardComponent,
+    WizardStepComponent
   ],
   imports: [
     BrowserModule,
@@ -57,8 +59,7 @@ import { DonateComponent } from './fundraiser-detail/donate/donate.component';
     HttpModule,
     StickyModule,
     routing,
-    SimpleNotificationsModule.forRoot(),
-    FormWizardModule
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [PostsService, AuthGuard, LoginService],
   bootstrap: [AppComponent]
