@@ -564,6 +564,7 @@ jQuery(function ($) {
     lightboxGallery: true,
   });
 
+
   //Filter Property
   $('#property-gallery').cubeportfolio({
     filters: '#filters-property',
