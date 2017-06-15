@@ -10,82 +10,11 @@
       </div>
     </div>
     <div class="row listing1">
-    <div class="col-md-4 cbp-item" [ngClass]="{'sale':post.sale, 'rent': post.rent}" *ngFor="let post of posts">
-      <div class="property_item">
-        <div class="image">
-          <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.imageUrl" alt="latest property" class="img-responsive"></a>
-          <div class="price clearfix">
-            <span class="tag pull-right">{{post.price}}</span>
-          </div>
-          <span *ngIf="post.sale" class="tag_t">For Sale</span>
-          <span *ngIf="post.rent" class="tag_t">For Rent</span>
-          <span *ngIf="post.featured" class="tag_l">Featured</span>
-        </div>
-        <div class="proerty_content">
-          <div class="proerty_text">
-            <h3 class="captlize"><a [routerLink]="['/fundraisers', post.id]">{{post.title}}</a></h3>
-            <p>{{post.subTitle}}</p>
-          </div>
-          <div class="favroute clearfix post-bb">
-            <p><i class="icon-user"></i>&nbsp; {{post.author}}</p>
-            <ul class="pull-right time-left">
-              <li><span><i class="icon-clock"></i> <span appTimeleft [dateCreated]="post.created">31 days left</span></span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="property_meta transparent">
-            <span><i class="icon-select-an-objecto-tool"></i>4800 sq ft</span>
-            <span><i class="icon-bed"></i>2 Office Rooms</span>
-            <span><i class="icon-safety-shower"></i>1 Bathroom</span>
-          </div>
-          <div class="property_meta transparent bottom30">
-            <span><i class="icon-old-television"></i>TV Lounge</span>
-            <span><i class="icon-garage"></i>1 Garage</span>
-            <span></span>
-          </div>
-
-          <div class="favroute clearfix">
-            <p><i class="icon-users"></i>&nbsp;{{post.supporters}} supporters</p>
-            <ul class="pull-right">
-              <li><a href="javascript:void(0)"><i class="icon-like"></i></a></li>
-              <li><a href="#seventy" class="share_expender" data-toggle="collapse"><i class="icon-share3"></i></a>
-              </li>
-            </ul>
-          </div>
-          <div class="toggle_share collapse" id="seventy">
-            <ul>
-              <li><a href="javascript:void(0)" class="facebook"><i class="icon-facebook-1"></i> Facebook</a></li>
-              <li><a href="javascript:void(0)" class="twitter"><i class="icon-twitter-1"></i> Twitter</a></li>
-              <li><a href="javascript:void(0)" class="vimo"><i class="icon-vimeo3"></i> Vimeo</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-<div>
-
-</div>
-    <div class="clearfix">
-      <div id="filters-property" class="cbp-l-filters-button text-center">
-        <div data-filter=".latest" class="cbp-filter-item-active cbp-filter-item">Animal Welfare</div>
-        <div data-filter=".children-youth" class="cbp-filter-item">Children & Youth</div>
-        <div data-filter=".disability-support" class="cbp-filter-item">Disability Support</div>
-        <div data-filter=".emergencies" class="cbp-filter-item">Emergencies</div>
-        <div data-filter=".in-memory" class="cbp-filter-item">In Memory</div>
-        <div data-filter=".local-community" class="cbp-filter-item">Local Community</div>
-        <div data-filter=".social-welfare" class="cbp-filter-item">Social Welfare</div>
-        <div data-filter=".others" class="cbp-filter-item">Others</div>
-      </div>
-    </div>
-    <div id="property-gallery" class="cbp listing1">
-
-
-      <div class="cbp-item latest" [ngClass]="{'sale':post.sale, 'rent': post.rent}" *ngFor="let post of posts">
+      <div class="col-md-4 cbp-item" [ngClass]="{'sale':post.sale, 'rent': post.rent}" *ngFor="let post of posts">
         <div class="property_item">
           <div class="image">
-            <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.imageUrl" alt="latest property" class="img-responsive"></a>
+            <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.imageUrl" alt="latest property"
+                                                             class="img-responsive"></a>
             <div class="price clearfix">
               <span class="tag pull-right">{{post.price}}</span>
             </div>
@@ -136,12 +65,13 @@
         </div>
       </div>
     </div>
-
     <div class="col-sm-12 text-center top20">
       <a href="listing1.html" class="btn-dark border_radius uppercase margin40">More Causes</a>
     </div>
     <div class="col-sm-12 text-center top20">
       <a href="listing1.html" class="btn-yellow border_radius uppercase margin20">Start Fundraising</a>
+    </div>
+    <div>
     </div>
   </div>
 </section>
