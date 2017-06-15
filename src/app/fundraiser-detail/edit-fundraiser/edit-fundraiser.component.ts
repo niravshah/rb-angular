@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class EditFundraiserComponent implements OnInit, AfterViewInit {
 
-  data: {};
+  data;
   isCompleted = false;
 
   constructor(public _location: Location) {

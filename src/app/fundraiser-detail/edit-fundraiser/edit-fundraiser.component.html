@@ -21,7 +21,7 @@
         </wizard-step>
         <wizard-step [title]="'Step3'" (onNext)="onStep3Next($event)">
         </wizard-step>
-        <wizard-step [title]="'Step4'" [showNext]="'false'" (onComplete)="onComplete($event)">
+        <wizard-step [title]="'Step4'" [showNext]="'false'" (onComplete)="onComplete()">
           <div [ngSwitch]="isCompleted">
             <div *ngSwitchDefault>
               Form incomplete

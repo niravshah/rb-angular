@@ -17,7 +17,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
 
   private sub: any;
   private qsub: any;
-  private post: Fundraiser;
+  public post: Fundraiser;
 
   public options = {
     position: ['top', 'right'],
