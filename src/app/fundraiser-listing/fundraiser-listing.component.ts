@@ -10,6 +10,7 @@ import {Post} from '../post.model';
 export class FundraiseListingComponent implements OnInit {
 
   posts: Post[];
+  filterValue: string;
 
   constructor(private postService: PostsService, private zone: NgZone) {
   }

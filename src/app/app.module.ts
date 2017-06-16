@@ -29,6 +29,7 @@ import {EditFundraiserComponent} from './fundraiser-detail/edit-fundraiser/edit-
 import {DonateComponent} from './fundraiser-detail/donate/donate.component';
 import {WizardComponent} from './form-wizard/wizard.component';
 import {WizardStepComponent} from './form-wizard/wizard-step.component';
+import {PostsFilter} from './posts.filter';
 
 
 
@@ -50,7 +51,8 @@ import {WizardStepComponent} from './form-wizard/wizard-step.component';
     EditFundraiserComponent,
     DonateComponent,
     WizardComponent,
-    WizardStepComponent
+    WizardStepComponent,
+    PostsFilter
   ],
   imports: [
     BrowserModule,

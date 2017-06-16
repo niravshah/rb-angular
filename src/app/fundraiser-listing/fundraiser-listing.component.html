@@ -9,17 +9,36 @@
         <p class="heading_space">Below causes are currently using Raise Better to meet their goals.</p>
       </div>
     </div>
+
+    <div class="row">
+      <div class=" single-query bottom15">
+        <select [(ngModel)]="filterValue">
+          <option [ngValue]="''">All</option>
+          <option [ngValue]="'rent'">Rent</option>
+          <option [ngValue]="'sale'">Sale</option>
+          <option [ngValue]="'other'">Other</option>
+        </select>
+      </div>
+    </div>
+
+
     <div class="row listing1">
-      <div class="col-md-4 cbp-item" [ngClass]="{'sale':post.sale, 'rent': post.rent}" *ngFor="let post of posts">
+      <div class="col-md-4 cbp-item" [ngClass]="post.type" *ngFor="let post of posts | postfilter: filterValue">
         <div class="property_item">
           <div class="image">
             <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.imageUrl" alt="latest property"
                                                              class="img-responsive"></a>
             <div class="price clearfix">
-              <span class="tag pull-right">{{post.price}}</span>
+              <span class="tag pull-right">Collected: {{post.currency}}{{post.collected}}</span>
+              <span class="tag pull-left">Target: {{post.currency}}{{post.target}}</span>
             </div>
-            <span *ngIf="post.sale" class="tag_t">For Sale</span>
-            <span *ngIf="post.rent" class="tag_t">For Rent</span>
+
+            <div [ngSwitch]="post.type">
+              <span *ngSwitchCase="'sale'" class="tag_t">For Sale</span>
+              <span *ngSwitchCase="'rent'" class="tag_t">For Rent</span>
+              <span *ngSwitchDefault class="tag_t">Other</span>
+            </div>
+
             <span *ngIf="post.featured" class="tag_l">Featured</span>
           </div>
           <div class="proerty_content">
@@ -28,33 +47,23 @@
               <p>{{post.subTitle}}</p>
             </div>
             <div class="favroute clearfix post-bb">
-              <p><i class="icon-user"></i>&nbsp; {{post.author}}</p>
+              <p><i class="icon-user"></i>&nbsp; {{post.author.name}}</p>
               <ul class="pull-right time-left">
                 <li><span><i class="icon-clock"></i> <span appTimeleft [dateCreated]="post.created">31 days left</span></span>
                 </li>
               </ul>
             </div>
 
-            <div class="property_meta transparent">
-              <span><i class="icon-select-an-objecto-tool"></i>4800 sq ft</span>
-              <span><i class="icon-bed"></i>2 Office Rooms</span>
-              <span><i class="icon-safety-shower"></i>1 Bathroom</span>
-            </div>
-            <div class="property_meta transparent bottom30">
-              <span><i class="icon-old-television"></i>TV Lounge</span>
-              <span><i class="icon-garage"></i>1 Garage</span>
-              <span></span>
-            </div>
-
             <div class="favroute clearfix">
               <p><i class="icon-users"></i>&nbsp;{{post.supporters}} supporters</p>
               <ul class="pull-right">
                 <li><a href="javascript:void(0)"><i class="icon-like"></i></a></li>
-                <li><a href="#seventy" class="share_expender" data-toggle="collapse"><i class="icon-share3"></i></a>
+                <li><a href="#seventy{{post.id}}" class="share_expender" data-toggle="collapse"><i
+                  class="icon-share3"></i></a>
                 </li>
               </ul>
             </div>
-            <div class="toggle_share collapse" id="seventy">
+            <div class="toggle_share collapse" id="seventy{{post.id}}">
               <ul>
                 <li><a href="javascript:void(0)" class="facebook"><i class="icon-facebook-1"></i> Facebook</a></li>
                 <li><a href="javascript:void(0)" class="twitter"><i class="icon-twitter-1"></i> Twitter</a></li>

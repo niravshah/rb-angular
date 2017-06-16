@@ -10,3 +10,8 @@ ul.time-left li{
   width:auto;
   margin:0px 10px;
 }
+
+.property_item .price .tag.pull-left{
+  left:0;
+  right:auto;
+}

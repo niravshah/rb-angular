@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const posts = require('../data/posts');
 const post1 = require('../data/post1');
+const post2 = require('../data/post2');
 const jwt = require('jsonwebtoken');
 
 /* GET api listing. */
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/posts', (req, res) => {
-  res.json(posts);
+  res.json([post1,post2]);
 });
 
 

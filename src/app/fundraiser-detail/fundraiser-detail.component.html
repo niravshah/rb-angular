@@ -22,7 +22,7 @@
         </div>
 
         <div class="row top15 post_meta">
-          <span><i class="icon-user"></i>{{post.author}}</span>
+          <span><i class="icon-user"></i>{{post.author.name}}</span>
           <span><i class=" icon-calendar"></i>{{post.created}}</span>
         </div>
 
@@ -74,26 +74,24 @@
           </div>
           <div class="col-sm-12">
             <div class="row text-center">
-              <h3>Target £10000</h3>
-              <p>Collected £3000</p>
+              <h3>Target {{post.currency}}{{post.target}}</h3>
+              <p>Collected {{post.currency}}{{post.collected}}</p>
             </div>
           </div>
         </div>
-
 
         <div class="row top30">
           <div class="col-sm-4 bottom40">
             <div class="agent_wrap">
               <div class="image">
-                <img src="/assets/images/agent-one.jpg" alt="Agents">
+                <img [src]="post.author.avatar" alt="image"/>
               </div>
             </div>
           </div>
           <div class="col-sm-8 bottom40">
             <div class="agent_wrap">
-              <h3>{{post.author}}</h3>
-              <p class="bottom30">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh tempor
-                cum soluta nobis …</p>
+              <h3>{{post.author.name}}</h3>
+              <p class="bottom30">{{post.author.story}}</p>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
-const posts =
+const posts2 =
   {
-    "id": 1,
-    "type":"sale",
+    "id": 2,
+    "type":"rent",
     "featured": true,
     "imageUrl": "/assets/images/listing1.jpg",
     "title": "987 Cantebury Drive",
@@ -19,4 +19,4 @@ const posts =
       "avatar":"/assets/images/agent-one.jpg"
     }
   };
-module.exports = posts;
+module.exports = posts2;
