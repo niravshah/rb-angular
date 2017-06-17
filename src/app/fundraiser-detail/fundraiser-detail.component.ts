@@ -6,6 +6,7 @@ declare var $: any;
 import {PostsService} from '../posts.service';
 import {NotificationsService} from 'angular2-notifications/dist';
 import {LoginService} from "../login/login.service";
+import {FacebookService, LoginResponse, UIParams, UIResponse} from "ngx-facebook";
 
 
 @Component({
@@ -32,7 +33,13 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
               private route: ActivatedRoute,
               private notsService: NotificationsService,
               private authService: LoginService,
-              private router: Router) {
+              private fb: FacebookService) {
+
+    fb.init({
+      appId: '1927971220769787',
+      version: 'v2.9'
+    });
+
   }
 
   ngOnInit() {
@@ -42,7 +49,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       const id = params['id'];
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
-        this.notsService.info('Post Loaded', 'Loaded');
+        // this.notsService.info('Post Loaded', 'Loaded');
       });
     });
 
@@ -79,8 +86,32 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       description: '2 widgets',
       amount: 2000
     });
+  }
 
+  share() {
+
+    const options: UIParams = {
+      method: 'share',
+      href: 'https://github.com/zyramedia/ng2-facebook-sdk'
+    };
+
+    this.fb.ui(options)
+      .then((res: UIResponse) => {
+        console.log('Got the users profile', res);
+      })
+      .catch(this.handleError);
+  }
+
+  login() {
+    this.fb.login()
+      .then((res: LoginResponse) => {
+        console.log('Logged in', res);
+      })
+      .catch(this.handleError);
   }
 
 
+  private handleError(error) {
+    console.error('Error processing action', error);
+  }
 }

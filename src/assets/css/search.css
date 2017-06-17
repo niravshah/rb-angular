@@ -4,7 +4,7 @@
 .intro .zelect.hover, .intro .zelect:hover{
 	box-shadow:none !important;
 	background:transparent !important;
-	
+
 }
 
 .property-query-area{
@@ -227,7 +227,7 @@
 .more-filter .text-1, .more-filter .text-2 {
 	cursor: pointer;
 	padding-right:0;
-	
+
 }
 .more-filter > .text-1{
 	transition: all 0.5s ease 0s;
@@ -329,7 +329,7 @@
 }
 .intro .dropdown ol {
 	padding: 0;
-	margin: 3px 10px
+	margin: 3px 10px;
 	list-style-type: none;
 	max-height:186px;
 	overflow-y: scroll;

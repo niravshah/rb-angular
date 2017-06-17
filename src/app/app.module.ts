@@ -30,6 +30,7 @@ import {DonateComponent} from './fundraiser-detail/donate/donate.component';
 import {WizardComponent} from './form-wizard/wizard.component';
 import {WizardStepComponent} from './form-wizard/wizard-step.component';
 import {PostsFilter} from './posts.filter';
+import {FacebookModule} from "ngx-facebook";
 
 
 
@@ -61,7 +62,8 @@ import {PostsFilter} from './posts.filter';
     HttpModule,
     StickyModule,
     routing,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    FacebookModule.forRoot()
   ],
   providers: [PostsService, AuthGuard, LoginService],
   bootstrap: [AppComponent]

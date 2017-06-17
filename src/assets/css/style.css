@@ -2033,10 +2033,10 @@ i.icon-safety-shower{font-size:16px !important;}
 #property-d-1-2 {
   background-color: #fff;
   position: relative;
-  -moz- transform: translateY(-100%);
-  -ms- transform: translateY(-100%);
-  -o- transform: translateY(-100%);
-  -webkit- transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
 }
 #property-d-1-2.space{ padding-left:10px; padding-right:10px;}
@@ -2913,7 +2913,7 @@ i.icon-safety-shower{font-size:16px !important;}
   position:absolute;
 }
 #news-section-1 .add-on:hover {
-	background:9c9c9c;
+	background:#9c9c9c;
 	color:#1f3f81;
 	transition: color 1000ms ease 0s, background-color 1500ms ease 0s;
 }

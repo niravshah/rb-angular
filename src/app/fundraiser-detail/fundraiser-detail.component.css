@@ -21,6 +21,11 @@
   width: 100%;
 }
 
+#donateBtn2 {
+  width: 100%;
+  margin-top: 10px;
+}
+
 .sticky #donateRow{
   float:left;
 }
@@ -29,3 +34,12 @@
   width:200px;
 }
 
+.sticky #donateBtn2{
+  width:200px;
+  margin-top:0px;
+}
+
+.btn-fb-blue{
+  background-color: #3b5998;
+  color: white;
+}

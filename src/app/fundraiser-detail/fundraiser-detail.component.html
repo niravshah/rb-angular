@@ -19,6 +19,7 @@
       <div class="col-md-8 listing1">
         <div class="row">
           <h2 class="text-uppercase">{{post.title}}</h2>
+          <p>{{post.subTitle}}</p>
         </div>
 
         <div class="row top15 post_meta">
@@ -33,16 +34,14 @@
             <button id="donateBtn" type="submit" (click)="openCheckout()" class="border_radius btn-yellow text-uppercase">
               Donate Now
             </button>
+
+            <button id="donateBtn2" type="submit" (click)="share()" class="border_radius btn-yellow btn-fb-blue text-uppercase">
+              <i class="fa fa-facebook" aria-hidden="true"></i> Share Now
+            </button>
+
           </div>
         </sticky>
-        <div class="row top15">
-          <div class="social-networks">
-            <div class="social-icons-2">
-              <span><a href="#."><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a></span>
-              <span><a href="#."><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a></span>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
 

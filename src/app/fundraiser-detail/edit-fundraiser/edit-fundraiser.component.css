@@ -1,12 +1,14 @@
-/deep/ form-wizard .card .card-block {
+.bg_edit {
+  background-color: #edf3f8;
+}
+
+form-wizard .card .card-block {
   background-color: white;
   padding: 20px;
 }
 
-/deep/ form-wizard .card .card-footer {
+form-wizard .card .card-footer {
   padding: 20px;
 }
-.bg_edit {
-  background-color: #edf3f8;
-}
+
 
