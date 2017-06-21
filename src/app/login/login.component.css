@@ -2,3 +2,8 @@ small.error {
   color: red !important;
   text-align: left;
 }
+
+.no-tt{
+  text-transform: none !important;
+  transition: none !important;
+}

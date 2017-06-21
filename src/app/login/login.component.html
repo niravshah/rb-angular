@@ -17,15 +17,17 @@
             <div role="tabpanel" class="tab-pane fade in active" id="home">
               <div class="agent-p-form">
                 <form action="#" class="callus clearfix" #f="ngForm" (ngSubmit)="login(f.value, f.valid)" novalidate>
+                  <div *ngIf="error" class="error">
+                    <p class="error">{{error}}</p>
+                  </div>
                   <div class="single-query form-group col-sm-12">
-                    <input type="text" class="keyword-input" placeholder="username" name="username" [(ngModel)]="loginForm.username" #username="ngModel" required>
+                    <input type="text" class="no-tt keyword-input" placeholder="username" name="username" [(ngModel)]="loginForm.username" #username="ngModel" required>
                     <small class="error" [hidden]="username.valid || (username.pristine && !f.submitted)">
                       Username is required.
                     </small>
-
                   </div>
                   <div class="single-query form-group  col-sm-12">
-                    <input type="password" class="keyword-input" placeholder="password" name="password" [(ngModel)]="loginForm.password" #password="ngModel" required>
+                    <input type="password" class="no-tt keyword-input" placeholder="password" name="password" [(ngModel)]="loginForm.password" #password="ngModel" required>
                     <small class="error" [hidden]="password.valid || (password.pristine && !f.submitted)">
                       Password is required.
                     </small>

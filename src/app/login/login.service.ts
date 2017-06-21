@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http, Response, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { tokenNotExpired } from 'angular2-jwt';
+import {tokenNotExpired} from 'angular2-jwt';
 
 
 @Injectable()
@@ -16,22 +16,21 @@ export class LoginService {
     this.token = currentUser && currentUser.token;
   }
 
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
-      .map((response: Response) => {
-        // login successful if there's a jwt token in the response
-        const token = response.json() && response.json().token;
+  login(username: string, password: string) {
 
-        if (token) {
-          const email = response.json().email;
-          this.token = token;
-          localStorage.setItem('token', token);
-          localStorage.setItem('currentUser', JSON.stringify({ email:email, username: username, token: token }));
-          return true;
-        } else {
-          return false;
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('/api/authenticate', JSON.stringify({
+      username: username,
+      password: password
+    }), {headers: headers})
+      .map((response: Response) => {
+          // login successful if there's a jwt token in the response
+          return response.json();
         }
-      });
+      )
+      ;
   }
 
   logout(): void {

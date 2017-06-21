@@ -11,8 +11,6 @@ import {Location} from '@angular/common';
 })
 export class LoginComponent implements OnInit {
   loginForm: { username: string; password: string; };
-
-  model: any = {};
   loading = false;
   error = '';
 
@@ -34,16 +32,20 @@ export class LoginComponent implements OnInit {
     if (isValid) {
       this.loading = true;
       this.loginService.login(model.username, model.password)
-        .subscribe(result => {
-          if (result === true) {
-            // login successful
-            //this.router.navigate(['/']);
+        .subscribe((response) => {
+          const token = response.token;
+          if (token) {
+            const email = response.email;
+            localStorage.setItem('token', token);
+            localStorage.setItem('currentUser', JSON.stringify({email: email, username: model.username, token: token}));
             this._location.back();
           } else {
-            // login failed
             this.error = 'Username or password is incorrect';
             this.loading = false;
           }
+        }, (error) => {
+          this.error = error.json().message;
+          this.loading = false;
         });
     }
   }

@@ -1,23 +1,23 @@
-// Get dependencies
 const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./server.config')[env];
-
-//mongoose.connect(config.mongoUrl);
-
-// Get our API routes
-const api = require('./server/routes/api');
 
 const app = express();
 
 // Parsers for POST data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
+
+
+const mongoose = require('mongoose');
+mongoose.connect(config.mongoUrl);
+
+// Get our API routes
+const api = require('./server/routes/api');
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -29,6 +29,7 @@ app.use('/api', api);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
 
 /**
  * Get port from environment and store in Express.
