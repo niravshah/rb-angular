@@ -5,12 +5,21 @@
   <div class="container">
     <h3 class="hidden">hidden</h3>
     <div class="row">
+      <div  *ngIf="messages" class="col-md-12 text-center">
+          <ul class="messages">
+            <li *ngFor="let m of messages">{{m}}</li>
+          </ul>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-12 text-center">
         <div class="profile-login">
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Login</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Login</a>
+            </li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a>
+            </li>
           </ul>
           <!-- Tab panes -->
           <div class="tab-content padding_half">
@@ -21,13 +30,15 @@
                     <p class="error">{{error}}</p>
                   </div>
                   <div class="single-query form-group col-sm-12">
-                    <input type="text" class="no-tt keyword-input" placeholder="username" name="username" [(ngModel)]="loginForm.username" #username="ngModel" required>
+                    <input type="text" class="no-tt keyword-input" placeholder="username" name="username"
+                           [(ngModel)]="loginForm.username" #username="ngModel" required>
                     <small class="error" [hidden]="username.valid || (username.pristine && !f.submitted)">
                       Username is required.
                     </small>
                   </div>
                   <div class="single-query form-group  col-sm-12">
-                    <input type="password" class="no-tt keyword-input" placeholder="password" name="password" [(ngModel)]="loginForm.password" #password="ngModel" required>
+                    <input type="password" class="no-tt keyword-input" placeholder="password" name="password"
+                           [(ngModel)]="loginForm.password" #password="ngModel" required>
                     <small class="error" [hidden]="password.valid || (password.pristine && !f.submitted)">
                       Password is required.
                     </small>

@@ -25,12 +25,20 @@ export class HomeOverlayComponent implements OnInit {
   }
 
   save(model: HomeOverlayForm, isValid: Boolean) {
-    console.log(model, isValid);
+    // console.log(model, isValid);
     if (isValid) {
-      this.postService.createPost(model).subscribe(res => {
-        console.log('Post Response: ', res);
+      this.postService.createPost(model).subscribe((res) => {
+        // console.log('Post Response: ', res);
         const url = '/fundraisers/' + res.id;
         this.router.navigateByUrl(url);
+      }, (error) => {
+        if (error.status === 403) {
+          const url = '/login?mcode=1';
+          this.router.navigateByUrl(url);
+        } else {
+          console.log('Error!!', error.json().message);
+        }
+
       });
     }
   }
