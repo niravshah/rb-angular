@@ -1,0 +1,18 @@
+<app-header-top></app-header-top>
+
+<!-- Login -->
+<section id="login" class="padding">
+  <div class="container">
+    <h3 class="hidden">hidden</h3>
+    <div class="row">
+      <div  *ngIf="messages" class="col-md-12 text-center">
+          <ul class="messages">
+            <li *ngFor="let m of messages">{{m}}</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Login end -->
+
+<app-footer></app-footer>

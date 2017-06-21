@@ -5,10 +5,12 @@ import { LoginComponent } from './login/login.component';
 import { FundraiserDetailsComponent } from './fundraiser-detail/fundraiser-detail.component';
 import {EditFundraiserComponent} from './fundraiser-detail/edit-fundraiser/edit-fundraiser.component';
 import {DonateComponent} from './fundraiser-detail/donate/donate.component';
+import {InfoComponent} from "./info/info.component";
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'info', component: InfoComponent },
   { path: 'fundraisers/:id', component: FundraiserDetailsComponent, children: [
     {path: 'edit', component: EditFundraiserComponent}
   ]},

@@ -16,6 +16,7 @@ import {TimeleftDirective} from './timeleft.directive';
 import {HomeDifferenceComponent} from './index/home-difference/home-difference.component';
 import {HomeOverlayComponent} from './index/home-overlay/home-overlay.component';
 import {IndexComponent} from './index/index.component';
+import {InfoComponent} from './info/info.component';
 
 import {routing} from './app.routes';
 import {LoginComponent} from './login/login.component';
@@ -33,6 +34,7 @@ import {FacebookModule} from 'ngx-facebook';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import {FacebookModule} from 'ngx-facebook';
     HomeOverlayComponent,
     IndexComponent,
     LoginComponent,
+    InfoComponent,
     HeaderTopComponent,
     FundraiserDetailsComponent,
     FundraiserHeaderComponent,

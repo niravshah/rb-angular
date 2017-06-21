@@ -36,6 +36,8 @@ export class HomeOverlayComponent implements OnInit {
           const url = '/login?mcode=1';
           this.router.navigateByUrl(url);
         } else {
+          const url = encodeURI('/info?message=' + error.json().message);
+          this.router.navigateByUrl(url);
           console.log('Error!!', error.json().message);
         }
 
