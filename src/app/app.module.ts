@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SimpleNotificationsModule} from 'angular2-notifications';
 
 import {StickyModule} from '../../node_modules/ng2-sticky-kit/ng2-sticky-kit';
 
@@ -30,7 +29,7 @@ import {DonateComponent} from './fundraiser-detail/donate/donate.component';
 import {WizardComponent} from './form-wizard/wizard.component';
 import {WizardStepComponent} from './form-wizard/wizard-step.component';
 import {PostsFilter} from './posts.filter';
-import {FacebookModule} from "ngx-facebook";
+import {FacebookModule} from 'ngx-facebook';
 
 
 
@@ -62,7 +61,6 @@ import {FacebookModule} from "ngx-facebook";
     HttpModule,
     StickyModule,
     routing,
-    SimpleNotificationsModule.forRoot(),
     FacebookModule.forRoot()
   ],
   providers: [PostsService, AuthGuard, LoginService],

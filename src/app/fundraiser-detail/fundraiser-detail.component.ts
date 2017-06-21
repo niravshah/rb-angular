@@ -4,9 +4,8 @@ import {Fundraiser} from './../fundraiser';
 declare var $: any;
 
 import {PostsService} from '../posts.service';
-import {NotificationsService} from 'angular2-notifications/dist';
-import {LoginService} from "../login/login.service";
-import {FacebookService, LoginResponse, UIParams, UIResponse} from "ngx-facebook";
+import {LoginService} from '../login/login.service';
+import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
 
 
 @Component({
@@ -20,18 +19,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
   private qsub: any;
   public post: Fundraiser;
 
-  public options = {
-    position: ['top', 'right'],
-    timeOut: 5000,
-    lastOnBottom: true,
-    showProgressBar: true,
-    pauseOnHover: true,
-    clickToClose: true
-  };
-
   constructor(private service: PostsService,
               private route: ActivatedRoute,
-              private notsService: NotificationsService,
               private authService: LoginService,
               private fb: FacebookService) {
 
@@ -49,7 +38,6 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       const id = params['id'];
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
-        // this.notsService.info('Post Loaded', 'Loaded');
       });
     });
 
@@ -59,7 +47,6 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
     this.qsub = this.route.queryParams.subscribe(qparams => {
       const created = qparams['created'];
       if (created) {
-        this.notsService.success('New Post', 'Please Login');
       }
     });
   }
