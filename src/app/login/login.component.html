@@ -5,7 +5,7 @@
   <div class="container">
     <h3 class="hidden">hidden</h3>
     <div class="row">
-      <div  *ngIf="messages" class="col-md-12 text-center">
+      <div  *ngIf="messages.length > 0" class="col-md-12 text-center">
           <ul class="messages">
             <li *ngFor="let m of messages">{{m}}</li>
           </ul>

@@ -2,17 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 var generatePassword = require('password-generator');
-
+var shortid = require('shortid');
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 
 const post1 = require('../data/post1');
 const post2 = require('../data/post2');
-const post = require('../models/post');
+
+const Post = require('../models/post');
 const User = require('../models/user');
 
 module.exports = function (passport) {
 
-
   router.get('/api/posts', (req, res) => {
+    res.json([post1, post2]);
+  });
+
+  router.get('/api/user/:id/posts', (req, res) => {
     res.json([post1, post2]);
   });
 
@@ -36,6 +41,7 @@ module.exports = function (passport) {
       } else {
         //console.log('Creating New User',req.params);
         const newUser = new User();
+        newUser.sid = shortid.generate();
         newUser.email = req.body.email;
         newUser.password = generatePassword();
         newUser.save(function (err, user) {
@@ -67,8 +73,20 @@ module.exports = function (passport) {
   });
 
   function createPost(user, title, callback) {
-    console.log('Creating Post ' + title + ' for user ' + user.email);
-    callback(null, {'id': 1})
+    console.log('Creating Post ' + title + ' for user ' + user.email)
+
+    const newPost = new Post();
+    newPost.title = title;
+    newPost.author = user;
+    newPost.sid = shortid.generate();
+    newPost.save(function(err,post){
+      if(err){
+        callback(err, null)
+      }else{
+        callback(null, {'id': post.sid})
+      }
+    })
+
   }
 
   function emailLogonDetails(user) {

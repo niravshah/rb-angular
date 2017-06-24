@@ -24,4 +24,11 @@ export class PostsService {
       .map(res => res.json());
   }
 
+  getAllPostsForLoggedInUser(user: string) {
+    console.log(JSON.parse(user).email);
+    var url = '/api/user/' + JSON.parse(user).sid + '/posts';
+    return this.http.get(url)
+      .map(res => res.json());
+
+  }
 }

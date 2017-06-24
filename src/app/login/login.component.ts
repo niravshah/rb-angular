@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   login(model: any, isValid: Boolean) {
 
-    console.log(model, isValid);
+    // console.log(model, isValid);
     if (isValid) {
       this.loading = true;
       this.loginService.login(model.username, model.password)
@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
           if (token) {
             const email = response.email;
             localStorage.setItem('token', token);
-            localStorage.setItem('currentUser', JSON.stringify({email: email, username: model.username, token: token}));
-            this._location.back();
+            localStorage.setItem('currentUser', JSON.stringify({email: email, username: model.username, token: token, sid: response.sid}));
+            this.router.navigate(['home']);
           } else {
             this.error = 'Username or password is incorrect';
             this.loading = false;

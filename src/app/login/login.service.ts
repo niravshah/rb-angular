@@ -43,4 +43,9 @@ export class LoginService {
     return tokenNotExpired();
   }
 
+  loggedInUser(){
+    return localStorage.getItem('currentUser');
+  }
+
+
 }
