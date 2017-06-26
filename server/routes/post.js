@@ -17,8 +17,23 @@ module.exports = function (passport) {
     res.json([post1, post2]);
   });
 
-  router.get('/api/user/:id/posts', (req, res) => {
-    res.json([post1, post2]);
+  router.get('/api/user/:id/posts', passport.authenticate('jwt', {
+    failWithError: true
+  }), (req, res, next) => {
+    //console.log("GET /api/user/:id/posts : ", req.params.id, req.user);
+    //res.json([post1, post2]);
+
+    Post.find({
+      author: req.user
+    }).populate().exec(function (err, posts) {
+      //console.log(err, posts);
+      res.json([post1, post2]);
+    });
+
+
+  }, (err, req, res, nex) => {
+
+    console.log("GET /api/user/:id/posts ERROR !!: ", err);
   });
 
 
@@ -79,10 +94,10 @@ module.exports = function (passport) {
     newPost.title = title;
     newPost.author = user;
     newPost.sid = shortid.generate();
-    newPost.save(function(err,post){
-      if(err){
+    newPost.save(function (err, post) {
+      if (err) {
         callback(err, null)
-      }else{
+      } else {
         callback(null, {'id': post.sid})
       }
     })

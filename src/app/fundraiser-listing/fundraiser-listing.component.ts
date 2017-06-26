@@ -24,7 +24,7 @@ export class FundraiseListingComponent implements OnInit {
     console.log('Fundraiser Detail Component ' + this.type);
 
     if (this.type === 'loggedInUser') {
-      this.postService.getAllPostsForLoggedInUser(this.loginService.loggedInUser()).subscribe(posts => {
+      this.postService.getAllPostsForLoggedInUser(this.loginService.loggedInUser(), this.loginService.loggedInJwt()).subscribe(posts => {
         this.posts = posts;
         console.log(this.posts.length);
       });

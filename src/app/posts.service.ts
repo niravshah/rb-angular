@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Post} from "./post.model";
+
 
 @Injectable()
 export class PostsService {
@@ -24,10 +24,14 @@ export class PostsService {
       .map(res => res.json());
   }
 
-  getAllPostsForLoggedInUser(user: string) {
+  getAllPostsForLoggedInUser(user: string, jwt: string) {
     console.log(JSON.parse(user).email);
-    var url = '/api/user/' + JSON.parse(user).sid + '/posts';
-    return this.http.get(url)
+
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + jwt);
+
+    const url = '/api/user/' + JSON.parse(user).sid + '/posts';
+    return this.http.get(url,{headers: headers})
       .map(res => res.json());
 
   }

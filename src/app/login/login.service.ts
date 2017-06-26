@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {tokenNotExpired} from 'angular2-jwt';
 
@@ -43,8 +42,12 @@ export class LoginService {
     return tokenNotExpired();
   }
 
-  loggedInUser(){
+  loggedInUser() {
     return localStorage.getItem('currentUser');
+  }
+
+  loggedInJwt() {
+    return localStorage.getItem('token');
   }
 
 
