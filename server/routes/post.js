@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 var generatePassword = require('password-generator');
 var shortid = require('shortid');
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
@@ -55,11 +58,10 @@ module.exports = function (passport) {
 
       } else {
         //console.log('Creating New User',req.params);
-        const newUser = new User();
-        newUser.sid = shortid.generate();
-        newUser.email = req.body.email;
-        newUser.password = generatePassword();
-        newUser.save(function (err, user) {
+
+        const password = generatePassword();
+
+        createUser(req.body.email, password, function (err, user) {
           if (err) {
             res.status(500).json({
               message: "Error creating new User. Please try again later.",
@@ -67,14 +69,15 @@ module.exports = function (passport) {
             })
           } else {
 
-            emailLogonDetails(user);
+            emailLogonDetails(user, password);
             createPost(user, req.body.title, function (err, post) {
               if (err) {
                 res.status(500).json({'message': err})
               } else {
                 res.status(200).json({'message': 'Post Created', 'id': post.id})
               }
-            })
+            });
+
           }
         });
       }
@@ -87,9 +90,18 @@ module.exports = function (passport) {
     res.json(post1);
   });
 
+  function createUser(email, password, callback) {
+
+    const newUser = new User();
+    newUser.sid = shortid.generate();
+    newUser.email = email;
+    newUser.password = bcrypt.hashSync(password, saltRounds);
+    newUser.save(function(err,user){callback(err, user)});
+
+  }
+
   function createPost(user, title, callback) {
     console.log('Creating Post ' + title + ' for user ' + user.email)
-
     const newPost = new Post();
     newPost.title = title;
     newPost.author = user;
@@ -104,8 +116,8 @@ module.exports = function (passport) {
 
   }
 
-  function emailLogonDetails(user) {
-    console.log('Emailing Logon Details for user ' + user.email);
+  function emailLogonDetails(user, password) {
+    console.log('Emailing Logon Details for user ', user.email, password);
   }
 
   return router;
