@@ -29,8 +29,8 @@
             <a [routerLink]="['/fundraisers', post.sid]"><img [src]="post.image" alt="latest property"
                                                              class="img-responsive"></a>
             <div class="price clearfix">
-              <span class="tag pull-right">Collected: {{post.currency}}{{post.collected}}</span>
-              <span class="tag pull-left">Target: {{post.currency}}{{post.target}}</span>
+              <span class="tag pull-right">Collected: {{post.collected | currency:post.currency:true}}</span>
+              <span class="tag pull-left">Target: {{post.target| currency:post.currency:true}}</span>
             </div>
 
             <div [ngSwitch]="post.type">
@@ -47,7 +47,7 @@
               <p>{{post.subTitle}}</p>
             </div>
             <div class="favroute clearfix post-bb">
-              <p><i class="icon-user"></i>&nbsp; {{post.author.name}}</p>
+              <p><i class="icon-user"></i>&nbsp; {{post.author.name| titlecase}}</p>
               <ul class="pull-right time-left">
                 <li><span><i class="icon-clock"></i> <span appTimeleft [dateCreated]="post.created">31 days left</span></span>
                 </li>

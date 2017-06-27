@@ -27,7 +27,7 @@
       </div>
       <div class="col-md-4 col-sm-6 col-xs-6">
         <div class=" single-query bottom15">
-          <select>
+          <select name="currency" [(ngModel)]="overlayForm.currency" #currency="ngModel">
             <option selected="" value="gbp">Pounds(£)</option>
             <option value="dollar">Dollars($)</option>
             <option value="euro">Euros(€)</option>
@@ -50,29 +50,6 @@
         </div>
       </div>
     </div>
-
-    <!--
-    <div class="row top15">
-      <div class="col-sm-12">
-        <div class="single-query">
-            <select name="category" [(ngModel)]="overlayForm.category" #category="ngModel" required>
-              <option selected="" value="any">Pick a Category</option>
-              <option>Animal Welfare</option>
-              <option>Children & Youth</option>
-              <option>Disability Support</option>
-              <option>Emergencies</option>
-              <option>In Memory</option>
-              <option>Local Community</option>
-              <option>Social Welfare</option>
-              <option>Others</option>
-            </select>
-          <small class="error" [hidden]="category.valid || (category.pristine && !f.submitted)">
-            Category is required.
-          </small>
-        </div>
-      </div>
-    </div>
-    -->
     <div class="row">
       <div class="t_white col-md-12 bottom15">
         <h4>your email address:</h4>

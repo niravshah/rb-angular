@@ -18,11 +18,13 @@ module.exports = {
     });
   },
 
-  createPost: function (user, title, callback) {
+  createPost: function (user, title, amount, currency, callback) {
     const newPost = new Post();
     newPost.title = title;
     newPost.author = user;
     newPost.sid = shortid.generate();
+    newPost.target = amount;
+    newPost.currency = currency;
     newPost.save(function (err, post) {
       callback(err, post)
     });

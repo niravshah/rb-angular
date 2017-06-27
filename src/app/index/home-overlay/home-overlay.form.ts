@@ -3,4 +3,5 @@ export interface HomeOverlayForm {
   title: string;
   email: string;
   fname: string;
+  currency: string;
 }

@@ -16,13 +16,38 @@ module.exports = function (passport) {
     res.json([post1, post2]);
   });
 
+
+  router.get('/api/posts/:id', (req, res) => {
+
+    if(req.params.id === 'undefined'){
+      res.json(post1);
+    }
+
+    Post.find({
+      sid: req.params.id
+    }).populate('author', 'sid name email avatar').exec(function (err, posts) {
+
+      if (err) {
+        res.status(500).json({
+          message: "Error retrieving User posts.",
+          error: err
+        })
+
+      } else {
+        res.json(posts[0]);
+      }
+
+    });
+  });
+
+
   router.get('/api/user/:id/posts', passport.authenticate('jwt', {
     failWithError: true
   }), (req, res, next) => {
 
     Post.find({
       author: req.user
-    }).exec(function (err, posts) {
+    }).populate('author','sid name email').exec(function (err, posts) {
       //console.log(err, posts);
       if (err) {
         res.status(500).json({
@@ -69,7 +94,7 @@ module.exports = function (passport) {
             })
           } else {
             utils.emailLogonDetails(user, password);
-            utils.createPost(user, req.body.title, function (err, post) {
+            utils.createPost(user, req.body.title, req.body.amount, req.body.currency, function (err, post) {
               if (err) {
                 res.status(500).json({'message': err})
               } else {
@@ -83,26 +108,7 @@ module.exports = function (passport) {
     });
   });
 
-
-  router.get('/api/posts/:id', (req, res) => {
-
-    Post.find({
-      sid: req.params.id
-    }).populate('author','sid name email avatar').exec(function (err, posts) {
-
-      if (err) {
-        res.status(500).json({
-          message: "Error retrieving User posts.",
-          error: err
-        })
-
-      } else {
-        res.json(posts[0]);
-      }
-
-    });
-  });
-
-
   return router;
 };
+
+

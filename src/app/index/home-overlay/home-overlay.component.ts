@@ -21,7 +21,8 @@ export class HomeOverlayComponent implements OnInit {
       amount: '',
       title: '',
       email: '',
-      fname: ''
+      fname: '',
+      currency: ''
     };
   }
 

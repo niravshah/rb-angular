@@ -32,6 +32,7 @@ import {WizardStepComponent} from './form-wizard/wizard-step.component';
 import {PostsFilter} from './posts.filter';
 import {FacebookModule} from 'ngx-facebook';
 import { HomeComponent } from './home/home.component';
+import {PercentcalcPipe} from './percentcalc.pipe';
 
 
 
@@ -57,7 +58,8 @@ import { HomeComponent } from './home/home.component';
     WizardComponent,
     WizardStepComponent,
     PostsFilter,
-    HomeComponent
+    HomeComponent,
+    PercentcalcPipe
   ],
   imports: [
     BrowserModule,
