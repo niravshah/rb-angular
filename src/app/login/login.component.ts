@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   messageMap = {
     1: 'This email exists. Please login before creating a new post.',
     2: 'Please login first.',
-    3: 'New User Created. Password Emailed. Please Login to continue.'
+    3: 'New User Created. Password Emailed. Please Login to continue.',
+    4: 'New User & Post Created. Password Emailed. Please Login to continue.'
   };
 
   constructor(private router: Router,

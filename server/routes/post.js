@@ -88,7 +88,7 @@ module.exports = function (passport) {
 
     Post.find({
       sid: req.params.id
-    }).populate('author').exec(function (err, posts) {
+    }).populate('author','sid name email avatar').exec(function (err, posts) {
 
       if (err) {
         res.status(500).json({

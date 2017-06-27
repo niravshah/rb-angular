@@ -19,16 +19,36 @@ module.exports = function (passport) {
 
   router.post('/api/register', (req, res) => {
 
-    const password = generatePassword();
-    util.createUser(req.body.email, password, req.body.name, function (err, user) {
+    User.findOne({
+      'email': req.body.email
+    }, function (err, user) {
       if (err) {
         res.status(500).json({
           message: "Error creating new User. Please try again later.",
           error: err
         })
+      } else if (user) {
+
+        res.status(403).json({
+          "message": "Email exists. Please login first to create a post with this email id."
+        })
+
       } else {
-        util.emailLogonDetails(user, password);
-        res.status(200).json({'message': 'ok', 'email': user.email, 'sid': user.sid});
+        //console.log('Creating New User',req.params);
+
+
+        const password = generatePassword();
+        util.createUser(req.body.email, password, req.body.name, function (err, user) {
+          if (err) {
+            res.status(500).json({
+              message: "Error creating new User. Please try again later.",
+              error: err
+            })
+          } else {
+            util.emailLogonDetails(user, password);
+            res.status(200).json({'message': 'ok', 'email': user.email, 'sid': user.sid});
+          }
+        });
       }
     });
   });
