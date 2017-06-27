@@ -11,10 +11,15 @@ import {Location} from '@angular/common';
 })
 export class LoginComponent implements OnInit {
   loginForm: { username: string; password: string; };
+  registerForm: { email: string, name: string };
   loading = false;
   error = '';
   messages = [];
-  messageMap = {1: 'This email exists. Please login before creating a new post.'};
+  messageMap = {
+    1: 'This email exists. Please login before creating a new post.',
+    2: 'Please login first.',
+    3: 'New User Created. Password Emailed. Please Login to continue.'
+  };
 
   constructor(private router: Router,
               private loginService: LoginService,
@@ -26,6 +31,11 @@ export class LoginComponent implements OnInit {
     this.loginForm = {
       username: '',
       password: ''
+    };
+
+    this.registerForm = {
+      email: '',
+      name: ''
     };
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
@@ -48,7 +58,12 @@ export class LoginComponent implements OnInit {
           if (token) {
             const email = response.email;
             localStorage.setItem('token', token);
-            localStorage.setItem('currentUser', JSON.stringify({email: email, username: model.username, token: token, sid: response.sid}));
+            localStorage.setItem('currentUser', JSON.stringify({
+              email: email,
+              username: model.username,
+              token: token,
+              sid: response.sid
+            }));
             this.router.navigate(['home']);
           } else {
             this.error = 'Username or password is incorrect';
@@ -65,5 +80,17 @@ export class LoginComponent implements OnInit {
     this.loginService.logout();
   }
 
+  register(model: any, isValid: Boolean) {
+    console.log(model, isValid);
+    if (isValid) {
+      this.loginService.register(model.email2, model.name2).subscribe((response) => {
+        console.log(response);
+        this.router.navigate(['login'], {queryParams: {mcode: 3}});
+      }, (err) => {
+        this.error = err.json().message;
+        console.log(err);
+      });
+    }
+  }
 
 }

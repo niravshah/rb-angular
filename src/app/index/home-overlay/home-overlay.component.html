@@ -87,6 +87,19 @@
       </div>
     </div>
     <div class="row">
+      <div class="t_white col-md-12 bottom15">
+        <h4>your full name:</h4>
+      </div>
+      <div class="col-md-12">
+        <div class="bottom15" style="width: 100%">
+          <input type="text" class="keyword-input" placeholder="Full Name" style="width: 100%" name="fname" [(ngModel)]="overlayForm.fname" #fname="ngModel" required>
+          <small class="error" [hidden]="fname.valid || (fname.pristine && !f.submitted)">
+            Name is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12 text-right form-group top30">
         <button type="submit" class="border_radius btn-yellow text-uppercase">Start Fundraising Now</button>
       </div>

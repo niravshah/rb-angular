@@ -5,10 +5,10 @@
   <div class="container">
     <h3 class="hidden">hidden</h3>
     <div class="row">
-      <div  *ngIf="messages.length > 0" class="col-md-12 text-center">
-          <ul class="messages">
-            <li *ngFor="let m of messages">{{m}}</li>
-          </ul>
+      <div *ngIf="messages.length > 0" class="col-md-12 text-center">
+        <ul class="messages">
+          <li *ngFor="let m of messages">{{m}}</li>
+        </ul>
       </div>
     </div>
     <div class="row">
@@ -44,14 +44,8 @@
                     </small>
                   </div>
                   <div class="row">
-                    <div class="col-sm-12">
-                      <div class="col-sm-6">
-                        <div class="search-form-group white form-group text-left">
-                          <div class="check-box-2"><i><input type="checkbox" name="check-box"></i></div>
-                          <span>Remember Me</span>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 text-right">
+                    <div class="col-sm-12 pb20">
+                      <div class="col-sm-6 text-left">
                         <a href="#" class="lost-pass">Lost your password?</a>
                       </div>
                     </div>
@@ -64,22 +58,25 @@
             </div>
             <div role="tabpanel" class="tab-pane fade" id="profile">
               <div class="agent-p-form">
-                <form class="callus clearfix">
-                  <div class="single-query col-sm-12 form-group">
-                    <input type="text" class="keyword-input" placeholder="username" required>
+                <form class="callus clearfix" action="#" #f1="ngForm" (ngSubmit)="register(f1.value, f1.valid)"
+                      novalidate>
+                  <div *ngIf="error" class="error">
+                    <p class="error">{{error}}</p>
                   </div>
                   <div class="single-query col-sm-12 form-group">
-                    <input type="text" class="keyword-input" placeholder="Email Address">
+                    <input type="text" class="no-tt keyword-input" placeholder="Full Name" name="name2"
+                           [(ngModel)]="registerForm.name" #name2="ngModel" required>
+                    <small class="error" [hidden]="name2.valid || (name2.pristine && !f1.submitted)">
+                      Valid Email Address Required.
+                    </small>
                   </div>
                   <div class="single-query col-sm-12 form-group">
-                    <input type="password" class="keyword-input" placeholder="Password">
-                  </div>
-                  <div class="single-query col-sm-12 form-group">
-                    <input type="password" class="keyword-input" placeholder="Confirm  Password" readonly>
-                  </div>
-                  <div class="search-form-group white col-sm-12 form-group text-left">
-                    <div class="check-box-2"><i><input type="checkbox" name="check-box"></i></div>
-                    <span>Receive Newsletter</span>
+                    <input type="email" class="no-tt keyword-input" placeholder="Email Address" name="email2"
+                           [(ngModel)]="registerForm.email" #email2="ngModel" required
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    <small class="error" [hidden]="email2.valid || (email2.pristine && !f1.submitted)">
+                      Valid Email Address Required.
+                    </small>
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                     <div class="query-submit-button">

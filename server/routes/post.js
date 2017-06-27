@@ -1,18 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-var bcrypt = require('bcrypt');
-const saltRounds = 10;
-
 var generatePassword = require('password-generator');
-var shortid = require('shortid');
-shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
 
 const post1 = require('../data/post1');
 const post2 = require('../data/post2');
 
 const Post = require('../models/post');
 const User = require('../models/user');
+const utils = require('./utils');
 
 module.exports = function (passport) {
 
@@ -23,20 +19,24 @@ module.exports = function (passport) {
   router.get('/api/user/:id/posts', passport.authenticate('jwt', {
     failWithError: true
   }), (req, res, next) => {
-    //console.log("GET /api/user/:id/posts : ", req.params.id, req.user);
-    //res.json([post1, post2]);
 
     Post.find({
       author: req.user
-    }).populate().exec(function (err, posts) {
+    }).exec(function (err, posts) {
       //console.log(err, posts);
-      res.json([post1, post2]);
+      if (err) {
+        res.status(500).json({
+          message: "Error retrieving User posts.",
+          error: err
+        })
+
+      } else {
+        res.json(posts);
+      }
+
     });
-
-
-  }, (err, req, res, nex) => {
-
-    console.log("GET /api/user/:id/posts ERROR !!: ", err);
+  }, (err, req, res, next) => {
+    res.status(403).json({'message': err, 'status': err.status});
   });
 
 
@@ -61,64 +61,48 @@ module.exports = function (passport) {
 
         const password = generatePassword();
 
-        createUser(req.body.email, password, function (err, user) {
+        utils.createUser(req.body.email, password, req.body.fname, function (err, user) {
           if (err) {
             res.status(500).json({
               message: "Error creating new User. Please try again later.",
               error: err
             })
           } else {
-
-            emailLogonDetails(user, password);
-            createPost(user, req.body.title, function (err, post) {
+            utils.emailLogonDetails(user, password);
+            utils.createPost(user, req.body.title, function (err, post) {
               if (err) {
                 res.status(500).json({'message': err})
               } else {
                 res.status(200).json({'message': 'Post Created', 'id': post.id})
               }
             });
-
           }
         });
       }
-    });
 
+    });
   });
 
 
   router.get('/api/posts/:id', (req, res) => {
-    res.json(post1);
+
+    Post.find({
+      sid: req.params.id
+    }).populate('author').exec(function (err, posts) {
+
+      if (err) {
+        res.status(500).json({
+          message: "Error retrieving User posts.",
+          error: err
+        })
+
+      } else {
+        res.json(posts[0]);
+      }
+
+    });
   });
 
-  function createUser(email, password, callback) {
-
-    const newUser = new User();
-    newUser.sid = shortid.generate();
-    newUser.email = email;
-    newUser.password = bcrypt.hashSync(password, saltRounds);
-    newUser.save(function(err,user){callback(err, user)});
-
-  }
-
-  function createPost(user, title, callback) {
-    console.log('Creating Post ' + title + ' for user ' + user.email)
-    const newPost = new Post();
-    newPost.title = title;
-    newPost.author = user;
-    newPost.sid = shortid.generate();
-    newPost.save(function (err, post) {
-      if (err) {
-        callback(err, null)
-      } else {
-        callback(null, {'id': post.sid})
-      }
-    })
-
-  }
-
-  function emailLogonDetails(user, password) {
-    console.log('Emailing Logon Details for user ', user.email, password);
-  }
 
   return router;
 };

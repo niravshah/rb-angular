@@ -20,7 +20,8 @@ export class HomeOverlayComponent implements OnInit {
     this.overlayForm = {
       amount: '',
       title: '',
-      email: ''
+      email: '',
+      fname: ''
     };
   }
 

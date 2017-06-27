@@ -32,6 +32,21 @@ export class LoginService {
       ;
   }
 
+
+  register(email: string, name: string) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('/api/register', JSON.stringify({
+      email: email,
+      name: name
+    }), {headers: headers})
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
   logout(): void {
     this.token = null;
     localStorage.removeItem('currentUser');

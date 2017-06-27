@@ -2,8 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('User', {
   sid:{type:String},
-  firstName: {type: String},
-  lastName: {type: String},
+  name: {type: String, default: ''},
   email: {type: String, required: true},
   password: {type: String, required: true},
   role: {type: String, enum: ['FUNDRAISER', 'PATRON'], default: 'FUNDRAISER'},

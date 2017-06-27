@@ -26,7 +26,7 @@
       <div class="col-md-4 cbp-item" [ngClass]="post.type" *ngFor="let post of posts | postfilter: filterValue">
         <div class="property_item">
           <div class="image">
-            <a [routerLink]="['/fundraisers', post.id]"><img [src]="post.image" alt="latest property"
+            <a [routerLink]="['/fundraisers', post.sid]"><img [src]="post.image" alt="latest property"
                                                              class="img-responsive"></a>
             <div class="price clearfix">
               <span class="tag pull-right">Collected: {{post.currency}}{{post.collected}}</span>
@@ -43,7 +43,7 @@
           </div>
           <div class="proerty_content">
             <div class="proerty_text">
-              <h3 class="captlize"><a [routerLink]="['/fundraisers', post.id]">{{post.title}}</a></h3>
+              <h3 class="captlize"><a [routerLink]="['/fundraisers', post.sid]">{{post.title}}</a></h3>
               <p>{{post.subTitle}}</p>
             </div>
             <div class="favroute clearfix post-bb">
