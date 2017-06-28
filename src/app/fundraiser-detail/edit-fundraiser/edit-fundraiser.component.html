@@ -6,20 +6,25 @@
     </div>
     <div class="row">
       <form-wizard>
-        <wizard-step [title]="'Step1'" [isValid]="emailForm.form.valid" (onNext)="onStep1Next($event)">
+        <wizard-step [title]="'Fundraiser Details'" [isValid]="emailForm.form.valid" (onNext)="onStep1Next($event)">
           <form #emailForm="ngForm">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1"
                      aria-describedby="emailHelp" placeholder="Enter email"
-                     [(ngModel)]="data.email" required>
+                     [(ngModel)]="data.email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
+
+            <input id="photoupload" type="file" accept="image/*" (change)="readUrl($event)">
+            <button id="addphoto" (click)="addPhoto()">Add Photo</button>
+            <img [src]="url">
+
           </form>
         </wizard-step>
-        <wizard-step [title]="'Step2'" (onNext)="onStep2Next($event)">
+        <wizard-step [title]="'Your Details'" (onNext)="onStep2Next($event)">
         </wizard-step>
-        <wizard-step [title]="'Step3'" (onNext)="onStep3Next($event)">
+        <wizard-step [title]="'Bank Details'" (onNext)="onStep3Next($event)">
         </wizard-step>
         <wizard-step [title]="'Step4'" [showNext]="'false'" (onComplete)="onComplete()">
           <div [ngSwitch]="isCompleted">

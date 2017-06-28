@@ -34,9 +34,6 @@ import {FacebookModule} from 'ngx-facebook';
 import { HomeComponent } from './home/home.component';
 import {PercentcalcPipe} from './percentcalc.pipe';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
