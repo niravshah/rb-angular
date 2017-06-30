@@ -7,3 +7,7 @@ form-wizard form{
   background-color: white;
 }
 
+.editPostImage{
+  width:auto;
+  height:220px;
+}

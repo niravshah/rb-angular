@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {PostsService} from "../../posts.service";
+import {isUndefined} from "util";
+import {ActivatedRoute, Router} from "@angular/router";
 
 declare var $: any;
 declare var AWS: any;
@@ -12,20 +14,29 @@ declare var AWS: any;
 })
 export class EditFundraiserComponent implements OnInit, AfterViewInit {
   target;
-  data;
   s3;
   isCompleted = false;
   url;
+  post;
 
 
-  constructor(public _location: Location, public service: PostsService) {
-    this.data = {
-      email: ''
-    };
+  constructor(public _location: Location, public service: PostsService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
     console.log('Current Post in Edit Post: ', this.service.getCurrentPost(), this.service.getCurrentPostId());
+    this.post = this.service.getCurrentPost();
+    if (isUndefined(this.post)) {
+
+      this.route.params.subscribe(params => {
+        const id = params['id'];
+        this.service.getFundraiserById(id).subscribe(post => {
+          this.post = post;
+          this.service.setCurrentPost(post);
+        });
+      });
+    }
+
   }
 
   ngAfterViewInit(): void {

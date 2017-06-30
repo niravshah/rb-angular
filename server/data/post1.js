@@ -10,7 +10,7 @@ const posts =
     "created": "2016-05-17",
     "target": 10000,
     "collected": 3000,
-    "currency": "£",
+    "currency": "gbp",
     "story": "<p class='bottom30'>We are sure you have been heartened by the incredible response from the emergency services, support agencies and the generosity shown by the public following the recent terror attacks in the UK.</p> " +
     "<p class='bottom30'>From supporting survivors and the bereaved we know just how devastating and long-lasting the psychological, physical, social and financial effects can be. It can be in the days, weeks or even months afterwards that people feel the emotional impact of witnessing a terrorist incident.</p> " +
     "<div class='text-it-p bottom40'> <p>Victim Support is supporting families of victims of the recent attacks in Manchester and London, and we are here no matter when or where an incident takes place to offer free practical and emotional help.</p></div>" +
