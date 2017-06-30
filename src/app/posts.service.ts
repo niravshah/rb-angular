@@ -6,6 +6,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PostsService {
 
+  private currentPost: any;
+  private currentPostId: any;
+
+
   constructor(private http: Http) {
   }
 
@@ -31,8 +35,25 @@ export class PostsService {
     headers.append('Authorization', 'JWT ' + jwt);
 
     const url = '/api/user/' + JSON.parse(user).sid + '/posts';
-    return this.http.get(url,{headers: headers})
+    return this.http.get(url, {headers: headers})
       .map(res => res.json());
 
+  }
+
+  setCurrentPost(post) {
+    this.currentPost = post;
+    this.setCurrentPostId(post.sid);
+  }
+
+  getCurrentPost() {
+    return this.currentPost;
+  }
+
+  setCurrentPostId(id) {
+    this.currentPostId = id;
+  }
+
+  getCurrentPostId() {
+    return this.currentPostId;
   }
 }

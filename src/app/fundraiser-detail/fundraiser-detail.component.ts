@@ -1,11 +1,10 @@
 import {Component, OnInit, OnDestroy, AfterViewInit, ElementRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Fundraiser} from './../fundraiser';
-declare var $: any;
-
 import {PostsService} from '../posts.service';
 import {LoginService} from '../login/login.service';
 import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
+
+declare var $: any;
 
 
 @Component({
@@ -17,7 +16,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
 
   private sub: any;
   private qsub: any;
-  public post: Fundraiser;
+  public post;
 
   constructor(private service: PostsService,
               private route: ActivatedRoute,
@@ -38,6 +37,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       const id = params['id'];
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
+        this.service.setCurrentPost(post);
       });
     });
 

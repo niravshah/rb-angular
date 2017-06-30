@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
+import {PostsService} from "../../posts.service";
 
 declare var $: any;
 declare var AWS: any;
@@ -17,13 +18,14 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
   url;
 
 
-  constructor(public _location: Location) {
+  constructor(public _location: Location, public service: PostsService) {
     this.data = {
       email: ''
     };
   }
 
   ngOnInit() {
+    console.log('Current Post in Edit Post: ', this.service.getCurrentPost(), this.service.getCurrentPostId());
   }
 
   ngAfterViewInit(): void {

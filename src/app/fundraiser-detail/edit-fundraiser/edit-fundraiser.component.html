@@ -8,18 +8,22 @@
       <form-wizard>
         <wizard-step [title]="'Fundraiser Details'" [isValid]="emailForm.form.valid" (onNext)="onStep1Next($event)">
           <form #emailForm="ngForm">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1"
-                     aria-describedby="emailHelp" placeholder="Enter email"
-                     [(ngModel)]="data.email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="container">
+              <div class="row pt20 pb40">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+
+                  <input id="photoupload" type="file" accept="image/*" (change)="readUrl($event)">
+
+                  <div *ngIf="url">
+                    <button style="float:right" id="addphoto" (click)="addPhoto()">Upload Photo</button>
+                    <img [src]="url">
+
+                  </div>
+
+                </div>
+              </div>
             </div>
-
-            <input id="photoupload" type="file" accept="image/*" (change)="readUrl($event)">
-            <button id="addphoto" (click)="addPhoto()">Add Photo</button>
-            <img [src]="url">
-
           </form>
         </wizard-step>
         <wizard-step [title]="'Your Details'" (onNext)="onStep2Next($event)">

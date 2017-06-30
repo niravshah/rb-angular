@@ -2,13 +2,8 @@
   background-color: #edf3f8;
 }
 
-form-wizard .card .card-block {
+
+form-wizard form{
   background-color: white;
-  padding: 20px;
 }
-
-form-wizard .card .card-footer {
-  padding: 20px;
-}
-
 
