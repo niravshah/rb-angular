@@ -33,6 +33,8 @@ import {PostsFilter} from './posts.filter';
 import {FacebookModule} from 'ngx-facebook';
 import { HomeComponent } from './home/home.component';
 import {PercentcalcPipe} from './percentcalc.pipe';
+import { EditMeComponent } from './fundraiser-detail/edit-me/edit-me.component';
+import { EditBankComponent } from './fundraiser-detail/edit-bank/edit-bank.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {PercentcalcPipe} from './percentcalc.pipe';
     WizardStepComponent,
     PostsFilter,
     HomeComponent,
-    PercentcalcPipe
+    PercentcalcPipe,
+    EditMeComponent,
+    EditBankComponent
   ],
   imports: [
     BrowserModule,

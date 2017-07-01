@@ -7,6 +7,8 @@ import {EditFundraiserComponent} from './fundraiser-detail/edit-fundraiser/edit-
 import {DonateComponent} from './fundraiser-detail/donate/donate.component';
 import {InfoComponent} from "./info/info.component";
 import {HomeComponent} from "./home/home.component";
+import {EditMeComponent} from "./fundraiser-detail/edit-me/edit-me.component";
+import {EditBankComponent} from "./fundraiser-detail/edit-bank/edit-bank.component";
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
@@ -16,8 +18,8 @@ export const routes: Routes = [
     {
       path: 'fundraisers/:id', component: FundraiserDetailsComponent, children: [
       {path: 'edit/fundraiser', component: EditFundraiserComponent},
-      {path: 'edit/me', component: EditFundraiserComponent},
-      {path: 'edit/bank', component: EditFundraiserComponent},
+      {path: 'edit/me', component: EditMeComponent},
+      {path: 'edit/bank', component: EditBankComponent},
       {path: 'donate', component: DonateComponent}
     ]
     }
