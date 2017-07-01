@@ -33,7 +33,7 @@ import {PostsFilter} from './posts.filter';
 import {FacebookModule} from 'ngx-facebook';
 import { HomeComponent } from './home/home.component';
 import {PercentcalcPipe} from './percentcalc.pipe';
-import { EditMeComponent } from './fundraiser-detail/edit-me/edit-me.component';
+import { EditAuthorComponent } from './fundraiser-detail/edit-author/edit-author.component';
 import { EditBankComponent } from './fundraiser-detail/edit-bank/edit-bank.component';
 
 @NgModule({
@@ -59,7 +59,7 @@ import { EditBankComponent } from './fundraiser-detail/edit-bank/edit-bank.compo
     PostsFilter,
     HomeComponent,
     PercentcalcPipe,
-    EditMeComponent,
+    EditAuthorComponent,
     EditBankComponent
   ],
   imports: [

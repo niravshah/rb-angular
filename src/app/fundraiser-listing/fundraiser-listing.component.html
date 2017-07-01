@@ -4,13 +4,18 @@
 <section id="property" class="padding bg_gallery">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 text-center">
-        <h2 class="uppercase">Ongoing Fundraisers</h2>
-        <p class="heading_space">Below causes are currently using Raise Better to meet their goals.</p>
+      <div *ngIf="type==='loggedInUser';else ongoingFundraisers" class="pb40 col-sm-12 text-center">
+        <h2 class="uppercase">Your Fundraisers</h2>
       </div>
+      <ng-template #ongoingFundraisers>
+        <div class="col-sm-12 text-center">
+          <h2 class="uppercase">Ongoing Fundraisers</h2>
+          <p class="heading_space">Below causes are currently using Raise Better to meet their goals.</p>
+        </div>
+      </ng-template>
     </div>
 
-    <div class="row">
+    <div *ngIf="type!=='loggedInUser'" class="row">
       <div class=" single-query bottom15">
         <select [(ngModel)]="filterValue">
           <option [ngValue]="''">All</option>
@@ -74,11 +79,11 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-12 text-center top20">
+    <div *ngIf="type!=='loggedInUser'" class="col-sm-12 text-center top20">
       <a href="listing1.html" class="btn-dark border_radius uppercase margin40">More Causes</a>
     </div>
     <div class="col-sm-12 text-center top20">
-      <a href="listing1.html" class="btn-yellow border_radius uppercase margin20">Start Fundraising</a>
+      <a href="listing1.html" class="btn-yellow border_radius uppercase margin20">Create New Fundraiser</a>
     </div>
     <div>
     </div>
