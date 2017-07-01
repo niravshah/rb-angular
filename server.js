@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+
 mongoose.connect(config.mongoUrl);
 
 const passport = require('passport');

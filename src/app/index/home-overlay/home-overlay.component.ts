@@ -22,7 +22,7 @@ export class HomeOverlayComponent implements OnInit {
       title: '',
       email: '',
       fname: '',
-      currency: ''
+      currency: 'gbp'
     };
   }
 

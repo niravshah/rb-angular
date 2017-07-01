@@ -1,70 +1,75 @@
-<section id="property" class="padding bg_edit">
+<section id="property" class="bg_edit">
   <div class="container property-details">
-    <div class="row pb20">
+    <div class="row pb20 pt20">
       <h2 class="text-uppercase" style="display: inline;">Edit Fundraiser Details</h2>
-      <button class="float-right btn-blue btn-slim" data-toggle="modal" data-target="#myModal">Close</button>
     </div>
     <div class="row">
-      <form-wizard>
-        <wizard-step [title]="'Fundraiser Details'" [isValid]="emailForm.form.valid" (onNext)="onStep1Next($event)">
-          <form #emailForm="ngForm">
-            <div class="container">
-              <div class="row pt20 pb40" *ngIf="post">
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="single-query bottom15">
-                        <input type="text" class="keyword-input lowercase" placeholder="Title of your Fundraiser"
-                               name="title" [(ngModel)]="post.title" #title="ngModel" required>
-                        <small class="error" [hidden]="title.valid || (title.pristine && !emailForm.submitted)">
-                          Title is required.
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="single-query bottom15">
-                        <textarea
-                          name="story" [(ngModel)]="post.story" #story="ngModel" required></textarea>
-                          <small class="error" [hidden]="story.valid || (story.pristine && !emailForm.submitted)">
-                          Title is required.
-                        </small>
-                      </div>
-                    </div>
-                  </div>
+      <form #emailForm="ngForm">
+        <div class="row pt20 pb40" *ngIf="post">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="title">Title :</label>
+                  <input type="text" class="form-control" id="title" name="title" [(ngModel)]="post.title"
+                         #title="ngModel" required>
+                  <small class="error" [hidden]="title.valid || (title.pristine && !emailForm.submitted)">
+                    Title is required.
+                  </small>
                 </div>
-                <div class="col-md-6">
-                  <input id="photoupload" type="file" accept="image/*" (change)="readUrl($event)">
-                  <div *ngIf="url; else originalImg">
-                    <button style="float:right" id="addphoto" (click)="addPhoto()">Upload Photo</button>
-                    <img class="editPostImage" [src]="url">
-                  </div>
-                  <ng-template #originalImg>
-                    <div>
-                    <img class="editPostImage"[src]="post.image">
-                    </div>
-                  </ng-template>
+
+                <div class="form-group">
+                  <label for="story">Story :</label>
+                  <textarea class="form-control" rows="10" id="story" name="story" [(ngModel)]="post.story"
+                            #story="ngModel"></textarea>
                 </div>
               </div>
             </div>
-          </form>
-        </wizard-step>
-        <wizard-step [title]="'Your Details'" (onNext)="onStep2Next($event)">
-        </wizard-step>
-        <wizard-step [title]="'Bank Details'" (onNext)="onStep3Next($event)">
-        </wizard-step>
-        <wizard-step [title]="'Step4'" [showNext]="'false'" (onComplete)="onComplete()">
-          <div [ngSwitch]="isCompleted">
-            <div *ngSwitchDefault>
-              Form incomplete
-            </div>
-            <div *ngSwitchCase="true">
-              <h4>Thank you! You have completed all the steps.</h4>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="target">Target :</label>
+                  <input type="text" class="form-control" id="target" name="target" [(ngModel)]="post.target"
+                         #target="ngModel" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="target">Currency :</label><br/>
+                  <label class="radio-inline">
+                    <input type="radio" name="currency" [(ngModel)]="post.currency"
+                           #currency="ngModel" value="gbp">GBP</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="currency" [(ngModel)]="post.currency"
+                           #currency="ngModel" value="eur">EUR</label>
+                </div>
+              </div>
             </div>
           </div>
-        </wizard-step>
-      </form-wizard>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="photoBrowse">Change Post Image :</label>
+              <label class="btn btn-primary btn-file">
+                Browse <input id="photoBrowse" type="file" style="display: none;" accept="image/*"
+                              (change)="readUrl($event)">
+              </label>
+            </div>
+            <div class="form-group">
+              <div *ngIf="url; else originalImg">
+                <img class="editPostImage" [src]="url">
+              </div>
+              <ng-template #originalImg>
+                <img class="editPostImage" [src]="post.image">
+              </ng-template>
+            </div>
+            <div class="form-group pt40 float-right">
+              <button type="button" class="btn btn-yellow">Save Changes</button>
+              <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-white">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
     </div>
   </div>
 </section>

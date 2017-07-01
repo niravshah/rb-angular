@@ -15,7 +15,9 @@ export const routes: Routes = [
     {path: 'info', component: InfoComponent},
     {
       path: 'fundraisers/:id', component: FundraiserDetailsComponent, children: [
-      {path: 'edit', component: EditFundraiserComponent},
+      {path: 'edit/fundraiser', component: EditFundraiserComponent},
+      {path: 'edit/me', component: EditFundraiserComponent},
+      {path: 'edit/bank', component: EditFundraiserComponent},
       {path: 'donate', component: DonateComponent}
     ]
     }

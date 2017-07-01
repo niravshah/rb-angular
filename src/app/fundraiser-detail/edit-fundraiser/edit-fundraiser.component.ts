@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {PostsService} from "../../posts.service";
-import {isUndefined} from "util";
-import {ActivatedRoute, Router} from "@angular/router";
+import {PostsService} from '../../posts.service';
+import {isUndefined} from 'util';
+import {ActivatedRoute, Router} from '@angular/router';
 
 declare var $: any;
 declare var AWS: any;

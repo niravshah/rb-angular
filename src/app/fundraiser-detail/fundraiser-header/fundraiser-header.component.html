@@ -34,7 +34,16 @@
             <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
               <li><a *ngIf="!isLogin()" routerLink="/login">Login</a></li>
               <li><a *ngIf="isLogin()" routerLink="/home">Home</a></li>
-              <li><a *ngIf="isLogin()" [routerLink]="'edit'">Edit</a></li>
+
+              <li *ngIf="isLogin()" class="dropdown">
+                <a href="#." class="dropdown-toggle" data-toggle="dropdown">Edit</a>
+                <ul class="dropdown-menu">
+                  <li><a [routerLink]="'edit/fundraiser'">Edit Fundraiser Details</a></li>
+                  <li><a [routerLink]="'edit/me'">Edit Your Details</a></li>
+                  <li><a [routerLink]="'edit/bank'">Edit Bank Details</a></li>
+                </ul>
+              </li>
+
               <li><a *ngIf="isLogin()" href="#" (click)="logout()">Logout</a></li>
               <li><a *ngIf="!isLogin()" href="#.">Sign Up</a></li>
             </ul>
