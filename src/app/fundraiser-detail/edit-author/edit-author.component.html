@@ -3,17 +3,57 @@
     <div class="row pb20 pt20">
       <h2 class="text-uppercase" style="display: inline;">Edit Author Details</h2>
     </div>
-    <div class="row">
-      <form #emailForm="ngForm">
-        <div class="row pt20 pb20" *ngIf="post">
+    <div class="row" *ngIf="post.author">
+      <form #authorForm="ngForm" (submit)="saveAuthorDetails(authorForm.value, authorForm.valid)" novalidate>
+        <div class="row pt20 pb20">
           <div class="col-md-6">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="name">Name :</label>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="post.author.name"
+                         #name="ngModel" required>
+                  <small class="error" [hidden]="name.valid || (name.pristine && !authorForm.submitted)">
+                    Name is required.
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="bio">Bio :</label>
+                  <textarea class="form-control" rows="10" id="bio" name="bio" [(ngModel)]="post.author.bio"
+                            #bio="ngModel"></textarea>
+                </div>
+              </div>
+            </div>
+
+
+
+
           </div>
           <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="photoBrowse">Change Image :</label>
+              <label class="btn btn-primary btn-file">
+                Browse <input id="photoBrowse" type="file" style="display: none;" accept="image/*"
+                              (change)="readUrl($event)">
+              </label>
+            </div>
+            <div class="form-group">
+              <div *ngIf="url; else originalImg">
+                <img class="editPostImage" [src]="url">
+              </div>
+              <ng-template #originalImg>
+                <img class="editPostImage" [src]="post.author.avatar">
+              </ng-template>
+            </div>
+
           </div>
         </div>
         <div class="row pb40 ">
           <div class="form-group float-right">
-            <button type="button" class="btn btn-yellow">Save Changes</button>
+            <button type="submit" class="btn btn-yellow">Save Changes</button>
             <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-white">Cancel</button>
           </div>
         </div>
@@ -34,7 +74,7 @@
         <h4 class="modal-title">Changes will not be saved?</h4>
       </div>
       <div class="modal-body">
-        <p>You pressed the Close button. Changes will not be save.</p>
+        <p>You pressed the Close button. Changes will not be saved.</p>
         <p>Click Close to discard changes. Or Cancel to return to editing</p>
       </div>
       <div class="modal-footer">

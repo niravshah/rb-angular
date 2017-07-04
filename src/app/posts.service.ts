@@ -40,6 +40,22 @@ export class PostsService {
 
   }
 
+  patchPost(postId: string, post: string, jwt: string) {
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + jwt);
+    const patchUrl = '/api/posts/' + postId;
+    return this.http.patch(patchUrl, post, {headers: headers})
+      .map(res => res.json());
+  }
+
+  patchAuthorDetails(postId: string, post: string, jwt: string) {
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + jwt);
+    const patchUrl = '/api/posts/' + postId + '/author';
+    return this.http.patch(patchUrl, post, {headers: headers})
+      .map(res => res.json());
+  }
+
   setCurrentPost(post) {
     this.currentPost = post;
     this.setCurrentPostId(post.sid);

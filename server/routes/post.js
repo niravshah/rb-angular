@@ -19,13 +19,13 @@ module.exports = function (passport) {
 
   router.get('/api/posts/:id', (req, res) => {
 
-    if(req.params.id === 'undefined'){
+    if (req.params.id === 'undefined') {
       res.json(post1);
     }
 
     Post.find({
       sid: req.params.id
-    }).populate('author', 'sid name email avatar').exec(function (err, posts) {
+    }).populate('author', 'sid name email avatar bio').exec(function (err, posts) {
 
       if (err) {
         res.status(500).json({
@@ -40,6 +40,34 @@ module.exports = function (passport) {
     });
   });
 
+  router.patch('/api/posts/:id', (req, res) => {
+    Post.findOneAndUpdate({sid: req.params.id}, req.body, {new: true}, function (err, post) {
+      if (err) {
+        res.status(500).json({message: "Error saving post", error: err})
+      } else {
+        res.json({message: "Post saved successfully", post: post})
+      }
+    });
+  });
+
+
+  router.patch('/api/posts/:id/author', (req, res) => {
+    Post.find({sid: req.params.id}).populate('author', 'sid').exec(function (err, post) {
+      if (err) {
+        res.status(500).json({message: "Error saving post", error: err})
+      } else {
+        User.findOneAndUpdate({sid: post[0].author.sid}, req.body, {new: true}, function (err, user) {
+          if (err) {
+            res.status(500).json({message: "Error saving user", error: err})
+          } else {
+            res.json({message: "User saved successfully", user: user})
+          }
+        });
+
+      }
+    });
+  });
+
 
   router.get('/api/user/:id/posts', passport.authenticate('jwt', {
     failWithError: true
@@ -47,7 +75,7 @@ module.exports = function (passport) {
 
     Post.find({
       author: req.user
-    }).populate('author','sid name email').exec(function (err, posts) {
+    }).populate('author', 'sid name email').exec(function (err, posts) {
       //console.log(err, posts);
       if (err) {
         res.status(500).json({

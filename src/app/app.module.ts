@@ -35,6 +35,7 @@ import { HomeComponent } from './home/home.component';
 import {PercentcalcPipe} from './percentcalc.pipe';
 import { EditAuthorComponent } from './fundraiser-detail/edit-author/edit-author.component';
 import { EditBankComponent } from './fundraiser-detail/edit-bank/edit-bank.component';
+import {PushNotificationComponent} from "ng2-notifications/ng2-notifications";
 
 @NgModule({
   declarations: [

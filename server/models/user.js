@@ -12,7 +12,7 @@ module.exports = mongoose.model('User', {
   country: {type: String, default: ''},
   postcode: {type: String, default: ''},
   mobile: {type: String, default: ''},
-  story: {type: String, default: ''},
+  bio: {type: String, default: ''},
   avatar: {type: String, default: '/assets/images/avatar.jpg'}
 });
 

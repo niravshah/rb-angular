@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {PostsService} from '../../posts.service';
 import {isUndefined} from 'util';
 import {ActivatedRoute, Router} from '@angular/router';
+import {LoginService} from '../../login/login.service';
 
 declare var $: any;
 declare var AWS: any;
@@ -15,28 +16,23 @@ declare var AWS: any;
 export class EditFundraiserComponent implements OnInit, AfterViewInit {
   target;
   s3;
-  isCompleted = false;
   url;
   post;
+  postId;
 
-
-  constructor(public _location: Location, public service: PostsService, private route: ActivatedRoute, private router: Router) {
+  constructor(public _location: Location,
+              public service: PostsService,
+              private router: Router,
+              private loginService: LoginService) {
   }
 
   ngOnInit() {
-    console.log('Current Post in Edit Post: ', this.service.getCurrentPost(), this.service.getCurrentPostId());
+    // console.log('Current Post in Edit Post: ', this.postService.getCurrentPost(), this.postService.getCurrentPostId());
     this.post = this.service.getCurrentPost();
+    this.postId = this.service.getCurrentPostId();
     if (isUndefined(this.post)) {
-
-      this.route.params.subscribe(params => {
-        const id = params['id'];
-        this.service.getFundraiserById(id).subscribe(post => {
-          this.post = post;
-          this.service.setCurrentPost(post);
-        });
-      });
+      this.router.navigate(['home']);
     }
-
   }
 
   ngAfterViewInit(): void {
@@ -45,42 +41,37 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
     const bucketRegion = 'eu-west-2';
     const IdentityPoolId = 'eu-west-2:07e95cee-5f85-4371-bdeb-d15b1090b4e0';
 
-    AWS.config.update({
-      region: bucketRegion,
-      credentials: new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: IdentityPoolId
-      })
-    });
+    try {
+      AWS.config.update({
+        region: bucketRegion,
+        credentials: new AWS.CognitoIdentityCredentials({
+          IdentityPoolId: IdentityPoolId
+        })
+      });
 
-    this.s3 = new AWS.S3({
-      params: {Bucket: albumBucketName}
-    });
-
-    this.s3.listObjects({Delimiter: '/'}, function (err, data) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(data);
+      this.s3 = new AWS.S3({
+        params: {Bucket: albumBucketName}
+      });
+    } catch (e) {
+      if (e instanceof ReferenceError) {
+        console.log('AWS is not loaded!!');
       }
-    });
-
+    }
   }
 
-  onStep1Next($event) {
-    console.log('Step 1 Next');
+  savePost(model: any, isValid: boolean) {
+    if (isValid) {
+      console.log('Valid Post Form Submit', model, isValid);
+      this.service.patchPost(this.postId, model, this.loginService.loggedInJwt()).subscribe(res => {
+        console.log('Post saved successfully.', res);
+        const url = '/fundraisers/' + res.post.sid;
+        this.router.navigateByUrl(url);
+      }, err => {
+        console.log('Error saving Post.', err);
+      });
+    }
   }
 
-  onStep2Next($event) {
-    console.log('Step 2 Next');
-  }
-
-  onStep3Next($event) {
-    console.log('Step 3 Next');
-    this.isCompleted = true;
-  }
-
-  onComplete() {
-  }
 
   closeBtn(command) {
     console.log('Close Button Clicked!', command);

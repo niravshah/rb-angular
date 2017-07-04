@@ -3,9 +3,9 @@
     <div class="row pb20 pt20">
       <h2 class="text-uppercase" style="display: inline;">Edit Bank Details</h2>
     </div>
-    <div class="row">
-      <form #emailForm="ngForm">
-        <div class="row pt20 pb20" *ngIf="post">
+    <div class="row" *ngIf="post">
+      <form #bankForm="ngForm" (submit)="saveBankDetails(bankForm.value, bankForm.valid)" novalidate>
+        <div class="row pt20 pb20">
           <div class="col-md-6">
           </div>
           <div class="col-md-6">
@@ -13,7 +13,7 @@
         </div>
         <div class="row pb40 ">
           <div class="form-group float-right">
-            <button type="button" class="btn btn-yellow">Save Changes</button>
+            <button type="submit" class="btn btn-yellow">Save Changes</button>
             <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-white">Cancel</button>
           </div>
         </div>

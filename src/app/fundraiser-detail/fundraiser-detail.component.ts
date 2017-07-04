@@ -3,13 +3,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PostsService} from '../posts.service';
 import {LoginService} from '../login/login.service';
 import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
+import {isUndefined} from "util";
 
 declare var $: any;
+declare var FB: any;
 
 
 @Component({
   selector: 'app-fundraiser-details',
   templateUrl: './fundraiser-detail.component.html',
+
   styleUrls: ['./fundraiser-detail.component.css']
 })
 export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -26,13 +29,18 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
     fb.init({
       appId: '1927971220769787',
       version: 'v2.9'
+    }).then(resp => {
+      console.log('FB Loaded!', resp);
+    }).catch(e => {
+      console.log('Error loading FB !!', e);
     });
+
 
   }
 
   ngOnInit() {
     $(document).trigger('initializeBootsnav');
-    console.log('Logged In >> ', this.authService.loggedIn());
+    // console.log('Logged In >> ', this.authService.loggedIn());
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       this.service.getFundraiserById(id).subscribe(post => {
