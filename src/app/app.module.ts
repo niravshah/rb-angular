@@ -31,11 +31,12 @@ import {WizardComponent} from './form-wizard/wizard.component';
 import {WizardStepComponent} from './form-wizard/wizard-step.component';
 import {PostsFilter} from './posts.filter';
 import {FacebookModule} from 'ngx-facebook';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 import {PercentcalcPipe} from './percentcalc.pipe';
-import { EditAuthorComponent } from './fundraiser-detail/edit-author/edit-author.component';
-import { EditBankComponent } from './fundraiser-detail/edit-bank/edit-bank.component';
-import {PushNotificationComponent} from "ng2-notifications/ng2-notifications";
+import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.component';
+import {EditBankComponent} from './fundraiser-detail/edit-bank/edit-bank.component';
+import {ToastyModule} from "ng2-toasty";
+
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {PushNotificationComponent} from "ng2-notifications/ng2-notifications";
     HttpModule,
     StickyModule,
     routing,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    ToastyModule.forRoot()
   ],
   providers: [PostsService, AuthGuard, LoginService],
   bootstrap: [AppComponent]

@@ -41,6 +41,7 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
     const bucketRegion = 'eu-west-2';
     const IdentityPoolId = 'eu-west-2:07e95cee-5f85-4371-bdeb-d15b1090b4e0';
 
+
     try {
       AWS.config.update({
         region: bucketRegion,
@@ -52,18 +53,20 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
       this.s3 = new AWS.S3({
         params: {Bucket: albumBucketName}
       });
+
     } catch (e) {
       if (e instanceof ReferenceError) {
         console.log('AWS is not loaded!!');
       }
     }
+
   }
 
   savePost(model: any, isValid: boolean) {
     if (isValid) {
       console.log('Valid Post Form Submit', model, isValid);
       this.service.patchPost(this.postId, model, this.loginService.loggedInJwt()).subscribe(res => {
-        console.log('Post saved successfully.', res);
+        // console.log('Post saved successfully.', res);
         const url = '/fundraisers/' + res.post.sid;
         this.router.navigateByUrl(url);
       }, err => {
@@ -83,20 +86,21 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
   addPhoto() {
 
     const files = $('#photoupload')[0].files;
-    if (!files.length) {
-      return alert('Please choose a file to upload first.');
+    if (files.length) {
+      const file = files[0];
+      const fileName = file.name;
+      this.s3.upload({
+        Key: fileName,
+        Body: file
+      }, function (err, data) {
+        if (err) {
+          console.log('Error', err);
+        }
+        console.log('Success', data);
+      });
+
     }
-    const file = files[0];
-    const fileName = file.name;
-    this.s3.upload({
-      Key: fileName,
-      Body: file
-    }, function (err, data) {
-      if (err) {
-        console.log('Error', err);
-      }
-      console.log('Success', data);
-    });
+
   }
 
   readUrl(event) {

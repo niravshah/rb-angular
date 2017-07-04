@@ -1,13 +1,11 @@
-import {Component, OnInit, OnDestroy, AfterViewInit, ElementRef} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../posts.service';
-import {LoginService} from '../login/login.service';
 import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
-import {isUndefined} from "util";
+import {ToastyConfig, ToastyService} from "ng2-toasty";
 
 declare var $: any;
 declare var FB: any;
-
 
 @Component({
   selector: 'app-fundraiser-details',
@@ -23,8 +21,10 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
 
   constructor(private service: PostsService,
               private route: ActivatedRoute,
-              private authService: LoginService,
-              private fb: FacebookService) {
+              private fb: FacebookService,
+              private toastyService: ToastyService,
+              private toastyConfig: ToastyConfig) {
+
 
     fb.init({
       appId: '1927971220769787',
@@ -35,6 +35,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       console.log('Error loading FB !!', e);
     });
 
+    this.toastyConfig.theme = 'material';
 
   }
 
@@ -46,6 +47,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
         this.service.setCurrentPost(post);
+        this.toastyService.default('Hi there');
+
       });
     });
 

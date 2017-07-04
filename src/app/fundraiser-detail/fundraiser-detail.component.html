@@ -12,20 +12,18 @@
 <router-outlet></router-outlet>
 <!-- Property Detail Start -->
 <section id="property" class="pt20 pb20">
+  <ng2-toasty [position]="'top-right'"></ng2-toasty>
   <div class="container property-details" *ngIf="post">
-
     <div class="row bottom40">
       <div class="col-md-8 listing1">
         <div class="row">
           <h2 class="text-uppercase">{{post.title}}</h2>
           <p>{{post.subTitle}}</p>
         </div>
-
         <div class="row top15 post_meta">
           <span><i class="icon-user"></i> {{post.author.name| titlecase}}</span>
           <span><i class=" icon-calendar"></i> {{post.created | date: 'dd/MM/yyyy'}}</span>
         </div>
-
       </div>
       <div class="col-md-4">
         <sticky [sticky-parent]=false [sticky-offset-top]="10" [sticky-zIndex]="999">
