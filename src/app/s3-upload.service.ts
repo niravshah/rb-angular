@@ -19,6 +19,7 @@ export class S3UploadService {
 
 
     try {
+
       AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
