@@ -36,6 +36,7 @@ import {PercentcalcPipe} from './percentcalc.pipe';
 import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.component';
 import {EditBankComponent} from './fundraiser-detail/edit-bank/edit-bank.component';
 import {ToastyModule} from "ng2-toasty";
+import {S3UploadService} from "./s3-upload.service";
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import {ToastyModule} from "ng2-toasty";
     FacebookModule.forRoot(),
     ToastyModule.forRoot()
   ],
-  providers: [PostsService, AuthGuard, LoginService],
+  providers: [PostsService, AuthGuard, LoginService, S3UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

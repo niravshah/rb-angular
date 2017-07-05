@@ -47,7 +47,6 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
         this.service.setCurrentPost(post);
-        this.toastyService.default('Hi there');
 
       });
     });

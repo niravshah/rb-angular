@@ -2,11 +2,13 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {PostsService} from '../../posts.service';
 import {isUndefined} from 'util';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {LoginService} from '../../login/login.service';
+import {ToastyService} from 'ng2-toasty';
+import {S3UploadService} from '../../s3-upload.service';
 
 declare var $: any;
-declare var AWS: any;
+
 
 @Component({
   selector: 'app-edit-fundraiser',
@@ -15,66 +17,65 @@ declare var AWS: any;
 })
 export class EditFundraiserComponent implements OnInit, AfterViewInit {
   target;
-  s3;
   url;
   post;
   postId;
 
   constructor(public _location: Location,
-              public service: PostsService,
+              public postService: PostsService,
               private router: Router,
-              private loginService: LoginService) {
+              private loginService: LoginService,
+              private toastyService: ToastyService,
+              private s3Service: S3UploadService) {
   }
 
   ngOnInit() {
     // console.log('Current Post in Edit Post: ', this.postService.getCurrentPost(), this.postService.getCurrentPostId());
-    this.post = this.service.getCurrentPost();
-    this.postId = this.service.getCurrentPostId();
+    this.post = this.postService.getCurrentPost();
+    this.postId = this.postService.getCurrentPostId();
     if (isUndefined(this.post)) {
       this.router.navigate(['home']);
     }
   }
 
   ngAfterViewInit(): void {
-
-    const albumBucketName = 'raisebetter';
-    const bucketRegion = 'eu-west-2';
-    const IdentityPoolId = 'eu-west-2:07e95cee-5f85-4371-bdeb-d15b1090b4e0';
-
-
-    try {
-      AWS.config.update({
-        region: bucketRegion,
-        credentials: new AWS.CognitoIdentityCredentials({
-          IdentityPoolId: IdentityPoolId
-        })
-      });
-
-      this.s3 = new AWS.S3({
-        params: {Bucket: albumBucketName}
-      });
-
-    } catch (e) {
-      if (e instanceof ReferenceError) {
-        console.log('AWS is not loaded!!');
-      }
-    }
-
   }
 
   savePost(model: any, isValid: boolean) {
     if (isValid) {
       console.log('Valid Post Form Submit', model, isValid);
-      this.service.patchPost(this.postId, model, this.loginService.loggedInJwt()).subscribe(res => {
-        // console.log('Post saved successfully.', res);
-        const url = '/fundraisers/' + res.post.sid;
-        this.router.navigateByUrl(url);
-      }, err => {
-        console.log('Error saving Post.', err);
-      });
+      const files = $('#photoBrowse')[0].files;
+      if (files.length) {
+        const file = files[0];
+        const fileName = file.name;
+
+        this.s3Service.uploadPhoto(file, fileName).subscribe(resp => {
+          console.log('Success', resp);
+          model.image = resp.Location;
+          this.patchPost(model);
+        }, err => {
+          console.log('Error', err);
+          this.patchPost(model);
+        });
+
+      } else {
+        this.patchPost(model);
+      }
+
     }
   }
 
+  patchPost(model) {
+    this.postService.patchPost(this.postId, model, this.loginService.loggedInJwt()).subscribe(res => {
+      // console.log('Post saved successfully.', res);
+      this.toastyService.default('Changes Saved');
+      const url = '/fundraisers/' + res.post.sid;
+      this.router.navigateByUrl(url);
+    }, err => {
+      this.toastyService.default('Error saving Changes. Please try again later.');
+      console.log('Error saving Post.', err);
+    });
+  }
 
   closeBtn(command) {
     console.log('Close Button Clicked!', command);
@@ -83,35 +84,14 @@ export class EditFundraiserComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addPhoto() {
 
-    const files = $('#photoupload')[0].files;
-    if (files.length) {
-      const file = files[0];
-      const fileName = file.name;
-      this.s3.upload({
-        Key: fileName,
-        Body: file
-      }, function (err, data) {
-        if (err) {
-          console.log('Error', err);
-        }
-        console.log('Success', data);
-      });
-
-    }
-
-  }
-
-  readUrl(event) {
+  previewImage(event) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-
       reader.onload = (event2) => {
         this.target = event2.target;
         this.url = this.target.result;
       };
-
       reader.readAsDataURL(event.target.files[0]);
     }
   }
