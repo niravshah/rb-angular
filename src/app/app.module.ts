@@ -38,6 +38,7 @@ import {EditBankComponent} from './fundraiser-detail/edit-bank/edit-bank.compone
 import {ToastyModule} from "ng2-toasty";
 import {S3UploadService} from "./s3-upload.service";
 import { StripeRedirectComponent } from './stripe-redirect/stripe-redirect.component';
+import {StripeService} from "./stripe.service";
 
 
 @NgModule({
@@ -77,7 +78,7 @@ import { StripeRedirectComponent } from './stripe-redirect/stripe-redirect.compo
     FacebookModule.forRoot(),
     ToastyModule.forRoot()
   ],
-  providers: [PostsService, AuthGuard, LoginService, S3UploadService],
+  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -10,5 +10,24 @@
 </section>
 <!-- Page Banner End -->
 <section id="property" class="pt20 pb20">
+  <div class="container bg_white padding">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h2 class="uppercase">Welcome Back from Stripe!</h2>
+        <p class="heading_space">We will not try to connect your Stripe Account to your Fundraiser</p>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div id="stripeProcessingUpdates">
+        <div *ngFor="let m of messages">
+          <p class="{{m.type}}">{{m.text}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row pt40 text-center">
+      <a target="_blank" href="https://stripe.com"><img src="/assets/images/powered_by_stripe.png"
+                                                        alt="powered by stripe"></a>
+    </div>
+  </div>
 </section>
 <app-footer></app-footer>
