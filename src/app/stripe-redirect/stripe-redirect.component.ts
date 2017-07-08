@@ -27,14 +27,17 @@ export class StripeRedirectComponent implements OnInit {
         const scope = $(params).attr('scope');
         const state = $(params).attr('state');
         const code = $(params).attr('code');
-        const message = 'Scope Granted ' + scope + state + code;
+        const message = 'Access Granted by Stripe: ' + scope;
+        this.addSuccessMessage('Thank You. Your request to Stripe was successful.');
         this.addSuccessMessage(message);
         this.stripeService.getAccountId(code, state, scope).subscribe(resp => {
           console.log('Response Received', resp);
           this.addSuccessMessage('Response Received' + resp);
         }, error => {
           console.log('Error Received', error);
-          this.addErrorMessage('Error Received' + error);
+          this.addErrorMessage('Could not connect your Stripe Account.');
+          this.addErrorMessage('Message from our Server: ' + error.statusText);
+          this.addErrorMessage('Message from our Server: ' + error._body);
         });
       }
     });
