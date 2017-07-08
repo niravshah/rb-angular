@@ -18,6 +18,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
   private sub: any;
   private qsub: any;
   public post;
+  public num = 10;
+  public postStatus = 'draft';
 
   constructor(private service: PostsService,
               private route: ActivatedRoute,
@@ -47,7 +49,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
         this.service.setCurrentPost(post);
-
+        this.postStatus = this.post.status;
       });
     });
 

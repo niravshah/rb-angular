@@ -37,6 +37,7 @@ import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.c
 import {EditBankComponent} from './fundraiser-detail/edit-bank/edit-bank.component';
 import {ToastyModule} from "ng2-toasty";
 import {S3UploadService} from "./s3-upload.service";
+import { StripeRedirectComponent } from './stripe-redirect/stripe-redirect.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import {S3UploadService} from "./s3-upload.service";
     HomeComponent,
     PercentcalcPipe,
     EditAuthorComponent,
-    EditBankComponent
+    EditBankComponent,
+    StripeRedirectComponent
   ],
   imports: [
     BrowserModule,

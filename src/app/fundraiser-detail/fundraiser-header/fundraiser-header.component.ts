@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {LoginService} from '../../login/login.service';
 import {Router} from '@angular/router';
 
@@ -9,9 +9,14 @@ import {Router} from '@angular/router';
 })
 export class FundraiserHeaderComponent implements OnInit {
 
-  constructor(private authService: LoginService, private router: Router) { }
+  @Input()
+  status = 'draft';
+
+  constructor(private authService: LoginService, private router: Router) {
+  }
 
   ngOnInit() {
+    console.log('FundraiserHeaderComponent init', this.status);
   }
 
   isLogin() {
@@ -21,5 +26,9 @@ export class FundraiserHeaderComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
+  }
+
+  isPostLive() {
+    return this.status === 'live';
   }
 }

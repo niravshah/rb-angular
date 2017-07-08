@@ -8,6 +8,8 @@ const post2 = require('../data/post2');
 
 const Post = require('../models/post');
 const User = require('../models/user');
+const Account = require('../models/account');
+
 const utils = require('./utils');
 
 module.exports = function (passport) {
@@ -57,6 +59,23 @@ module.exports = function (passport) {
         res.status(500).json({message: "Error saving post", error: err})
       } else {
         User.findOneAndUpdate({sid: post[0].author.sid}, req.body, {new: true}, function (err, user) {
+          if (err) {
+            res.status(500).json({message: "Error saving user", error: err})
+          } else {
+            res.json({message: "User saved successfully", user: user})
+          }
+        });
+
+      }
+    });
+  });
+
+  router.patch('/api/posts/:id/account', (req, res) => {
+    Post.find({sid: req.params.id}).populate('account', 'sid').exec(function (err, post) {
+      if (err) {
+        res.status(500).json({message: "Error saving post", error: err})
+      } else {
+        Account.findOneAndUpdate({sid: post[0].account.sid}, req.body, {new: true}, function (err, user) {
           if (err) {
             res.status(500).json({message: "Error saving user", error: err})
           } else {

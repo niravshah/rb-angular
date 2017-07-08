@@ -9,6 +9,7 @@ import {InfoComponent} from './info/info.component';
 import {HomeComponent} from './home/home.component';
 import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.component';
 import {EditBankComponent} from './fundraiser-detail/edit-bank/edit-bank.component';
+import {StripeRedirectComponent} from "./stripe-redirect/stripe-redirect.component";
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
@@ -22,7 +23,8 @@ export const routes: Routes = [
       {path: 'edit-bank', component: EditBankComponent},
       {path: 'donate', component: DonateComponent}
     ]
-    }
+    },
+    {path: 'stripe-connect', component: StripeRedirectComponent}
   ]
 ;
 

@@ -40,6 +40,7 @@
                   <li><a [routerLink]="'edit-bank'">Edit Bank Details</a></li>
                 </ul>
               </li>
+              <li><a *ngIf="isLogin() && !isPostLive()" [routerLink]="'edit-bank'">Go Live!</a></li>
               <li><a *ngIf="!isLogin()" routerLink="/login">Login</a></li>
               <li><a *ngIf="isLogin()" routerLink="/home">Home</a></li>
               <li><a *ngIf="isLogin()" href="#" (click)="logout()">Logout</a></li>

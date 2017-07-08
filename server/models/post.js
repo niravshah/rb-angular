@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var postSchema = mongoose.model('Post',{
   sid:{type:String},
   author: {type:mongoose.Schema.Types.ObjectId, ref:'User', required:true},
+  account: {type:mongoose.Schema.Types.ObjectId, ref:'Account'},
   type: {type:String, enum: ['other', 'charity'], default: 'other'},
   featured: {type:Boolean, default:false},
   title: {type:String, default:''},
@@ -13,7 +14,8 @@ var postSchema = mongoose.model('Post',{
   target: {type:Number, default:0},
   collected: {type:Number, default:0},
   currency: {type:String, default:'£'},
-  story:{type:String, default:''}
+  story:{type:String, default:''},
+  status: {type:String, enum: ['draft', 'live-test','live'], default: 'draft'}
 });
 
 module.exports = postSchema;

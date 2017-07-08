@@ -1,24 +1,38 @@
 <section id="property" class="bg_edit">
-  <div class="container property-details">
-    <div class="row pb20 pt20">
-      <h2 class="text-uppercase" style="display: inline;">Edit Bank Details</h2>
+  <div class="container bg_white padding">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h2 class="uppercase">Connect your Bank Account</h2>
+        <p class="heading_space">Before you can go live you will need to tell us where to transfer the funds you
+          receive</p>
+      </div>
     </div>
-    <div class="row" *ngIf="post">
-      <form #bankForm="ngForm" (submit)="saveBankDetails(bankForm.value, bankForm.valid)" novalidate>
-        <div class="row pt20 pb20">
-          <div class="col-md-6">
-          </div>
-          <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="testinomial-slider" class="owl-carousel display navigate">
+          <div class="item">
+            <div class="testinomial_content text-center">
+              <div class="row pb40">
+                <a href="#" class="stripe-connect"><span>Connect with Stripe</span></a>
+              </div>
+              <!--<img src="/assets/images/author2.png" alt="happy client" class="bottom15">-->
+              <!--<h4 class="uppercase"> SAM NICHOLSON</h4>-->
+              <!--<span class="smmery bottom15">( NorthMarq Capital  )</span>-->
+              <!--<img src="/assets/images/stars.png" alt="rating" class="bottom30">-->
+              <div class="row">
+                <p>We dont store any of your critical bank details on our servers.
+                  <br/>We let the security experts, Stripe do it.</p>
+                <p class="font-15 pt20">Once you press the above button you will be taken to Stripe where you can
+                  securely create your account<br/> and connect it to this fundraiser.
+                  You will be redirected back to our website once the process completes.</p>
+              </div>
+              <div class="row pt40">
+                <a target="_blank" href="https://stripe.com"><img src="/assets/images/powered_by_stripe.png" alt="powered by stripe"></a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row pb40 ">
-          <div class="form-group float-right">
-            <button type="submit" class="btn btn-yellow">Save Changes</button>
-            <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-white">Cancel</button>
-          </div>
-        </div>
-
-      </form>
+      </div>
     </div>
   </div>
 </section>
