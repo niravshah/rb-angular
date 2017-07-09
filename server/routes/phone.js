@@ -3,6 +3,7 @@ const router = express.Router();
 const utils = require('./utils');
 
 const PV = require('../models/phone-verification');
+const User = require('../models/user');
 
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./../../server.config')[env];
@@ -25,7 +26,6 @@ module.exports = function (passport) {
         // console.log('Error', err);
         res.status(500).json({message: err.message});
       } else if (pv) {
-
 
         var tenMinsBefore = new Date().getTime() - 600000;
         if (new Date(pv.created).getTime() > tenMinsBefore) {
@@ -53,9 +53,39 @@ module.exports = function (passport) {
 
     });
 
-
   });
 
+  router.post('/api/phone/code/verify', passport.authenticate('jwt', {
+    failWithError: true
+  }), (req, res, next) => {
+    PV.findOne({
+      number: req.body.number
+    }).sort({'created': -1}).exec(function (err, pv) {
+
+      if (err) {
+        // console.log('Error', err);
+        res.status(500).json({message: err.message});
+      } else if (pv) {
+
+        if (pv.code === req.body.code) {
+
+          User.findOneAndUpdate({sid:req.user.sid},{mobile:req.body.number},{new:true},function(err,user){
+
+          });
+
+          pv.status = 'verified';
+
+          //add phone number to the user record;
+
+        } else {
+          res.status(500).json({message: 'Could not verify code.'})
+        }
+      }
+    },(err, req, res, next) => {
+      res.status(403).json({'message': err, 'status': err.status});
+    });
+
+  });
 
   function createNewCodeRequest(number, callback) {
     utils.createPhoneVerification(number, function (err, pv) {

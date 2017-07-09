@@ -1,33 +1,48 @@
-.pt20{
+.pt20 {
   padding-top: 20px;
 }
 
-.pt40{
+.pt40 {
   padding-top: 20px;
 }
 
-
-.pb20{
+.pb20 {
   padding-bottom: 20px;
 }
 
-.pb40{
+.pb40 {
   padding-bottom: 40px;
 }
 
-.pr20{
+.pr20 {
   padding-right: 20px;
 }
 
-.mr10{
+.mr10 {
   margin-right: 10px;
 }
 
-.float-right{
-  float:right
+.mb10 {
+  margin-bottom: 10px;
 }
 
-.btn-slim{
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.float-right {
+  float: right
+}
+
+.btn-slim {
   padding: 5px 10px;
   border-radius: 2px;
 }

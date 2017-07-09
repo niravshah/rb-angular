@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PhoneVerifyService} from '../../../phone-verify.service';
 import {isJsObject} from "@angular/core/src/change_detection/change_detection_util";
+import {LoginService} from "../../../login/login.service";
 
 declare var $: any
 
@@ -15,10 +16,11 @@ export class StripeCreateAccountComponent implements OnInit {
   model: { number: string, code: string } = {number: '', code: ''};
   messages: { type: string, text: string }[] = [];
 
-  constructor(private phoneVerifyService: PhoneVerifyService) {
+  constructor(private phoneVerifyService: PhoneVerifyService, private loginService: LoginService) {
   }
 
   ngOnInit() {
+    this.model = {number: '07596162765', code: ''};
   }
 
   nextTab() {
@@ -47,9 +49,10 @@ export class StripeCreateAccountComponent implements OnInit {
   verifyCode(model, valid) {
     console.log('verifyNumber', this.model, model, valid);
     if (valid) {
-      this.phoneVerifyService.verifyCode(model, this.model).subscribe(res => {
+      this.phoneVerifyService.verifyCode(model.code, this.model.number, this.loginService.loggedInJwt()).subscribe(res => {
       }, err => {
         console.log('Error', err);
+        this.addErrorMessage(err, null);
       });
     }
   }
