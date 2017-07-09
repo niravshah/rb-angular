@@ -71,11 +71,19 @@ module.exports = function (passport) {
 
           User.findOneAndUpdate({sid:req.user.sid},{mobile:req.body.number},{new:true},function(err,user){
 
+            if(err){
+              res.status(500).json({message: err.message});
+            }else{
+              pv.status = 'verified';
+              pv.save(function(err,pv){
+                if(err){
+                  res.status(500).json({message: err.message});
+                }else{
+                  res.json({message:'Phone number verified!'});
+                }
+              });
+            }
           });
-
-          pv.status = 'verified';
-
-          //add phone number to the user record;
 
         } else {
           res.status(500).json({message: 'Could not verify code.'})

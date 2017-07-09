@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PhoneVerifyService} from '../../../phone-verify.service';
-import {isJsObject} from "@angular/core/src/change_detection/change_detection_util";
-import {LoginService} from "../../../login/login.service";
+import {LoginService} from '../../../login/login.service';
 
 declare var $: any
 
@@ -40,7 +39,6 @@ export class StripeCreateAccountComponent implements OnInit {
       }, err => {
         console.log('Error', err);
         this.addErrorMessage(err, null);
-
       });
     }
   }
@@ -50,6 +48,8 @@ export class StripeCreateAccountComponent implements OnInit {
     console.log('verifyNumber', this.model, model, valid);
     if (valid) {
       this.phoneVerifyService.verifyCode(model.code, this.model.number, this.loginService.loggedInJwt()).subscribe(res => {
+        console.log('Success', res);
+        this.addSuccessMessage(res.message);
       }, err => {
         console.log('Error', err);
         this.addErrorMessage(err, null);
@@ -57,8 +57,8 @@ export class StripeCreateAccountComponent implements OnInit {
     }
   }
 
-  addSuccessMessage(message) {
-    this.messages.push({type: 'success', text: message});
+  addSuccessMessage(res) {
+      this.messages.push({type: 'success', text: res});
   }
 
   addErrorMessage(err, message) {
