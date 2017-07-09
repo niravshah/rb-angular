@@ -1,6 +1,8 @@
 const Post = require('../models/post');
 const User = require('../models/user');
 
+const PhoneVerification = require('../models/phone-verification');
+
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var shortid = require('shortid');
@@ -32,7 +34,15 @@ module.exports = {
 
   emailLogonDetails: function (user, password) {
     console.log('Emailing Logon Details for user ', user.email, password);
+  },
+
+  createPhoneVerification: function (number, callback) {
+    const newPV = new PhoneVerification();
+    newPV.sid = shortid.generate();
+    newPV.number = number;
+    newPV.code = shortid.generate();
+    newPV.save(function (err, pv) {
+      callback(err, pv);
+    })
   }
-
-
 };

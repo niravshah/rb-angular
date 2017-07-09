@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PhoneVerifyService} from '../../../phone-verify.service';
+import {isJsObject} from "@angular/core/src/change_detection/change_detection_util";
 
 declare var $: any
 
@@ -35,8 +36,9 @@ export class StripeCreateAccountComponent implements OnInit {
         $('#numberSection').addClass('hidden');
         $('#codeSection').removeClass('hidden');
       }, err => {
-        this.addErrorMessage('Server Error : ' + err.status + ' ' + err.statusText);
         console.log('Error', err);
+        this.addErrorMessage(err, null);
+
       });
     }
   }
@@ -56,8 +58,17 @@ export class StripeCreateAccountComponent implements OnInit {
     this.messages.push({type: 'success', text: message});
   }
 
-  addErrorMessage(message) {
-    this.messages.push({type: 'error', text: message});
+  addErrorMessage(err, message) {
+    if (err) {
+      try {
+        this.messages.push({type: 'error', text: JSON.parse(err._body).message});
+      } catch (ex) {
+        this.messages.push({type: 'error', text: err._body});
+      }
+    } else {
+      this.messages.push({type: 'error', text: message});
+    }
+
   }
 }
 
