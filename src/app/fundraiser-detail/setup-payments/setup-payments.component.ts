@@ -6,10 +6,10 @@ import {isUndefined} from 'util';
 
 @Component({
   selector: 'app-edit-bank',
-  templateUrl: './edit-bank.component.html',
-  styleUrls: ['./edit-bank.component.css']
+  templateUrl: './setup-payments.component.html',
+  styleUrls: ['./setup-payments.component.css']
 })
-export class EditBankComponent implements OnInit {
+export class SetupPaymentsComponent implements OnInit {
   post;
   postId;
 

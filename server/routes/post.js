@@ -114,7 +114,7 @@ module.exports = function (passport) {
 
 
   router.post('/api/posts/:id/account/code', (req, res) => {
-    console.log('Request Body: ', req.body);
+    // console.log('Request Body: ', req.body);
 
 
     unirest.post('https://connect.stripe.com/oauth/token')
@@ -123,10 +123,10 @@ module.exports = function (passport) {
       .end(function (response) {
 
         if(response.ok){
-          console.log(response.body);
+          // console.log(response.body);
           return res.json(response.body);
         }else{
-          console.log(response.body, response.status,response.statusType);
+          // console.log(response.body, response.status,response.statusType);
           return res.status(response.code).json(response.body);
 
         }

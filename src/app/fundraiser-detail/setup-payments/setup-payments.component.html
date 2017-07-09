@@ -2,7 +2,7 @@
   <div class="container bg_white padding">
     <div class="row">
       <div class="col-xs-12 text-center">
-        <h2 class="uppercase">Connect your Bank Account</h2>
+        <h2 class="uppercase">Setup Payments</h2>
         <p class="heading_space">Before you can go live you will need to tell us where to transfer the funds you
           receive</p>
       </div>
@@ -13,12 +13,13 @@
           <div class="item">
             <div class="testinomial_content text-center">
               <div class="row pb40">
-                <a href="#" class="stripe-connect"><span>Connect with Stripe</span></a>
+                <!--<a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_AzHNx40aNPMx3bGQVksrT2nkLCxNeIyc&scope=read_write" class="stripe-connect"><span>Connect with Stripe</span></a>-->
+                <!--<a href="https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://www.raisebetter.uk/stripe-connect&client_id=ca_AzHNx40aNPMx3bGQVksrT2nkLCxNeIyc&state=GBHQDF" class="stripe-connect"><span>Connect with Stripe</span></a>-->
+                <button [routerLink]="'create-stripe-account'" id="createStripeAct"
+                        class="border_radius btn-yellow text-uppercase">
+                  Create my Stripe Account
+                </button>
               </div>
-              <!--<img src="/assets/images/author2.png" alt="happy client" class="bottom15">-->
-              <!--<h4 class="uppercase"> SAM NICHOLSON</h4>-->
-              <!--<span class="smmery bottom15">( NorthMarq Capital  )</span>-->
-              <!--<img src="/assets/images/stars.png" alt="rating" class="bottom30">-->
               <div class="row">
                 <p>We dont store any of your critical bank details on our servers.
                   <br/>We let the security experts, Stripe do it.</p>
@@ -27,7 +28,8 @@
                   You will be redirected back to our website once the process completes.</p>
               </div>
               <div class="row pt40">
-                <a target="_blank" href="https://stripe.com"><img src="/assets/images/powered_by_stripe.png" alt="powered by stripe"></a>
+                <a target="_blank" href="https://stripe.com"><img src="/assets/images/powered_by_stripe.png"
+                                                                  alt="powered by stripe"></a>
               </div>
             </div>
           </div>

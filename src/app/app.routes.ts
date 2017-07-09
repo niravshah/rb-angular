@@ -8,8 +8,9 @@ import {DonateComponent} from './fundraiser-detail/donate/donate.component';
 import {InfoComponent} from './info/info.component';
 import {HomeComponent} from './home/home.component';
 import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.component';
-import {EditBankComponent} from './fundraiser-detail/edit-bank/edit-bank.component';
+import {SetupPaymentsComponent} from './fundraiser-detail/setup-payments/setup-payments.component';
 import {StripeRedirectComponent} from "./stripe-redirect/stripe-redirect.component";
+import {StripeCreateAccountComponent} from "./fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component";
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
@@ -20,11 +21,17 @@ export const routes: Routes = [
       path: 'fundraisers/:id', component: FundraiserDetailsComponent, children: [
       {path: 'edit', component: EditFundraiserComponent},
       {path: 'edit-author', component: EditAuthorComponent},
-      {path: 'edit-bank', component: EditBankComponent},
+      {
+        path: 'setup-payments', children: [
+        {path: '', component: SetupPaymentsComponent},
+        {path: 'create-stripe-account', component: StripeCreateAccountComponent}
+      ]
+      },
       {path: 'donate', component: DonateComponent}
     ]
     },
-    {path: 'stripe-connect', component: StripeRedirectComponent}
+    {path: 'stripe-connect', component: StripeRedirectComponent},
+
   ]
 ;
 
