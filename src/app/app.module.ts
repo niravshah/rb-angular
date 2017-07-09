@@ -40,6 +40,8 @@ import {S3UploadService} from "./s3-upload.service";
 import { StripeRedirectComponent } from './stripe-redirect/stripe-redirect.component';
 import {StripeService} from "./stripe.service";
 import { StripeCreateAccountComponent } from './fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component';
+import {PhonePipe} from "./phone.filter";
+import {PhoneVerifyService} from "./phone-verify.service";
 
 
 @NgModule({
@@ -63,6 +65,7 @@ import { StripeCreateAccountComponent } from './fundraiser-detail/setup-payments
     WizardComponent,
     WizardStepComponent,
     PostsFilter,
+    PhonePipe,
     HomeComponent,
     PercentcalcPipe,
     EditAuthorComponent,
@@ -80,7 +83,7 @@ import { StripeCreateAccountComponent } from './fundraiser-detail/setup-payments
     FacebookModule.forRoot(),
     ToastyModule.forRoot()
   ],
-  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService],
+  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService, PhoneVerifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

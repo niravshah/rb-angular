@@ -1,14 +1,153 @@
-<section id="property" class="bg_edit">
-  <div class="container bg_white padding">
+<section style="background:#efefe9;">
+  <div class="container">
     <div class="row">
-      <div class="col-xs-12 text-center">
-        <h2 class="uppercase">Create Your Stripe Account</h2>
-        <p class="heading_space">Before you can go live you will need to tell us where to transfer the funds you
-          receive</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
+      <div class="board">
+        <div class="board-inner">
+          <ul class="nav nav-tabs" id="myTab">
+            <div class="liner"></div>
+            <li class="active">
+              <a href="#home" data-toggle="tab" title="welcome">
+                      <span class="round-tabs one">
+                              <i class="glyphicon glyphicon-phone"></i>
+                      </span>
+              </a></li>
+
+            <li><a href="#profile" data-toggle="tab" title="profile">
+                     <span class="round-tabs two">
+                         <i class="glyphicon glyphicon-user"></i>
+                     </span>
+            </a>
+            </li>
+            <li><a href="#messages" data-toggle="tab" title="bootsnipp goodies">
+                     <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-gift"></i>
+                     </span> </a>
+            </li>
+
+            <li><a href="#settings" data-toggle="tab" title="blah blah">
+                         <span class="round-tabs four">
+                              <i class="glyphicon glyphicon-comment"></i>
+                         </span>
+            </a></li>
+
+            <li><a href="#doner" data-toggle="tab" title="completed">
+                         <span class="round-tabs five">
+                              <i class="glyphicon glyphicon-ok"></i>
+                         </span> </a>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="home">
+
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <h2 class="uppercase">Create Your Stripe Account</h2>
+                <p class="heading_space">Before you can go live you will need to tell us where to transfer the funds
+                  you
+                  receive</p>
+              </div>
+            </div>
+            <div *ngIf="messages.length >0" class="row pb20 pt20 text-center" id="errorSection">
+              <div *ngFor="let m of messages">
+                <p class="{{m.type}}">{{m.text}}</p>
+              </div>
+            </div>
+            <div class="row" id="numberSection">
+              <div class="col-md-12 text-center">
+                <form style="width: 500px; margin: auto" #f="ngForm" novalidate>
+                  <div class="input-group">
+                    <span class="input-group-addon">Phone Number</span>
+                    <input name="number" [(ngModel)]="model.number" #number="ngModel" type="text" class="form-control"
+                           placeholder="07222 555555" required
+                           pattern="^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$">
+                  </div>
+                  <small class="error" [hidden]="number.valid || (number.pristine && !f.submitted)">
+                    Phone number is not valid (Ex. 07222 555555, 07222555555)
+                  </small>
+
+                  <p class="text-center">
+                    <a (click)="requestCode(f.value, f.valid)" [ngClass]="{'disabled':!number.valid}"
+                       class="btn btn-success btn-outline-rounded green">
+                      Send Verification Code <span style="margin-left:10px;"
+                                                   class="glyphicon glyphicon-phone"></span></a>
+                  </p>
+
+                </form>
+              </div>
+            </div>
+            <div class="row fade-in" id="codeSection" class="hidden">
+              <div class="col-md-12">
+                <form style="width: 500px; margin: auto" #f2="ngForm" novalidate>
+                  <div class="input-group">
+                    <span class="input-group-addon">Verification Code</span>
+                    <input name="code" [(ngModel)]="model.code" #code="ngModel" type="text" class="form-control"
+                           required>
+                  </div>
+
+                  <p class="text-center">
+                    <a (click)="verifyCode(f2.value, f2.valid)" [ngClass]="{'disabled':!number.valid}"
+                       class="btn btn-success btn-outline-rounded green">
+                      Verify Code <span style="margin-left:10px;" class="glyphicon glyphicon-check"></span></a>
+                  </p>
+
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="profile">
+            <h3 class="head text-center">Create a Bootsnipp<sup>™</sup> Profile</h3>
+            <p class="narrow text-center">
+              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
+              saperet facilisi an vim.
+            </p>
+
+            <p class="text-center">
+              <a href="" class="btn btn-success btn-outline-rounded green"> create your profile <span
+                style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+            </p>
+
+          </div>
+          <div class="tab-pane fade" id="messages">
+            <h3 class="head text-center">Bootsnipp goodies</h3>
+            <p class="narrow text-center">
+              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
+              saperet facilisi an vim.
+            </p>
+
+            <p class="text-center">
+              <a href="" class="btn btn-success btn-outline-rounded green"> start using bootsnipp <span
+                style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+            </p>
+          </div>
+          <div class="tab-pane fade" id="settings">
+            <h3 class="head text-center">Drop comments!</h3>
+            <p class="narrow text-center">
+              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
+              saperet facilisi an vim.
+            </p>
+
+            <p class="text-center">
+              <a href="" class="btn btn-success btn-outline-rounded green"> start using bootsnipp <span
+                style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+            </p>
+          </div>
+          <div class="tab-pane fade" id="doner">
+            <div class="text-center">
+              <i class="img-intro icon-checkmark-circle"></i>
+            </div>
+            <h3 class="head text-center">thanks for staying tuned! <span style="color:#f48260;">♥</span> Bootstrap</h3>
+            <p class="narrow text-center">
+              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
+              saperet facilisi an vim.
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
 
       </div>
     </div>
