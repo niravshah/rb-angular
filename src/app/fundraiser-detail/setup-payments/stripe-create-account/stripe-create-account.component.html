@@ -53,12 +53,12 @@
             <div class="row text-center pb20">
               <h4 class="text-uppercase">Step 1: Verify your Phone Number</h4>
             </div>
-            <div class="row pb20">
-            <div *ngIf="messages.length >0" class="text-center" id="errorSection">
-              <div *ngFor="let m of messages">
-                <p class="{{m.type}}">{{m.text}}</p>
+            <div class="row pb20" id="errorMessagesSection">
+              <div *ngIf="messages.length >0" class="text-center" id="errorSection">
+                <div *ngFor="let m of messages">
+                  <p class="{{m.type}}">{{m.text}}</p>
+                </div>
               </div>
-            </div>
             </div>
             <div class="row" id="numberSection">
               <div class="col-md-12 text-center">
@@ -83,7 +83,7 @@
                 </form>
               </div>
             </div>
-            <div class="row fade-in" id="codeSection" class="">
+            <div class="row fade-in hidden" id="codeSection">
               <div class="col-md-12">
                 <form style="width: 500px; margin: auto" #f2="ngForm" novalidate>
                   <div class="input-group">
@@ -102,7 +102,11 @@
 
               </div>
             </div>
-
+            <div class="row fade-in hidden" id="nextBtnSection" >
+              <div class="col-md-12 text-center pb20">
+                <button (click)="nextTab()" class="btn btn-yellow">Next</button>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade" id="profile">
             <h3 class="head text-center">Create a Bootsnipp<sup>™</sup> Profile</h3>

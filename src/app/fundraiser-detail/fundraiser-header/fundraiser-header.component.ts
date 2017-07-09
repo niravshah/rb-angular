@@ -16,7 +16,7 @@ export class FundraiserHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('FundraiserHeaderComponent init', this.status);
+    // console.log('FundraiserHeaderComponent init', this.status);
   }
 
   isLogin() {

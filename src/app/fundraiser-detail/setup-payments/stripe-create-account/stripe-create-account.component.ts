@@ -31,13 +31,13 @@ export class StripeCreateAccountComponent implements OnInit {
   }
 
   requestCode(model, valid) {
-    console.log('requestCode', model, valid);
+    // console.log('requestCode', model, valid);
     if (valid) {
       this.phoneVerifyService.requestCode(model.number).subscribe(res => {
         $('#numberSection').addClass('hidden');
         $('#codeSection').removeClass('hidden');
       }, err => {
-        console.log('Error', err);
+        // console.log('Error', err);
         this.addErrorMessage(err, null);
       });
     }
@@ -45,13 +45,15 @@ export class StripeCreateAccountComponent implements OnInit {
 
 
   verifyCode(model, valid) {
-    console.log('verifyNumber', this.model, model, valid);
+    // console.log('verifyNumber', this.model, model, valid);
     if (valid) {
       this.phoneVerifyService.verifyCode(model.code, this.model.number, this.loginService.loggedInJwt()).subscribe(res => {
-        console.log('Success', res);
+        // console.log('Success', res);
         this.addSuccessMessage(res.message);
+        $('#codeSection').addClass('hidden');
+        $('#nextBtnSection').removeClass('hidden');
       }, err => {
-        console.log('Error', err);
+        // console.log('Error', err);
         this.addErrorMessage(err, null);
       });
     }
