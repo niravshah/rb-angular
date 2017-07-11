@@ -14,47 +14,33 @@
           <ul class="nav nav-tabs" id="myTab">
             <div class="liner"></div>
             <li class="active">
-              <a href="#home" data-toggle="tab" title="welcome">
+              <a href="#phoneVerification" data-toggle="tab" title="Phone Verification">
                       <span class="round-tabs one">
                               <i class="glyphicon glyphicon-phone"></i>
                       </span>
               </a></li>
 
-            <li><a href="#profile" data-toggle="tab" title="profile">
+            <li><a href="#bankDetails" data-toggle="tab" title="profile">
                      <span class="round-tabs two">
                          <i class="glyphicon glyphicon-gbp"></i>
                      </span>
             </a>
             </li>
-            <li><a href="#messages" data-toggle="tab" title="bootsnipp goodies">
-                     <span class="round-tabs three">
-                          <i class="glyphicon glyphicon-user"></i>
-                     </span> </a>
-            </li>
-
-            <li><a href="#settings" data-toggle="tab" title="blah blah">
-                         <span class="round-tabs four">
-                              <i class="glyphicon glyphicon-comment"></i>
-                         </span>
-            </a></li>
-
             <li><a href="#doner" data-toggle="tab" title="completed">
                          <span class="round-tabs five">
                               <i class="glyphicon glyphicon-ok"></i>
                          </span> </a>
             </li>
-
           </ul>
         </div>
 
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="home">
-
+          <div class="tab-pane fade-in active" id="phoneVerification">
             <div class="row text-center pb20">
               <h4 class="text-uppercase">Step 1: Verify your Phone Number</h4>
             </div>
             <div class="row pb20" id="errorMessagesSection">
-              <div *ngIf="messages.length >0" class="text-center" id="errorSection">
+              <div *ngIf="messages.length >0" class="text-center errorSection" id="errorSection">
                 <div *ngFor="let m of messages">
                   <p class="{{m.type}}">{{m.text}}</p>
                 </div>
@@ -102,48 +88,137 @@
 
               </div>
             </div>
-            <div class="row fade-in hidden" id="nextBtnSection" >
+            <div class="row fade-in hidden" id="nextBtnSection">
               <div class="col-md-12 text-center pb20">
                 <button (click)="nextTab()" class="btn btn-yellow">Next</button>
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="profile">
-            <h3 class="head text-center">Create a Bootsnipp<sup>™</sup> Profile</h3>
-            <p class="narrow text-center">
-              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
-              saperet facilisi an vim.
-            </p>
+          <div class="tab-pane fade-in" id="bankDetails">
+            <div class="row text-center pb20">
+              <h4 class="text-uppercase">Step 2: Add Bank Account Details</h4>
+            </div>
+            <div class="row pb20" id="errorMessagesSection2">
+              <div *ngIf="messages.length >0" class="text-center errorSection" id="errorSection2">
+                <div *ngFor="let m of messages">
+                  <p class="{{m.type}}">{{m.text}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row pb20" id="bankDetailsFormSection">
+              <form #f4="ngForm" novalidate>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="input-group">
+                      <h5>Bank Account Details</h5>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Sort Code</span>
+                      <input name="sortCode" [(ngModel)]="model.sortCode" #sortCode="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="sortCode.valid || (sortCode.pristine && !f4.submitted)">
+                      Sort Code is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
 
-            <p class="text-center">
-              <a href="" class="btn btn-success btn-outline-rounded green"> create your profile <span
-                style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-            </p>
 
-          </div>
-          <div class="tab-pane fade" id="messages">
-            <h3 class="head text-center">Bootsnipp goodies</h3>
-            <p class="narrow text-center">
-              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
-              saperet facilisi an vim.
-            </p>
+                    <div class="input-group">
+                      <span class="input-group-addon">Account Number</span>
+                      <input name="accountNumber" [(ngModel)]="model.accountNumber" #accountNumber="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="accountNumber.valid || (accountNumber.pristine && !f4.submitted)">
+                      Account number is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
 
-            <p class="text-center">
-              <a href="" class="btn btn-success btn-outline-rounded green"> start using bootsnipp <span
-                style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-            </p>
-          </div>
-          <div class="tab-pane fade" id="settings">
-            <h3 class="head text-center">Drop comments!</h3>
-            <p class="narrow text-center">
-              Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam
-              saperet facilisi an vim.
-            </p>
+                  </div>
+                  <div class="row">
+                    <div class="input-group">
+                      <h5>Account Holder Details</h5>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">First Name</span>
+                      <input name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="firstName.valid || (firstName.pristine && !f4.submitted)">
+                      First Name is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
 
-            <p class="text-center">
-              <a href="" class="btn btn-success btn-outline-rounded green"> start using bootsnipp <span
-                style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-            </p>
+                    <div class="input-group">
+                      <span class="input-group-addon">Last Name</span>
+                      <input name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="lastName.valid || (lastName.pristine && !f4.submitted)">
+                      Last Name is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
+
+                    <div class="input-group">
+                      <span class="input-group-addon">Date of Birth</span>
+                      <input name="dateOfBirth" [(ngModel)]="model.dateOfBirth" #dateOfBirth="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="dateOfBirth.valid || (dateOfBirth.pristine && !f4.submitted)">
+                      Date of Birth is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="input-group">
+                      <h5>Account Holder Address</h5>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">First Line</span>
+                      <input name="addressLine1" [(ngModel)]="model.addressLine1" #addressLine1="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="addressLine1.valid || (addressLine1.pristine && !f4.submitted)">
+                      Address Line 1 is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
+
+                    <div class="input-group">
+                      <span class="input-group-addon">Second Line</span>
+                      <input name="addressLine2" [(ngModel)]="model.addressLine2" #addressLine2="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="addressLine2.valid || (addressLine2.pristine && !f4.submitted)">
+                      Address Line 2 is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
+
+                    <div class="input-group">
+                      <span class="input-group-addon">Post Code</span>
+                      <input name="postCode" [(ngModel)]="model.postCode" #postCode="ngModel" type="text"
+                             class="form-control" required>
+                    </div>
+                    <small class="error" [hidden]="postCode.valid || (postCode.pristine && !f4.submitted)">
+                      Postcode is not valid (Ex. 07222 555555, 07222555555)
+                    </small>
+
+                  </div>
+                  <div class="row">
+                    <div class="input-group">
+                      <div class="checkbox">
+                        <label><input type="checkbox"> Accept T&C</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-group">
+                      <button (click)="createStripeAccount(f4.valid, f4.value)" class="btn-yellow"> Create Account</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="row fade-in hidden" id="nextBtnSection2">
+              <div class="col-md-12 text-center pb20">
+                <button (click)="nextTab()" class="btn btn-yellow">Next</button>
+              </div>
+            </div>
+
           </div>
           <div class="tab-pane fade" id="doner">
             <div class="text-center">

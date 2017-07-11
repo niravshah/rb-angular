@@ -32,9 +32,11 @@ app.use(express.static(path.join(__dirname, 'dist')));
 const auth = require('./server/routes/auth')(passport);
 const post = require('./server/routes/post')(passport);
 const phone = require('./server/routes/phone')(passport);
+const stripe = require('./server/routes/stripe')(passport);
 // Set our api routes
 app.use(post);
 app.use(phone);
+app.use(stripe);
 app.use(auth);
 
 // Catch all other routes and return the index file
