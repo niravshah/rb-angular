@@ -12,6 +12,8 @@ const User = require('../models/user');
 const Account = require('../models/account');
 
 const utils = require('./utils');
+const mailgun = require('./mailgun');
+
 
 module.exports = function (passport) {
 
@@ -113,28 +115,6 @@ module.exports = function (passport) {
   });
 
 
-  router.post('/api/posts/:id/account/code', (req, res) => {
-    // console.log('Request Body: ', req.body);
-
-
-    unirest.post('https://connect.stripe.com/oauth/token')
-      .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
-      .send({client_secret: 'sk_test_aTh0omXn80N08tMdm2UKpyrC',grant_type:'authorization_code', code:req.body.code})
-      .end(function (response) {
-
-        if(response.ok){
-          // console.log(response.body);
-          return res.json(response.body);
-        }else{
-          // console.log(response.body, response.status,response.statusType);
-          return res.status(response.code).json(response.body);
-
-        }
-      });
-
-    //return res.json({message: 'ok'});
-  });
-
   router.post('/api/posts', (req, res) => {
     console.log('POST /posts', req.body);
     User.findOne({
@@ -163,7 +143,7 @@ module.exports = function (passport) {
               error: err
             })
           } else {
-            utils.emailLogonDetails(user, password);
+            mailgun.emailLogonDetails(user, password);
             utils.createPost(user, req.body.title, req.body.amount, req.body.currency, function (err, post) {
               if (err) {
                 res.status(500).json({'message': err})
