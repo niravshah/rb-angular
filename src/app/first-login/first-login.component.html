@@ -11,17 +11,17 @@
         </p>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="messageSection">
       <div *ngIf="messages.length > 0" class="col-md-12 text-center">
         <ul class="messages">
-          <li *ngFor="let m of messages">{{m}}</li>
+          <li class="{{m.type}}" *ngFor="let m of messages">{{m.text}}</li>
         </ul>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="profile-login" style="padding:40px 0px;">
-          <div class="agent-p-form">
+          <div class="agent-p-form no-tt">
             <form action="#" class="callus clearfix" #f="ngForm" (ngSubmit)="login(f.value, f.valid)" novalidate>
               <div class="single-query form-group col-sm-12">
                 <input type="text" class="no-tt keyword-input" placeholder="Your Email Address" name="username"

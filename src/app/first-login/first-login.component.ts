@@ -30,7 +30,8 @@ export class FirstLoginComponent extends MessageDisplayComponent implements OnIn
     this._service.firstLoginVerification(model.username, model.password, model.code).subscribe(res => {
       super.addSuccessMessage('First Login Success', this.messages);
     }, err => {
-      super.addSuccessMessage(err.message, this.messages);
+      super.addErrorMessage(err, this.messages);
+
     });
 
   }

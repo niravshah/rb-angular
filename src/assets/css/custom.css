@@ -55,6 +55,29 @@
   background-color: #edf3f8;
 }
 
-small.error{
+small.error {
   color: red !important;
+}
+
+#messageSection .messages {
+
+  width: 800px;
+  padding: 20px 0px;
+  margin: 20px auto;
+  border: rgba(31, 63, 129, 0.65) 2px solid;
+  background: rgba(255, 209, 25, 0.2);
+
+}
+
+#messageSection li.error {
+  color: red;
+}
+
+#messageSection li.success {
+  color: green;
+}
+
+.no-tt input {
+  text-transform: none !important;
+  transition: none !important;
 }
