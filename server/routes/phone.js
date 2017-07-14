@@ -69,17 +69,17 @@ module.exports = function (passport) {
 
         if (pv.code === req.body.code) {
 
-          User.findOneAndUpdate({sid:req.user.sid},{mobile:req.body.number},{new:true},function(err,user){
+          User.findOneAndUpdate({sid: req.user.sid}, {mobile: req.body.number}, {new: true}, function (err, user) {
 
-            if(err){
+            if (err) {
               res.status(500).json({message: err.message});
-            }else{
+            } else {
               pv.status = 'verified';
-              pv.save(function(err,pv){
-                if(err){
+              pv.save(function (err, pv) {
+                if (err) {
                   res.status(500).json({message: err.message});
-                }else{
-                  res.json({message:'Phone number verified!'});
+                } else {
+                  res.json({message: 'Phone number verified!'});
                 }
               });
             }
@@ -89,7 +89,7 @@ module.exports = function (passport) {
           res.status(500).json({message: 'Could not verify code.'})
         }
       }
-    },(err, req, res, next) => {
+    }, (err, req, res, next) => {
       res.status(403).json({'message': err, 'status': err.status});
     });
 
@@ -100,19 +100,13 @@ module.exports = function (passport) {
       if (err) {
         callback({message: err.message}, null);
       } else {
-        client.messages.create({
-            from: config.TWILIO_PHONE_NUMBER,
-            to: number,
-            body: "Your RaiseBetter Code: " + pv.code
-          },
-          function (err, message) {
-            if (err) {
-              callback({message: err.message}, null);
-            } else {
-              callback(null, {message: message.status});
-            }
+        utils.mobileSendVerificationCode(number, "Your RaiseBetter Code: " + pv.code, function (err, message) {
+          if (err) {
+            callback({message: err.message}, null);
+          } else {
+            callback(null, {message: message.status});
           }
-        );
+        })
       }
     });
   }

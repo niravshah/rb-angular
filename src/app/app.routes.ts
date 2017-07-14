@@ -11,10 +11,17 @@ import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.c
 import {SetupPaymentsComponent} from './fundraiser-detail/setup-payments/setup-payments.component';
 import {StripeRedirectComponent} from "./stripe-redirect/stripe-redirect.component";
 import {StripeCreateAccountComponent} from "./fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component";
+import {FirstLoginComponent} from "./first-login/first-login.component";
+import {ResetPasswordComponent} from "./first-login/reset-password/reset-password.component";
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
     {path: 'login', component: LoginComponent},
+    {
+      path: 'first-login', component: FirstLoginComponent, children: [
+      {path: 'reset-password', component: ResetPasswordComponent}
+    ]
+    },
     {path: 'home', component: HomeComponent},
     {path: 'info', component: InfoComponent},
     {

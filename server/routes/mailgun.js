@@ -5,7 +5,7 @@ const mailgun = require('mailgun-js')({apiKey: config.MAILGUN_API_KEY, domain: c
 module.exports = {
 
   emailLogonDetails: function (user, password) {
-    // console.log('Emailing Logon Details for user ', user.email, password);
+    console.log('Emailing Logon Details for user ', user.email, password);
 
 
     var data = {

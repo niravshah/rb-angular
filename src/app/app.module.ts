@@ -37,11 +37,15 @@ import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.c
 import {SetupPaymentsComponent} from './fundraiser-detail/setup-payments/setup-payments.component';
 import {ToastyModule} from "ng2-toasty";
 import {S3UploadService} from "./s3-upload.service";
-import { StripeRedirectComponent } from './stripe-redirect/stripe-redirect.component';
+import {StripeRedirectComponent} from './stripe-redirect/stripe-redirect.component';
 import {StripeService} from "./stripe.service";
-import { StripeCreateAccountComponent } from './fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component';
+import {StripeCreateAccountComponent} from './fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component';
 import {PhonePipe} from "./phone.filter";
 import {PhoneVerifyService} from "./phone-verify.service";
+import {FirstLoginComponent} from './first-login/first-login.component';
+import {ResetPasswordComponent} from './first-login/reset-password/reset-password.component';
+import {MessageDisplayComponent} from './message-display/message-display.component';
+import {FirstLoginService} from "./first-login/first-login.service";
 
 
 @NgModule({
@@ -71,7 +75,10 @@ import {PhoneVerifyService} from "./phone-verify.service";
     EditAuthorComponent,
     SetupPaymentsComponent,
     StripeRedirectComponent,
-    StripeCreateAccountComponent
+    StripeCreateAccountComponent,
+    FirstLoginComponent,
+    ResetPasswordComponent,
+    MessageDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +90,7 @@ import {PhoneVerifyService} from "./phone-verify.service";
     FacebookModule.forRoot(),
     ToastyModule.forRoot()
   ],
-  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService, PhoneVerifyService],
+  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService, PhoneVerifyService, FirstLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

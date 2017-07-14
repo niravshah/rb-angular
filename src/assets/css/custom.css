@@ -54,3 +54,7 @@
 .bg_edit {
   background-color: #edf3f8;
 }
+
+small.error{
+  color: red !important;
+}

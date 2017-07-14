@@ -15,24 +15,33 @@
       <div class="col-md-4 t_white">
         <h4>I want to raise:</h4>
       </div>
-      <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="col-md-6 col-sm-6 col-xs-6">
         <div class="single-query bottom15">
-          <input type="text" class="keyword-input t_yellow" style="color:black !important; font-size: 24px"
-                 value="5000" name="amount" [(ngModel)]="overlayForm.amount" #amount="ngModel" required>
+          <div class="input-group">
 
+            <input type="text" class="keyword-input t_yellow"
+                   style="color:black !important; font-size: 24px; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;"
+                   value="5000" name="amount" [(ngModel)]="overlayForm.amount" #amount="ngModel" required>
+            <span class="input-group-addon" style="font-family: 'roboto_condensedbold';font-size: 20px;">GBP</span>
+          </div>
           <small class="error" [hidden]="amount.valid || (amount.pristine && !f.submitted)">
             Amount is required.
           </small>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6 col-xs-6">
-        <div class=" single-query bottom15">
-          <select name="currency" [(ngModel)]="overlayForm.currency" #currency="ngModel">
-            <option value="gbp">Pounds(£)</option>
-            <option value="euro">Euros(€)</option>
-          </select>
-        </div>
-      </div>
+      <!--<div class="col-md-4 col-sm-6 col-xs-6">-->
+      <!--<div class=" single-query bottom15">-->
+      <!--<div class="input-group">-->
+      <!--<span class="input-group-addon">Sort Code</span>-->
+      <!--<input name="sortCode" [(ngModel)]="model.sortCode" #sortCode="ngModel" type="text"-->
+      <!--class="form-control" required>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<select name="currency" [(ngModel)]="overlayForm.currency" #currency="ngModel">&ndash;&gt;-->
+      <!--&lt;!&ndash;<option value="gbp">Pounds(£)</option>&ndash;&gt;-->
+      <!--&lt;!&ndash;<option value="euro">Euros(€)</option>&ndash;&gt;-->
+      <!--&lt;!&ndash;</select>&ndash;&gt;-->
+      <!--</div>-->
+      <!--</div>-->
     </div>
 
     <div class="row">
@@ -41,7 +50,8 @@
       </div>
       <div class="col-md-12">
         <div class="single-query bottom15">
-          <input type="text" class="keyword-input lowercase" placeholder="Title of your Fundraiser" name="title" [(ngModel)]="overlayForm.title" #title="ngModel" required>
+          <input type="text" class="keyword-input lowercase" placeholder="Title of your Fundraiser" name="title"
+                 [(ngModel)]="overlayForm.title" #title="ngModel" required>
           <small class="error" [hidden]="title.valid || (title.pristine && !f.submitted)">
             Title is required.
           </small>
@@ -55,9 +65,11 @@
       </div>
       <div class="col-md-12">
         <div class="bottom15" style="width: 100%">
-          <input type="email" class="keyword-input" placeholder="Email" style="width: 100%" name="email" [(ngModel)]="overlayForm.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <input type="email" class="keyword-input" placeholder="Email" style="width: 100%" name="email"
+                 [(ngModel)]="overlayForm.email" #email="ngModel" required
+                 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
           <small class="error" [hidden]="email.valid || (email.pristine && !f.submitted)">
-            Email is required.
+            Email is not valid.
           </small>
         </div>
       </div>
@@ -66,15 +78,42 @@
       <div class="t_white col-md-12 bottom15">
         <h4>your full name:</h4>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div class="bottom15" style="width: 100%">
-          <input type="text" class="keyword-input" placeholder="Full Name" style="width: 100%" name="fname" [(ngModel)]="overlayForm.fname" #fname="ngModel" required>
+          <input type="text" class="keyword-input" placeholder="First Name" style="width: 100%" name="fname"
+                 [(ngModel)]="overlayForm.fname" #fname="ngModel" required>
           <small class="error" [hidden]="fname.valid || (fname.pristine && !f.submitted)">
             Name is required.
           </small>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="bottom15" style="width: 100%">
+          <input type="text" class="keyword-input" placeholder="Last Name" style="width: 100%" name="lname"
+                 [(ngModel)]="overlayForm.lname" #lname="ngModel" required>
+          <small class="error" [hidden]="lname.valid || (lname.pristine && !f.submitted)">
+            Last Name is required.
+          </small>
+        </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="t_white col-md-12 bottom15">
+        <h4>your mobile phone number:</h4>
+      </div>
+      <div class="col-md-12">
+        <div class="bottom15" style="width: 100%">
+          <input type="text" class="keyword-input"
+                 style="width: 100%" name="mobile"
+                 [(ngModel)]="overlayForm.mobile" #mobile="ngModel"   placeholder="07222 555555" required
+                 pattern="^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$">
+          <small class="error" [hidden]="mobile.valid || (mobile.pristine && !f.submitted)">
+            Phone number is not valid (Ex. 07222 555555, 07222555555)
+          </small>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12 text-right form-group top30">
         <button type="submit" class="border_radius btn-yellow text-uppercase">Start Fundraising Now</button>

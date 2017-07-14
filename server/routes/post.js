@@ -115,8 +115,31 @@ module.exports = function (passport) {
   });
 
 
+  router.post('/api/posts/:id/account/code', (req, res) => {
+    console.log('Request Body: ', req.body);
+
+
+    unirest.post('https://connect.stripe.com/oauth/token')
+      .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
+      .send({client_secret: 'sk_test_aTh0omXn80N08tMdm2UKpyrC', grant_type: 'authorization_code', code: req.body.code})
+      .end(function (response) {
+
+        if (response.ok) {
+          console.log(response.body);
+          return res.json(response.body);
+        } else {
+          console.log(response.body, response.status, response.statusType);
+          return res.status(response.code).json(response.body);
+
+        }
+      });
+
+    //return res.json({message: 'ok'});
+  });
+
   router.post('/api/posts', (req, res) => {
     console.log('POST /posts', req.body);
+
     User.findOne({
       'email': req.body.email
     }, function (err, user) {
@@ -135,22 +158,35 @@ module.exports = function (passport) {
         //console.log('Creating New User',req.params);
 
         const password = generatePassword();
+        const mobileCode = generatePassword();
 
-        utils.createUser(req.body.email, password, req.body.fname, function (err, user) {
+        utils.mobileSendVerificationCode(req.body.mobile, 'Your Raise Better Verification Code: ' + mobileCode, function (err, message) {
+
           if (err) {
             res.status(500).json({
-              message: "Error creating new User. Please try again later.",
-              error: err
+              message: 'Error while sending mobile verification code',
+              error: err.message
             })
           } else {
-            mailgun.emailLogonDetails(user, password);
-            utils.createPost(user, req.body.title, req.body.amount, req.body.currency, function (err, post) {
+
+            utils.createUser(req.body.email, password, req.body.fname, req.body.lname, req.body.mobile, mobileCode, function (err, user) {
               if (err) {
-                res.status(500).json({'message': err})
+                res.status(500).json({
+                  message: "Error creating new User. Please try again later.",
+                  error: err
+                })
               } else {
-                res.status(200).json({'message': 'Post Created', 'id': post.id})
+                mailgun.emailLogonDetails(user, password);
+                utils.createPost(user, req.body.title, req.body.amount, req.body.currency, function (err, post) {
+                  if (err) {
+                    res.status(500).json({'message': err})
+                  } else {
+                    res.status(200).json({'message': 'Post Created', 'id': post.id})
+                  }
+                });
               }
             });
+
           }
         });
       }
