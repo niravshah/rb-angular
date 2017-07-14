@@ -53,6 +53,17 @@ export class LoginService {
     localStorage.removeItem('token');
   }
 
+  saveTokenLocally(email, token, username, sid): void {
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('currentUser', JSON.stringify({
+      email: email,
+      username: username,
+      token: token,
+      sid: sid
+    }));
+  }
+
   loggedIn() {
     return tokenNotExpired();
   }

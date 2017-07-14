@@ -13,7 +13,7 @@ var postSchema = mongoose.model('Post',{
   created: {type:Date, default:Date.now()},
   target: {type:Number, default:0},
   collected: {type:Number, default:0},
-  currency: {type:String, default:'£'},
+  currency: {type:String, default:'GBP'},
   story:{type:String, default:''},
   status: {type:String, enum: ['draft', 'live-test','live'], default: 'draft'}
 });

@@ -57,14 +57,7 @@ export class LoginComponent implements OnInit {
         .subscribe((response) => {
           const token = response.token;
           if (token) {
-            const email = response.email;
-            localStorage.setItem('token', token);
-            localStorage.setItem('currentUser', JSON.stringify({
-              email: email,
-              username: model.username,
-              token: token,
-              sid: response.sid
-            }));
+            this.loginService.saveTokenLocally(response.email, token, model.username, response.sid);
             this.router.navigate(['home']);
           } else {
             this.error = 'Username or password is incorrect';

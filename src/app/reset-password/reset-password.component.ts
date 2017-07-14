@@ -27,15 +27,19 @@ export class ResetPasswordComponent extends MessageDisplayComponent implements O
 
   reset(model, valid) {
     // console.log('ResetPasswordComponent rest(): ', model, valid);
-    if (valid) {
+    if (valid && model.password === model.repeatPassword) {
       this._service.resetPassword(this.form.password, this.form.repeatPassword, this.loginService.loggedInJwt()).subscribe(
         (response) => {
+          this.loginService.saveTokenLocally(response.email, response.token, response.email, response.sid);
           super.addSuccessMessage(response, this.messages);
+          this.router.navigate(['home']);
         },
         (error) => {
           super.addErrorMessage(error, this.messages);
         }
       );
+    } else {
+      super.addErrorMessage('Invalid data and/or Passwords do not match', this.messages);
     }
   }
 
