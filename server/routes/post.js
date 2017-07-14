@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const unirest = require('unirest');
 
 var generatePassword = require('password-generator');
 
@@ -115,27 +114,6 @@ module.exports = function (passport) {
   });
 
 
-  router.post('/api/posts/:id/account/code', (req, res) => {
-    console.log('Request Body: ', req.body);
-
-
-    unirest.post('https://connect.stripe.com/oauth/token')
-      .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
-      .send({client_secret: 'sk_test_aTh0omXn80N08tMdm2UKpyrC', grant_type: 'authorization_code', code: req.body.code})
-      .end(function (response) {
-
-        if (response.ok) {
-          console.log(response.body);
-          return res.json(response.body);
-        } else {
-          console.log(response.body, response.status, response.statusType);
-          return res.status(response.code).json(response.body);
-
-        }
-      });
-
-    //return res.json({message: 'ok'});
-  });
 
   router.post('/api/posts', (req, res) => {
     console.log('POST /posts', req.body);

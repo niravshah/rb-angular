@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import {JwtService} from "./jwt.service";
 
 @Injectable()
-export class StripeService {
+export class StripeService extends JwtService {
 
   oauthLink = 'https://connect.stripe.com/oauth/authorize';
   client_id = 'ca_AzHNx40aNPMx3bGQVksrT2nkLCxNeIyc';
@@ -11,23 +12,20 @@ export class StripeService {
 
 
   constructor(private http: Http) {
-
+    super();
   }
 
-  getAccountId(code: string, state: string, scope: string) {
-    const message = {code: code, scope: scope};
-    const url = '/api/posts/' + state + '/account/code';
-    return this.http.post(url, message)
+  getAccountId(code: string, state: string, scope: string, jwt: string) {
+    const message = {code: code, scope: scope, post: state};
+    const url = '/api/stripe/auth-code';
+    return this.http.post(url, message, {headers: super.getJwtHeader(jwt)})
       .map(res => res.json());
   }
 
-
   createNewAccount(model: any, jwt: string) {
-    const headers = new Headers();
-    headers.append('Authorization', 'JWT ' + jwt);
 
     const url = '/api/stripe/account/new';
-    return this.http.post(url, model, {headers: headers})
+    return this.http.post(url, model, {headers: super.getJwtHeader(jwt)})
       .map(res => res.json());
   }
 
@@ -37,6 +35,7 @@ export class StripeService {
       + this.addQueryParam('client_id', this.client_id, true)
       + this.addQueryParam('scope', this.scope, false)
       + this.addQueryParam('response_type', this.response_type, false)
+      + this.addQueryParam('state', post.sid, false)
       + this.addStripeUserQueryParam('first_name', post.author.fname)
       + this.addStripeUserQueryParam('last_name', post.author.lname)
       + this.addStripeUserQueryParam('product_description', 'Raise Better Fundraiser: ' + post.title)

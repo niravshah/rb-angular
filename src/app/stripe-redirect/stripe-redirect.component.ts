@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {StripeService} from '../stripe.service';
+import {LoginService} from "../login/login.service";
 
 declare var $: any;
 
@@ -13,7 +14,9 @@ export class StripeRedirectComponent implements OnInit {
 
   messages: { type: string, text: string }[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private stripeService: StripeService) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private loginService: LoginService,
+              private stripeService: StripeService) {
   }
 
   ngOnInit() {
@@ -30,7 +33,7 @@ export class StripeRedirectComponent implements OnInit {
         const message = 'Access Granted by Stripe: ' + scope;
         this.addSuccessMessage('Thank You. Your request to Stripe was successful.');
         this.addSuccessMessage(message);
-        this.stripeService.getAccountId(code, state, scope).subscribe(resp => {
+        this.stripeService.getAccountId(code, state, scope, this.loginService.loggedInJwt()).subscribe(resp => {
           console.log('Response Received', resp);
           this.addSuccessMessage('Response Received' + resp);
         }, error => {

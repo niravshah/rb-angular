@@ -15,7 +15,10 @@ export class SetupPaymentsComponent implements OnInit {
   postId;
   stripeLink;
 
-  constructor(public _location: Location, public postService: PostsService, private router: Router, private stripeService: StripeService) {
+  constructor(public _location: Location,
+              public postService: PostsService,
+              private router: Router,
+              private stripeService: StripeService) {
   }
 
   ngOnInit() {
@@ -24,19 +27,11 @@ export class SetupPaymentsComponent implements OnInit {
     if (isUndefined(this.post)) {
       this.router.navigate(['home']);
     } else {
-      console.log(this.post);
+      // console.log(this.post);
       this.stripeLink = this.stripeService.getOAuthUrl(this.post);
     }
   }
 
-  saveBankDetails(model: any, isValid: boolean) {
-    if (isValid) {
-      console.log('Valid Bank Form Submit', model, isValid);
-
-    } else {
-      console.log('Invalid Bank Form Submit', model, isValid);
-    }
-  }
 
   closeBtn(command) {
     // console.log('Close Button Clicked!', command);
