@@ -47,6 +47,7 @@ import {ResetPasswordComponent} from './reset-password/reset-password.component'
 import {MessageDisplayComponent} from './message-display/message-display.component';
 import {FirstLoginService} from './first-login/first-login.service';
 import {ResetPasswordService} from './reset-password/reset-password.service';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import {ResetPasswordService} from './reset-password/reset-password.service';
     StripeCreateAccountComponent,
     FirstLoginComponent,
     ResetPasswordComponent,
-    MessageDisplayComponent
+    MessageDisplayComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

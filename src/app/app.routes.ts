@@ -13,10 +13,12 @@ import {StripeRedirectComponent} from './stripe-redirect/stripe-redirect.compone
 import {StripeCreateAccountComponent} from './fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component';
 import {FirstLoginComponent} from './first-login/first-login.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import {LogoutComponent} from 'app/logout/logout.component';
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'logout', component: LogoutComponent},
     {path: 'first-login', component: FirstLoginComponent},
     {path: 'reset-password', component: ResetPasswordComponent},
     {path: 'home', component: HomeComponent},
