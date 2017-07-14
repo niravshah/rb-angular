@@ -46,6 +46,7 @@ import {FirstLoginComponent} from './first-login/first-login.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {MessageDisplayComponent} from './message-display/message-display.component';
 import {FirstLoginService} from './first-login/first-login.service';
+import {ResetPasswordService} from './reset-password/reset-password.service';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import {FirstLoginService} from './first-login/first-login.service';
     FacebookModule.forRoot(),
     ToastyModule.forRoot()
   ],
-  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService, PhoneVerifyService, FirstLoginService],
+  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService,
+    PhoneVerifyService, FirstLoginService, ResetPasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
