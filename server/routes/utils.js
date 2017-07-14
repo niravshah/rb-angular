@@ -61,20 +61,20 @@ module.exports = {
 
   mobileSendVerificationCode: function (mobile, message, callback) {
 
-    callback(null, {message: "success"});
-    /*client.messages.create({
-     from: config.TWILIO_PHONE_NUMBER,
-     to: mobile,
-     body: message
-     },
-     function (err, message) {
-     if (err) {
-     callback({message: err.message}, null);
-     } else {
-     callback(null, {message: message.status});
-     }
-     }
-     );*/
+    // callback(null, {message: "success"});
+    twilio.messages.create({
+        from: config.TWILIO_PHONE_NUMBER,
+        to: mobile,
+        body: message
+      },
+      function (err, message) {
+        if (err) {
+          callback({message: err.message}, null);
+        } else {
+          callback(null, {message: message.status});
+        }
+      }
+    );
 
 
   }

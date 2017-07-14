@@ -33,7 +33,7 @@ export class HomeOverlayComponent implements OnInit {
     if (isValid) {
       this.postService.createPost(model).subscribe((res) => {
         // console.log('Post Response: ', res);
-        this.router.navigate(['login'], {queryParams: {mcode: 4}});
+        this.router.navigate(['first-login'], {queryParams: {mcode: 4}});
       }, (error) => {
         if (error.status === 403) {
           const url = '/login?mcode=1';

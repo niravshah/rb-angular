@@ -16,6 +16,7 @@ module.exports = mongoose.model('User', {
   mobileCode: {type: String, default: ''},
   isMobileVerified: {type: Boolean, default:false},
   isEmailVerified: {type: Boolean, default:false},
+  firstLogin: {type: Boolean, default:true},
   bio: {type: String, default: ''},
   avatar: {type: String, default: '/assets/images/avatar.jpg'}
 });

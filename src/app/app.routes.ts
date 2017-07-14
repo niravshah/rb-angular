@@ -17,11 +17,8 @@ import {ResetPasswordComponent} from "./first-login/reset-password/reset-passwor
 export const routes: Routes = [
     {path: '', component: IndexComponent},
     {path: 'login', component: LoginComponent},
-    {
-      path: 'first-login', component: FirstLoginComponent, children: [
-      {path: 'reset-password', component: ResetPasswordComponent}
-    ]
-    },
+    {path: 'first-login', component: FirstLoginComponent},
+    {path: 'reset-password', component: ResetPasswordComponent},
     {path: 'home', component: HomeComponent},
     {path: 'info', component: InfoComponent},
     {

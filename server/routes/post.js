@@ -176,7 +176,7 @@ module.exports = function (passport) {
                   error: err
                 })
               } else {
-                mailgun.emailLogonDetails(user, password);
+                mailgun.emailLogonDetails(user, password, req.body.mobile);
                 utils.createPost(user, req.body.title, req.body.amount, req.body.currency, function (err, post) {
                   if (err) {
                     res.status(500).json({'message': err})
