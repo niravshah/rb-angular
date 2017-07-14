@@ -23,7 +23,6 @@ export class StripeService extends JwtService {
   }
 
   createNewAccount(model: any, jwt: string) {
-
     const url = '/api/stripe/account/new';
     return this.http.post(url, model, {headers: super.getJwtHeader(jwt)})
       .map(res => res.json());

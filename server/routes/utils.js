@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 const User = require('../models/user');
+const Account = require('../models/account');
 
 const PhoneVerification = require('../models/phone-verification');
 
@@ -45,10 +46,6 @@ module.exports = {
     });
   },
 
-  emailLogonDetails: function (user, password) {
-    console.log('Emailing Logon Details for user ', user.email, password);
-  },
-
   createPhoneVerification: function (number, callback) {
     const newPV = new PhoneVerification();
     newPV.sid = shortid.generate();
@@ -59,6 +56,26 @@ module.exports = {
     })
   },
 
+  createAccount: function (token, refresh_token, external_id, livemode, scope, callback) {
+
+    const newAccount = new Account();
+    newAccount.sid = shortid.generate();
+    newAccount.stripe_account_id = external_id;
+    newAccount.stripe_access_token = token;
+    newAccount.stripe_refresh_token = refresh_token;
+    newAccount.scope = scope;
+
+    newAccount.livemode = livemode;
+    newAccount.save(function (err, account) {
+      callback(err, account);
+    })
+  },
+  updatePostWithAccount: function (sid, account, callback) {
+
+    Post.findOneAndUpdate({sid: sid}, {account: account}, {new: true}, function (err, post) {
+      callback(err, post);
+    })
+  },
   mobileSendVerificationCode: function (mobile, message, callback) {
 
     // callback(null, {message: "success"});
