@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {MessageDisplayComponent} from "../message-display/message-display.component";
 
 
 @Component({
@@ -9,7 +10,7 @@ import {Location} from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends MessageDisplayComponent implements OnInit {
   loginForm: { username: string; password: string; };
   registerForm: { email: string, name: string };
   loading = false;
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
               private loginService: LoginService,
               private _location: Location,
               private activatedRoute: ActivatedRoute) {
+    super();
   }
 
   ngOnInit() {
@@ -60,12 +62,10 @@ export class LoginComponent implements OnInit {
             this.loginService.saveTokenLocally(response.email, token, model.username, response.sid);
             this.router.navigate(['home']);
           } else {
-            this.error = 'Username or password is incorrect';
-            this.loading = false;
+            super.addErrorMessage('Username or password is incorrect', this.messages);
           }
         }, (error) => {
-          this.error = error.json().message;
-          this.loading = false;
+          super.addErrorMessage(error, this.messages);
         });
     }
   }

@@ -20,7 +20,7 @@ export class LoginService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('/api/authenticate', JSON.stringify({
+    return this.http.post('/api/auth/login', JSON.stringify({
       username: username,
       password: password
     }), {headers: headers})

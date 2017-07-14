@@ -52,7 +52,7 @@
               <p>{{post.subTitle}}</p>
             </div>
             <div class="favroute clearfix post-bb">
-              <p><i class="icon-user"></i>&nbsp; {{post.author.name| titlecase}}</p>
+              <p><i class="icon-user"></i>&nbsp; {{post.author.fname| titlecase}} {{post.author.lname| titlecase}}</p>
               <ul class="pull-right time-left">
                 <li><span><i class="icon-clock"></i> <span appTimeleft [dateCreated]="post.created">31 days left</span></span>
                 </li>

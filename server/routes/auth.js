@@ -10,7 +10,7 @@ const saltRounds = 10;
 
 module.exports = function (passport) {
 
-  router.post('/api/authenticate', passport.authenticate('local', {
+  router.post('/api/auth/login', passport.authenticate('local', {
     failWithError: true
   }), (req, res, next) => {
     var token = jwt.sign({email: req.user.email, sid: req.user.sid}, 'shhhhh');
