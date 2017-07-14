@@ -25,17 +25,20 @@ export class FundraiseListingComponent implements OnInit {
     // console.log('Fundraiser Detail Component ' + this.type);
 
     if (this.type === 'loggedInUser') {
-      this.postService.getAllPostsForLoggedInUser(this.loginService.loggedInUser(), this.loginService.loggedInJwt()).subscribe(posts => {
-        this.posts = posts;
-        console.log(this.posts.length);
-      }, (error) => {
+      if (this.loginService.loggedIn()) {
+        this.postService.getAllPostsForLoggedInUser(this.loginService.loggedInUser(), this.loginService.loggedInJwt()).subscribe(posts => {
+          this.posts = posts;
+          console.log(this.posts.length);
+        }, (error) => {
 
-        if (error.status === 401 || error.status === 403) {
-          this.router.navigate(['login'], { queryParams: {'mcode': 2 }});
-        }
-
-        console.log(error);
-      });
+          if (error.status === 401 || error.status === 403) {
+            this.router.navigate(['login'], {queryParams: {'mcode': 2}});
+          }
+          console.log(error);
+        });
+      } else {
+        this.router.navigate(['login'], {queryParams: {'mcode': 2}});
+      }
     } else {
       this.postService.getAllPosts().subscribe(posts => {
         this.posts = posts;
@@ -43,7 +46,7 @@ export class FundraiseListingComponent implements OnInit {
       }, (error) => {
 
         if (error.status === 401 || error.status === 403) {
-          this.router.navigate(['login'], { queryParams: {'mcode': 2 }});
+          this.router.navigate(['login'], {queryParams: {'mcode': 2}});
         }
         console.log(error);
       });

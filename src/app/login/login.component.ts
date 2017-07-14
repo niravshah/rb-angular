@@ -44,8 +44,8 @@ export class LoginComponent extends MessageDisplayComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       const mcode = params['mcode'];
       if (mcode) {
-        console.log('Message Code!!', mcode);
-        this.messages.push(this.messageMap[mcode]);
+        // console.log('Message Code!!', mcode);
+        super.addSuccessMessage(this.messageMap[mcode], this.messages);
       }
     });
   }

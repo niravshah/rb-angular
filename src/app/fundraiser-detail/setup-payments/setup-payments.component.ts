@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {PostsService} from '../../posts.service';
 import {Router} from '@angular/router';
 import {isUndefined} from 'util';
+import {StripeService} from "../../stripe.service";
 
 @Component({
   selector: 'app-edit-bank',
@@ -12,8 +13,9 @@ import {isUndefined} from 'util';
 export class SetupPaymentsComponent implements OnInit {
   post;
   postId;
+  stripeLink;
 
-  constructor(public _location: Location, public postService: PostsService, private router: Router) {
+  constructor(public _location: Location, public postService: PostsService, private router: Router, private stripeService: StripeService) {
   }
 
   ngOnInit() {
@@ -21,6 +23,9 @@ export class SetupPaymentsComponent implements OnInit {
     this.postId = this.postService.getCurrentPostId();
     if (isUndefined(this.post)) {
       this.router.navigate(['home']);
+    } else {
+      console.log(this.post);
+      this.stripeLink = this.stripeService.getOAuthUrl(this.post);
     }
   }
 

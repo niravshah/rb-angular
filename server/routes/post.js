@@ -30,7 +30,7 @@ module.exports = function (passport) {
 
     Post.find({
       sid: req.params.id
-    }).populate('author', 'sid fname lname email avatar bio').exec(function (err, posts) {
+    }).populate('author', 'sid fname lname email avatar mobile bio').exec(function (err, posts) {
 
       if (err) {
         res.status(500).json({
