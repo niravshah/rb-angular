@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {StripeService} from '../stripe.service';
 import {LoginService} from "../login/login.service";
 
@@ -16,7 +16,8 @@ export class StripeRedirectComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private loginService: LoginService,
-              private stripeService: StripeService) {
+              private stripeService: StripeService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -36,6 +37,7 @@ export class StripeRedirectComponent implements OnInit {
         this.stripeService.getAccountId(code, state, scope, this.loginService.loggedInJwt()).subscribe(resp => {
           console.log('Response Received', resp);
           this.addSuccessMessage('Response Received' + resp);
+          this.router.navigate(['home']);
         }, error => {
           console.log('Error Received', error);
           this.addErrorMessage('Could not connect your Stripe Account.');

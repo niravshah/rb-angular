@@ -54,6 +54,16 @@ module.exports = function (passport) {
     });
   });
 
+  router.patch('/api/posts/:id/status', (req, res) => {
+    Post.findOneAndUpdate({sid: req.params.id}, req.body, {new: true}, function (err, post) {
+      if (err) {
+        res.status(500).json({message: "Error saving post", error: err})
+      } else {
+        res.json({message: "Post saved successfully", post: post})
+      }
+    });
+  });
+
 
   router.patch('/api/posts/:id/author', (req, res) => {
     Post.find({sid: req.params.id}).populate('author', 'sid').exec(function (err, post) {

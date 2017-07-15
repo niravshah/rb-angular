@@ -11,8 +11,8 @@ export class GoLiveService extends JwtService {
 
   goLive(sid, jwt) {
 
-    const url = '/api/posts/' + sid + '/go-live';
-    return this._http.post(url, {}, {headers: super.getJwtHeader(jwt)}).map((res: Response) => {
+    const url = '/api/posts/' + sid + '/status';
+    return this._http.patch(url, {status: 'live'}, {headers: super.getJwtHeader(jwt)}).map((res: Response) => {
       return res.json();
     });
   }

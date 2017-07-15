@@ -28,14 +28,13 @@ export class SetupPaymentsComponent implements OnInit {
     if (isUndefined(this.post)) {
       this.router.navigate(['home']);
     } else {
-      const url = '/fundraisers/' + this.post.sid + '/go-live';
-      this.router.navigateByUrl(url);
-      // console.log(this.post);
-      // if (this.post.account) {
-      //   this.router.navigate(['go-live']);
-      // } else {
-      //   this.stripeLink = this.stripeService.getOAuthUrl(this.post);
-      // }
+      console.log(this.post);
+      if (this.post.account) {
+        const url = '/fundraisers/' + this.post.sid + '/go-live';
+        this.router.navigateByUrl(url);
+      } else {
+        this.stripeLink = this.stripeService.getOAuthUrl(this.post);
+      }
     }
   }
 
