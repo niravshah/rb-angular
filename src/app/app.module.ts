@@ -48,6 +48,8 @@ import {MessageDisplayComponent} from './message-display/message-display.compone
 import {FirstLoginService} from './first-login/first-login.service';
 import {ResetPasswordService} from './reset-password/reset-password.service';
 import { LogoutComponent } from './logout/logout.component';
+import { GoLiveComponent } from './fundraiser-detail/go-live/go-live.component';
+import {GoLiveService} from "./fundraiser-detail/go-live/go-live.service";
 
 
 @NgModule({
@@ -81,7 +83,8 @@ import { LogoutComponent } from './logout/logout.component';
     FirstLoginComponent,
     ResetPasswordComponent,
     MessageDisplayComponent,
-    LogoutComponent
+    LogoutComponent,
+    GoLiveComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,7 @@ import { LogoutComponent } from './logout/logout.component';
     ToastyModule.forRoot()
   ],
   providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService,
-    PhoneVerifyService, FirstLoginService, ResetPasswordService],
+    PhoneVerifyService, FirstLoginService, ResetPasswordService, GoLiveService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

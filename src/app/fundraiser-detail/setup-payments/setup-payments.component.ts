@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {PostsService} from '../../posts.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {isUndefined} from 'util';
 import {StripeService} from "../../stripe.service";
 
@@ -18,7 +18,8 @@ export class SetupPaymentsComponent implements OnInit {
   constructor(public _location: Location,
               public postService: PostsService,
               private router: Router,
-              private stripeService: StripeService) {
+              private stripeService: StripeService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -27,8 +28,14 @@ export class SetupPaymentsComponent implements OnInit {
     if (isUndefined(this.post)) {
       this.router.navigate(['home']);
     } else {
+      const url = '/fundraisers/' + this.post.sid + '/go-live';
+      this.router.navigateByUrl(url);
       // console.log(this.post);
-      this.stripeLink = this.stripeService.getOAuthUrl(this.post);
+      // if (this.post.account) {
+      //   this.router.navigate(['go-live']);
+      // } else {
+      //   this.stripeLink = this.stripeService.getOAuthUrl(this.post);
+      // }
     }
   }
 
