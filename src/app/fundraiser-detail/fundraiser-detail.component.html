@@ -28,13 +28,14 @@
       <div class="col-md-4">
         <sticky [sticky-parent]=false [sticky-offset-top]="10" [sticky-zIndex]="999">
           <div class="row" id="donateRow">
-            <button id="donateBtn" type="submit" (click)="openCheckout()" class="border_radius btn-yellow text-uppercase">
+            <a id="donateBtn" type="submit" [routerLink]="'donate'" class="border_radius btn-yellow text-uppercase">
               Donate Now
-            </button>
+            </a>
 
-            <button id="donateBtn2" type="submit" (click)="share()" class="border_radius btn-yellow btn-fb-blue text-uppercase">
+            <a id="donateBtn2" type="submit" (click)="share()"
+                    class="border_radius btn-yellow btn-fb-blue text-uppercase">
               <i class="fa fa-facebook" aria-hidden="true"></i> Share Now
-            </button>
+            </a>
 
           </div>
         </sticky>

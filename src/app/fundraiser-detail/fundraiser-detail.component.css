@@ -19,10 +19,12 @@
 
 #donateBtn {
   width: 100%;
+  text-align: center;
 }
 
 #donateBtn2 {
   width: 100%;
+  text-align: center;
   margin-top: 10px;
 }
 

@@ -12,13 +12,12 @@
     <h2 class="text-uppercase t_white bottom40 text-center">Low Fees. Instant Payments.</h2>
 
     <div class="row">
-      <div class="col-md-4 t_white">
+      <div class="col-md-4 col-sm-12 col-xs-12 t_white bottom15">
         <h4>I want to raise:</h4>
       </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
+      <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="single-query bottom15">
           <div class="input-group">
-
             <input type="text" class="keyword-input t_yellow"
                    style="color:black !important; font-size: 24px; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;"
                    value="5000" name="amount" [(ngModel)]="overlayForm.amount" #amount="ngModel" required>
@@ -61,6 +60,29 @@
     </div>
     <div class="row">
       <div class="t_white col-md-12 bottom15">
+        <h4>your full name:</h4>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="bottom15" style="width: 100%">
+          <input type="text" class="keyword-input" placeholder="First Name" style="width: 100%" name="fname"
+                 [(ngModel)]="overlayForm.fname" #fname="ngModel" required>
+          <small class="error" [hidden]="fname.valid || (fname.pristine && !f.submitted)">
+            Name is required.
+          </small>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="bottom15" style="width: 100%">
+          <input type="text" class="keyword-input" placeholder="Last Name" style="width: 100%" name="lname"
+                 [(ngModel)]="overlayForm.lname" #lname="ngModel" required>
+          <small class="error" [hidden]="lname.valid || (lname.pristine && !f.submitted)">
+            Last Name is required.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="t_white col-md-12 bottom15">
         <h4>your email address:</h4>
       </div>
       <div class="col-md-12">
@@ -76,36 +98,13 @@
     </div>
     <div class="row">
       <div class="t_white col-md-12 bottom15">
-        <h4>your full name:</h4>
-      </div>
-      <div class="col-md-6">
-        <div class="bottom15" style="width: 100%">
-          <input type="text" class="keyword-input" placeholder="First Name" style="width: 100%" name="fname"
-                 [(ngModel)]="overlayForm.fname" #fname="ngModel" required>
-          <small class="error" [hidden]="fname.valid || (fname.pristine && !f.submitted)">
-            Name is required.
-          </small>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="bottom15" style="width: 100%">
-          <input type="text" class="keyword-input" placeholder="Last Name" style="width: 100%" name="lname"
-                 [(ngModel)]="overlayForm.lname" #lname="ngModel" required>
-          <small class="error" [hidden]="lname.valid || (lname.pristine && !f.submitted)">
-            Last Name is required.
-          </small>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="t_white col-md-12 bottom15">
         <h4>your mobile phone number:</h4>
       </div>
       <div class="col-md-12">
         <div class="bottom15" style="width: 100%">
           <input type="text" class="keyword-input"
                  style="width: 100%" name="mobile"
-                 [(ngModel)]="overlayForm.mobile" #mobile="ngModel"   placeholder="07222 555555" required
+                 [(ngModel)]="overlayForm.mobile" #mobile="ngModel" placeholder="07222 555555" required
                  pattern="^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$">
           <small class="error" [hidden]="mobile.valid || (mobile.pristine && !f.submitted)">
             Phone number is not valid (Ex. 07222 555555, 07222555555)

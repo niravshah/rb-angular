@@ -121,6 +121,10 @@ jQuery(function ($) {
     $(".tp_overlay").fadeToggle();
   });
 
+  $(".form_opener_2").on("click", function () {
+    $(".tp_overlay").fadeToggle();
+  });
+
 
   /*Accordions*/
   var $active = $('#accordion .panel-collapse.in').prev().addClass('active');

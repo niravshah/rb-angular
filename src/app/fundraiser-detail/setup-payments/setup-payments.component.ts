@@ -28,7 +28,7 @@ export class SetupPaymentsComponent implements OnInit {
     if (isUndefined(this.post)) {
       this.router.navigate(['home']);
     } else {
-      console.log(this.post);
+      // console.log(this.post);
       if (this.post.account) {
         const url = '/fundraisers/' + this.post.sid + '/go-live';
         this.router.navigateByUrl(url);
