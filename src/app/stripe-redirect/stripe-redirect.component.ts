@@ -13,6 +13,7 @@ declare var $: any;
 export class StripeRedirectComponent implements OnInit {
 
   messages: { type: string, text: string }[] = [];
+  postStatus = 'draft';
 
   constructor(private activatedRoute: ActivatedRoute,
               private loginService: LoginService,
