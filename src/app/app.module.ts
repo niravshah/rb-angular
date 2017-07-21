@@ -49,11 +49,10 @@ import {FirstLoginService} from './first-login/first-login.service';
 import {ResetPasswordService} from './reset-password/reset-password.service';
 import {LogoutComponent} from './logout/logout.component';
 import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
-import {GoLiveService} from "./fundraiser-detail/go-live/go-live.service";
+import {GoLiveService} from './fundraiser-detail/go-live/go-live.service';
 import {StripeComponentComponent} from './fundraiser-detail/donate/stripe-component/stripe-component.component';
-import {StripeComponentService} from "./fundraiser-detail/donate/stripe-component/stripe-component.service";
-import { ShareComponent } from './fundraiser-detail/share/share.component';
-
+import {StripeComponentService} from './fundraiser-detail/donate/stripe-component/stripe-component.service';
+import {ShareComponent} from './fundraiser-detail/share/share.component';
 
 @NgModule({
   declarations: [

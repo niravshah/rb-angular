@@ -14,7 +14,9 @@ import {StripeCreateAccountComponent} from './fundraiser-detail/setup-payments/s
 import {FirstLoginComponent} from './first-login/first-login.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {LogoutComponent} from 'app/logout/logout.component';
-import {GoLiveComponent} from "./fundraiser-detail/go-live/go-live.component";
+import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
+import {ShareComponent} from './fundraiser-detail/share/share.component';
+
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
@@ -35,7 +37,8 @@ export const routes: Routes = [
       ]
       },
       {path: 'go-live', component: GoLiveComponent},
-      {path: 'donate', component: DonateComponent}
+      {path: 'donate', component: DonateComponent},
+      {path: 'share', component: ShareComponent}
     ]
     },
     {path: 'stripe-connect', component: StripeRedirectComponent},

@@ -2,6 +2,7 @@ import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/c
 import {StripeComponentService} from './stripe-component.service';
 import {LoginService} from '../../../login/login.service';
 import {isUndefined} from 'util';
+import {ActivatedRoute, Router} from '@angular/router';
 declare var Stripe, $: any;
 
 @Component({
@@ -11,13 +12,13 @@ declare var Stripe, $: any;
 })
 export class StripeComponentComponent implements OnInit, AfterViewInit {
 
-  @Output()
-  chargeSuccess: EventEmitter<string> = new EventEmitter();
-
   paymentForm;
   stripe;
 
-  constructor(private service: StripeComponentService, private loginService: LoginService) {
+  constructor(private service: StripeComponentService,
+              private loginService: LoginService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -84,7 +85,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
             _this.service.chargeToken(result.token, _this.paymentForm, _this.loginService.loggedInJwt()).subscribe(res => {
               console.log('Server Success:', res);
               _this.toggleOverlay();
-              _this.chargeSuccess.emit('Success');
+              _this.router.navigate(['../share'], {relativeTo: _this.route});
             }, err => {
               console.log('Error:', err);
               _this.toggleOverlay();

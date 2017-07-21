@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
+
 
 @Component({
   selector: 'app-share',
@@ -7,13 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShareComponent implements OnInit {
 
-  shareForm;
 
-  constructor() { }
+  constructor(private fb: FacebookService) {
+  }
 
   ngOnInit() {
-    this.shareForm = {amount: '', name: ''};
+
+    this.fb.init({
+      appId: '107000206632214',
+      version: 'v2.10'
+    }).then(resp => {
+      console.log('FB Loaded!', resp);
+    }).catch(e => {
+      console.log('Error loading FB !!', e);
+    });
 
   }
 
+  share() {
+
+    const options: UIParams = {
+      method: 'share',
+      href: 'https://github.com/zyramedia/ng2-facebook-sdk'
+    };
+
+    this.fb.ui(options)
+      .then((res: UIResponse) => {
+        console.log('Got the users profile', res);
+      })
+      .catch(this.handleError);
+  }
+
+  login() {
+    this.fb.login()
+      .then((res: LoginResponse) => {
+        console.log('Logged in', res);
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError(error) {
+    console.error('Error processing action', error);
+  }
 }

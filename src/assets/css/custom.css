@@ -78,6 +78,7 @@
 .icons-md {
   font-size: 30px;
 }
+
 .font-15 {
   font-size: 15px;
 }
@@ -89,6 +90,20 @@ small.error {
 .profile-login {
   padding: 40px 0px;
 }
+
+.bg_edit {
+  background-color: #edf3f8;
+}
+
+.bg_dblue {
+  background-color: #dae1e8;
+}
+
+.btn-fb-blue {
+  background-color: #3b5998;
+  color: white;
+}
+
 
 #messageSection .messages {
   width: 800px;
@@ -111,7 +126,6 @@ small.error {
   transition: none !important;
 }
 
-
 #overlay {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
@@ -121,16 +135,16 @@ small.error {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.6); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
 }
 
-#overlay div{
+#overlay div {
   margin: 200px auto;
 }
 
-#overlay p{
-  color:#ffffff;
+#overlay p {
+  color: #ffffff;
   padding: 40px;
 }
