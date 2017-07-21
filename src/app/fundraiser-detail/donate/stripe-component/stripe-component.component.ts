@@ -10,7 +10,7 @@ declare var Stripe: any;
 })
 export class StripeComponentComponent implements OnInit, AfterViewInit {
 
-
+  overlayForm;
   stripe = Stripe('pk_test_rsKIu2V1fmgDKrpy2yirvZxQ');
   amount = 0;
 
@@ -18,6 +18,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.overlayForm = {amount: '', name: ''};
   }
 
   ngAfterViewInit() {
@@ -25,8 +26,6 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
     // Create an instance of Elements
     const elements = this.stripe.elements();
 
-    // Custom styling can be passed to options when creating an Element.
-    // (Note that this demo uses a wider set of styles than the guide below.)
     const style = {
       base: {
         color: '#32325d',
@@ -87,5 +86,6 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
       });
     });
   }
+
 
 }
