@@ -30,7 +30,7 @@ export class ShareComponent implements OnInit {
 
     const options: UIParams = {
       method: 'share',
-      href: 'https://github.com/zyramedia/ng2-facebook-sdk'
+      href: 'https://www.raisebetter.uk/fundraisers/undefined'
     };
 
     this.fb.ui(options)
