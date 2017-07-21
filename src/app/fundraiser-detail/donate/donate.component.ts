@@ -16,10 +16,11 @@ export class DonateComponent implements OnInit {
   ngOnInit() {
   }
 
-  nextClicked() {
-    console.log('Next Clicked');
-    $('#stripe_donate').hide();
+  chargeSuccess(event) {
+    console.log('Charge Success', event);
+    $('#stripe_donate').hide(500);
     $('#donor_details').fadeIn(1000);
+    $('html, body').animate({scrollTop: 200}, 700);
   }
 
   closeBtn(command) {
@@ -28,6 +29,5 @@ export class DonateComponent implements OnInit {
       this._location.back();
     }
   }
-
 
 }

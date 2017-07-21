@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StripeComponentService} from './stripe-component.service';
 import {LoginService} from '../../../login/login.service';
-import {isUndefined} from "util";
+import {isUndefined} from 'util';
 declare var Stripe, $: any;
 
 @Component({
@@ -10,6 +10,9 @@ declare var Stripe, $: any;
   styleUrls: ['./stripe-component.component.css']
 })
 export class StripeComponentComponent implements OnInit, AfterViewInit {
+
+  @Output()
+  chargeSuccess: EventEmitter<string> = new EventEmitter();
 
   paymentForm;
   stripe;
@@ -59,7 +62,6 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
       card.mount('#card-element');
 
 
-
       card.addEventListener('change', function (event) {
         if (event.error) {
           _this.addCardError(event.error.messages);
@@ -67,7 +69,6 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
           _this.addCardError('');
         }
       });
-
 
 
       const form = document.getElementById('payment-form');
@@ -83,6 +84,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
             _this.service.chargeToken(result.token, _this.paymentForm, _this.loginService.loggedInJwt()).subscribe(res => {
               console.log('Server Success:', res);
               _this.toggleOverlay();
+              _this.chargeSuccess.emit('Success');
             }, err => {
               console.log('Error:', err);
               _this.toggleOverlay();
