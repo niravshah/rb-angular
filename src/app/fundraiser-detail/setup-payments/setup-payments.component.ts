@@ -3,7 +3,7 @@ import {Location} from '@angular/common';
 import {PostsService} from '../../posts.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {isUndefined} from 'util';
-import {StripeService} from "../../stripe.service";
+import {StripeService} from '../../stripe.service';
 
 @Component({
   selector: 'app-edit-bank',

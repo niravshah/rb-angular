@@ -28,7 +28,8 @@
       <div class="col-md-4">
         <sticky [sticky-parent]=false [sticky-offset-top]="10" [sticky-zIndex]="999">
           <div class="row" id="donateRow">
-            <a id="donateBtn" type="submit" [routerLink]="'donate'" class="border_radius btn-yellow text-uppercase">
+            <a id="donateBtn" type="submit" (click)="scrollTop()" [routerLink]="'donate'"
+               class="border_radius btn-yellow text-uppercase">
               Donate Now
             </a>
             <a id="donateBtn2" type="submit" (click)="share()"
@@ -45,7 +46,7 @@
         <div class="row top30" [innerHtml]="post.story"></div>
       </div>
       <aside class="col-md-4 col-xs-12 ">
-        <div *ngIf="isLogin()" id="loggedInMenu" class="bt1p bb1p pl20">
+        <div *ngIf="isAuthorLogin()" id="loggedInMenu" class="bt1p bb1p pl20">
           <div id="editBtn" class="row">
             <div class="col-md-12 col-sm-12 pt10 pb10 text-center">
               <div class="btn-group">
@@ -60,18 +61,18 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu p10">
-                  <a class="dropdown-item" [routerLink]="'edit'">Edit Fundraiser</a>
-                  <a class="dropdown-item" [routerLink]="'edit-author'">Edit Author</a>
+                  <a class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit'">Edit Fundraiser</a>
+                  <a class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit-author'">Edit Author</a>
                 </div>
               </div>
             </div>
           </div>
-          <div id="goLiveBtn" class="row">
+          <div *ngIf="!isPostLive()" id="goLiveBtn" class="row">
             <div class="col-md-12 col-sm-12 pt10 pb10">
-              <button type="button" class="btn btn-live">
+              <a (click)="scrollTop()" type="button" class="btn btn-live" [routerLink]="'setup-payments'">
                 <span class="fa fa-bolt"></span>
                 Go Live!
-              </button>
+              </a>
             </div>
           </div>
         </div>

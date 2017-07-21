@@ -50,6 +50,7 @@ import {ResetPasswordService} from './reset-password/reset-password.service';
 import { LogoutComponent } from './logout/logout.component';
 import { GoLiveComponent } from './fundraiser-detail/go-live/go-live.component';
 import {GoLiveService} from "./fundraiser-detail/go-live/go-live.service";
+import { StripeComponentComponent } from './fundraiser-detail/donate/stripe-component/stripe-component.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import {GoLiveService} from "./fundraiser-detail/go-live/go-live.service";
     ResetPasswordComponent,
     MessageDisplayComponent,
     LogoutComponent,
-    GoLiveComponent
+    GoLiveComponent,
+    StripeComponentComponent
   ],
   imports: [
     BrowserModule,

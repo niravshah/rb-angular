@@ -116,12 +116,23 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
     console.error('Error processing action', error);
   }
 
+  isAuthorLogin() {
 
-  isLogin() {
-    return this.authService.loggedIn();
+    if (this.authService.loggedIn()) {
+      const user = this.authService.loggedInUser();
+      const uname = JSON.parse(user).username;
+      return uname === this.post.author.email;
+    }
+    return false;
   }
 
   isPostLive() {
     return this.postStatus === 'live';
+  }
+
+  scrollTop() {
+    $('html, body').animate({
+      scrollTop: 200
+    }, 700);
   }
 }

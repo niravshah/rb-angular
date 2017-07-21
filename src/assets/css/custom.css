@@ -1,14 +1,15 @@
-.p20{
+.p20 {
   padding: 20px;
 }
 
-.p10{
+.p10 {
   padding: 10px;
 }
 
 .pt10 {
   padding-top: 10px;
 }
+
 .pt20 {
   padding-top: 20px;
 }
@@ -68,6 +69,17 @@
 
 .bg_edit {
   background-color: #edf3f8;
+}
+
+.icons-lg {
+  font-size: 60px;
+}
+
+.icons-md {
+  font-size: 30px;
+}
+.font-15 {
+  font-size: 15px;
 }
 
 small.error {
