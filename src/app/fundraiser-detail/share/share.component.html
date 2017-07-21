@@ -21,7 +21,7 @@
                    border-radius: 0px 4px 4px 0px;
                    padding-left: 10px;
                    line-height: 2em;"
-                   name="name" [(ngModel)]="paymentForm.name" #name="ngModel" required>
+                   name="name" [(ngModel)]="shareForm.name" #name="ngModel" required>
 
           </div>
           <div class="pt10">
@@ -45,7 +45,7 @@
                    border: 1px solid transparent;
                    border-radius: 4px 0px 0px 4px;
                    line-height: 2em;"
-                   name="amount" [(ngModel)]="paymentForm.amount" #amount="ngModel" required>
+                   name="amount" [(ngModel)]="shareForm.amount" #amount="ngModel" required>
             <span class="input-group-addon"
                   style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                   border: 1px solid transparent;
@@ -57,49 +57,6 @@
             </small>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="single-query bottom15">
-          <div class="input-group no-tt">
-            <span class="input-group-addon"
-                  style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                  border: 1px solid transparent;
-                  font-size: 16px;"><i
-              class="fa fa-envelope"></i></span>
-            <input type="text" class="keyword-input t_yellow"
-                   placeholder="Email"
-                   style="color:black !important;
-                   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                   font-size: 16px;
-                   -webkit-font-smoothing: antialiased;
-	                 -moz-osx-font-smoothing: grayscale;
-                   border: 1px solid transparent;
-                   border-radius: 0px 4px 4px 0px;
-                   padding-left: 10px;
-                   line-height: 2em;"
-                   name="email" [(ngModel)]="paymentForm.email" #email="ngModel" required>
-          </div>
-          <div class="pt10">
-            <small class="error pt10" [hidden]="amount.valid || (amount.pristine && !f.submitted)">
-              Amount is required.
-            </small>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <label for="card-element" class="pb10">
-          Credit or Debit Card Details
-        </label>
-        <div id="card-element">
-          <!-- a Stripe Element will be inserted here. -->
-        </div>
-        <!-- Used to display form errors -->
-        <div id="card-errors" class="pt10" role="alert"></div>
       </div>
     </div>
     <div class="row pt20 pb20">

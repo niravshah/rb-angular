@@ -52,6 +52,7 @@ import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
 import {GoLiveService} from "./fundraiser-detail/go-live/go-live.service";
 import {StripeComponentComponent} from './fundraiser-detail/donate/stripe-component/stripe-component.component';
 import {StripeComponentService} from "./fundraiser-detail/donate/stripe-component/stripe-component.service";
+import { ShareComponent } from './fundraiser-detail/share/share.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import {StripeComponentService} from "./fundraiser-detail/donate/stripe-componen
     MessageDisplayComponent,
     LogoutComponent,
     GoLiveComponent,
-    StripeComponentComponent
+    StripeComponentComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,

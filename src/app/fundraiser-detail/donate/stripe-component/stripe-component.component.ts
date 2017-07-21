@@ -21,7 +21,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.paymentForm = {amount: '', name: ''};
+    this.paymentForm = {amount: '50', name: 'Nirav Shah', email: 'nshah@email.com'};
 
     try {
       this.stripe = Stripe('pk_test_rsKIu2V1fmgDKrpy2yirvZxQ');
