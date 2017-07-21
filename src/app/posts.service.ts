@@ -29,7 +29,7 @@ export class PostsService {
   }
 
   getAllPostsForLoggedInUser(user: string, jwt: string) {
-    console.log(JSON.parse(user).email);
+    // console.log(JSON.parse(user).email);
 
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + jwt);

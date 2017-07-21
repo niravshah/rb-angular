@@ -1,7 +1,6 @@
 <div class="text-center" style="width:600px;margin:auto;">
 
   <form action="/charge" method="post" id="payment-form" #f="ngForm">
-
     <div class="row">
       <div class="col-md-8">
         <div class="single-query bottom15">
@@ -25,9 +24,11 @@
                    name="name" [(ngModel)]="overlayForm.name" #name="ngModel" required>
 
           </div>
-          <small class="error" [hidden]="name.valid || (name.pristine && !f.submitted)">
-            Name is required.
-          </small>
+          <div class="pt10">
+            <small class="error" [hidden]="name.valid || (name.pristine && !f.submitted)">
+              Name is required.
+            </small>
+          </div>
         </div>
       </div>
       <div class="col-md-4">
@@ -50,9 +51,11 @@
                   border: 1px solid transparent;
                   font-size: 16px;">GBP</span>
           </div>
-          <small class="error" [hidden]="amount.valid || (amount.pristine && !f.submitted)">
-            Amount is required.
-          </small>
+          <div class="pt10">
+            <small class="error pt10" [hidden]="amount.valid || (amount.pristine && !f.submitted)">
+              Amount is required.
+            </small>
+          </div>
         </div>
       </div>
     </div>
@@ -69,7 +72,7 @@
       </div>
     </div>
     <div class="row pt20 pb20">
-      <button type="submit" class="stripe-connect"><span>Donate with Stripe</span></button>
+      <button id="donateWithStripeBtn" type="submit" class="stripe-connect"><span>Donate with Stripe</span></button>
     </div>
   </form>
 </div>

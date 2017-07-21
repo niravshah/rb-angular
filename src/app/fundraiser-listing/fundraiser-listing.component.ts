@@ -28,7 +28,7 @@ export class FundraiseListingComponent implements OnInit {
       if (this.loginService.loggedIn()) {
         this.postService.getAllPostsForLoggedInUser(this.loginService.loggedInUser(), this.loginService.loggedInJwt()).subscribe(posts => {
           this.posts = posts;
-          console.log(this.posts.length);
+          // console.log(this.posts.length);
         }, (error) => {
 
           if (error.status === 401 || error.status === 403) {
