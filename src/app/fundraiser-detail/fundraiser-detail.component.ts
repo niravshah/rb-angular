@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../posts.service';
 import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
 import {ToastyConfig, ToastyService} from "ng2-toasty";
+import {LoginService} from "../login/login.service";
 
 declare var $: any;
 declare var FB: any;
@@ -25,7 +26,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
               private route: ActivatedRoute,
               private fb: FacebookService,
               private toastyService: ToastyService,
-              private toastyConfig: ToastyConfig) {
+              private toastyConfig: ToastyConfig,
+              private authService: LoginService) {
 
 
     fb.init({
@@ -112,5 +114,14 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
 
   private handleError(error) {
     console.error('Error processing action', error);
+  }
+
+
+  isLogin() {
+    return this.authService.loggedIn();
+  }
+
+  isPostLive() {
+    return this.postStatus === 'live';
   }
 }

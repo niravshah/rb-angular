@@ -8,6 +8,10 @@
   border-bottom: 1px solid #d3d8dd;
 }
 
+.bt1p {
+  border-top: 1px solid #d3d8dd;
+}
+
 .post_meta span {
   padding: 0px 10px;
   border-right: 1px solid gray;
@@ -28,20 +32,53 @@
   margin-top: 10px;
 }
 
-.sticky #donateRow{
-  float:left;
+#loggedInMenu .btn {
+  padding: 10px 10px;
+  background-color: #3b5998;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
-.sticky #donateBtn{
-  width:200px;
+#loggedInMenu .btn-group {
+  width: 100%;
 }
 
-.sticky #donateBtn2{
-  width:200px;
-  margin-top:0px;
+#loggedInMenu .btn:first-child {
+  width: 70%;
 }
 
-.btn-fb-blue{
+#loggedInMenu .btn-live {
+  background-color: #ffd119;
+  color: black;
+  text-transform: uppercase;
+  width:80% !important;
+}
+
+#editBtn .dropdown-menu a {
+  padding: 5px 10px;
+  display: block;
+}
+
+#editBtn .dropdown-menu a:hover {
+  background-color: #0f3e68;
+  color: white;
+}
+
+.sticky #donateRow {
+  float: left;
+}
+
+.sticky #donateBtn {
+  width: 200px;
+}
+
+.sticky #donateBtn2 {
+  width: 200px;
+  margin-top: 0px;
+}
+
+.btn-fb-blue {
   background-color: #3b5998;
   color: white;
 }
