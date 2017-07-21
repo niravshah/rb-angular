@@ -47,10 +47,11 @@ import {ResetPasswordComponent} from './reset-password/reset-password.component'
 import {MessageDisplayComponent} from './message-display/message-display.component';
 import {FirstLoginService} from './first-login/first-login.service';
 import {ResetPasswordService} from './reset-password/reset-password.service';
-import { LogoutComponent } from './logout/logout.component';
-import { GoLiveComponent } from './fundraiser-detail/go-live/go-live.component';
+import {LogoutComponent} from './logout/logout.component';
+import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
 import {GoLiveService} from "./fundraiser-detail/go-live/go-live.service";
-import { StripeComponentComponent } from './fundraiser-detail/donate/stripe-component/stripe-component.component';
+import {StripeComponentComponent} from './fundraiser-detail/donate/stripe-component/stripe-component.component';
+import {StripeComponentService} from "./fundraiser-detail/donate/stripe-component/stripe-component.service";
 
 
 @NgModule({
@@ -98,8 +99,18 @@ import { StripeComponentComponent } from './fundraiser-detail/donate/stripe-comp
     FacebookModule.forRoot(),
     ToastyModule.forRoot()
   ],
-  providers: [PostsService, AuthGuard, LoginService, S3UploadService, StripeService,
-    PhoneVerifyService, FirstLoginService, ResetPasswordService, GoLiveService],
+  providers: [
+    PostsService,
+    AuthGuard,
+    LoginService,
+    S3UploadService,
+    StripeService,
+    PhoneVerifyService,
+    FirstLoginService,
+    ResetPasswordService,
+    GoLiveService,
+    StripeComponentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

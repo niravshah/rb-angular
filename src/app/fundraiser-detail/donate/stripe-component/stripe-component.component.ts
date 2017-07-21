@@ -1,4 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {StripeComponentService} from './stripe-component.service';
+import {LoginService} from '../../../login/login.service';
 declare var Stripe: any;
 
 @Component({
@@ -10,8 +12,9 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
 
 
   stripe = Stripe('pk_test_rsKIu2V1fmgDKrpy2yirvZxQ');
+  amount = 0;
 
-  constructor() {
+  constructor(private service: StripeComponentService, private loginService: LoginService) {
   }
 
   ngOnInit() {
@@ -70,8 +73,16 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
           const errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
+          document.getElementById('overlay').style.display = 'block';
+
+          console.log('Success Token:', result.token);
           // Send the token to your server
           // stripeTokenHandler(result.token);
+          _this.service.chargeToken(result.token, _this.amount, _this.loginService.loggedInJwt()).subscribe(res => {
+            document.getElementById('overlay').style.display = 'none';
+          }, err => {
+            document.getElementById('overlay').style.display = 'none';
+          });
         }
       });
     });

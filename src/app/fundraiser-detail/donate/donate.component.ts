@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 
 
@@ -9,7 +9,8 @@ import {Location} from '@angular/common';
 })
 export class DonateComponent implements OnInit {
 
-  constructor(private _location: Location) { }
+  constructor(private _location: Location) {
+  }
 
   ngOnInit() {
   }

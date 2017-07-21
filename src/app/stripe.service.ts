@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import {JwtService} from "./jwt.service";
+import {Http} from '@angular/http';
+import {JwtService} from './jwt.service';
 
 @Injectable()
 export class StripeService extends JwtService {

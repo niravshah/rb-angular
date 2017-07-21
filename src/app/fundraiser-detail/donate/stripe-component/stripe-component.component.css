@@ -24,6 +24,10 @@
   background-color: #fefde5 !important;
 }
 
+#card-errors{
+  color: #fa755a;
+}
+
 .stripe-connect {
   display: inline-block;
   margin-bottom: 1px;
