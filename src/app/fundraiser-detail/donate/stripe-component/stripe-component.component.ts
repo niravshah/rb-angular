@@ -11,15 +11,14 @@ declare var Stripe, $: any;
 })
 export class StripeComponentComponent implements OnInit, AfterViewInit {
 
-  overlayForm;
+  paymentForm;
   stripe;
-  amount = 0;
 
   constructor(private service: StripeComponentService, private loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.overlayForm = {amount: '', name: ''};
+    this.paymentForm = {amount: '', name: ''};
 
     try {
       this.stripe = Stripe('pk_test_rsKIu2V1fmgDKrpy2yirvZxQ');
@@ -55,18 +54,21 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
         }
       };
 
+      const _this = this;
       const card = elements.create('card', {style: style});
       card.mount('#card-element');
 
+
+
       card.addEventListener('change', function (event) {
         if (event.error) {
-          this.addCardError(event.error.messages);
+          _this.addCardError(event.error.messages);
         } else {
-          this.addCardError('');
+          _this.addCardError('');
         }
       });
 
-      const _this = this;
+
 
       const form = document.getElementById('payment-form');
       form.addEventListener('submit', function (event) {
@@ -78,7 +80,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
             _this.toggleOverlay();
           } else {
             console.log('Success Token:', result.token);
-            _this.service.chargeToken(result.token, _this.amount, _this.loginService.loggedInJwt()).subscribe(res => {
+            _this.service.chargeToken(result.token, _this.paymentForm, _this.loginService.loggedInJwt()).subscribe(res => {
               console.log('Server Success:', res);
               _this.toggleOverlay();
             }, err => {

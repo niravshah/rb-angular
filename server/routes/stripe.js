@@ -53,5 +53,16 @@ module.exports = function (passport) {
     return res.status(500).json({message: error.message});
   });
 
+
+  router.post('/api/stripe/charge', passport.authenticate('jwt', {
+    failWithError: true
+  }), (req, res, next) => {
+    console.log('POST /api/stripe/charge', req.body);
+    res.json({message: 'Charge Successful'});
+  }, (error, req, res, next) => {
+    console.log('POST Error /api/stripe/charge', req.body, error);
+    return res.status(500).json({message: error.message});
+  });
+
   return router;
 };
