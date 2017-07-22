@@ -53,6 +53,7 @@ import {GoLiveService} from './fundraiser-detail/go-live/go-live.service';
 import {StripeComponentComponent} from './fundraiser-detail/donate/stripe-component/stripe-component.component';
 import {StripeComponentService} from './fundraiser-detail/donate/stripe-component/stripe-component.service';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
+import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activity-feed.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import {ShareComponent} from './fundraiser-detail/share/share.component';
     LogoutComponent,
     GoLiveComponent,
     StripeComponentComponent,
-    ShareComponent
+    ShareComponent,
+    ActivityFeedComponent
   ],
   imports: [
     BrowserModule,

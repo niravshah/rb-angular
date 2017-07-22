@@ -14,7 +14,7 @@
 <section id="property" class="pt20 pb20">
   <ng2-toasty [position]="'top-right'"></ng2-toasty>
   <div class="container property-details" *ngIf="post">
-    <div class="row bottom40">
+    <div class="row bottom30">
       <div class="col-md-8 listing1">
         <div class="row">
           <h2 class="text-uppercase">{{post.title}}</h2>
@@ -97,7 +97,8 @@
             </div>
           </div>
         </div>
-        <div class="row top30">
+
+        <div class="row top30 bb1p">
           <div class="col-sm-4 bottom40">
             <div class="agent_wrap">
               <div class="image">
@@ -111,6 +112,10 @@
               <p class="bottom30">{{post.author.bio}}</p>
             </div>
           </div>
+        </div>
+
+        <div class="row top30">
+          <app-activity-feed></app-activity-feed>
         </div>
       </aside>
     </div>

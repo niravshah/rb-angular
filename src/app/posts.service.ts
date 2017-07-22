@@ -72,4 +72,9 @@ export class PostsService {
   getCurrentPostId() {
     return this.currentPostId;
   }
+
+  getPostActivity(postId) {
+    return this.http.get('/api/posts/' + postId + '/activities')
+      .map(res => res.json());
+  }
 }

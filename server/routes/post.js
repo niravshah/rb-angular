@@ -9,6 +9,7 @@ const post2 = require('../data/post2');
 const Post = require('../models/post');
 const User = require('../models/user');
 const Account = require('../models/account');
+const Activities = require('../models/activity');
 
 const utils = require('./utils');
 const mailgun = require('./mailgun');
@@ -20,6 +21,23 @@ module.exports = function (passport) {
     res.json([post1, post2]);
   });
 
+  router.get('/api/posts/:id/activities', (req, res) => {
+
+    Post.findOne({sid: req.params.id}).exec(function (err, post) {
+      if (err) {
+        res.status(500).json({message: "Error retrieving Posts.", error: err})
+      } else {
+        Activities.find({post: post}).exec(function (err, activities) {
+          if (err) {
+            res.status(500).json({message: "Error retrieving Activities.", error: err})
+          } else {
+            res.json({activities: activities});
+          }
+        })
+      }
+    })
+
+  });
 
   router.get('/api/posts/:id', (req, res) => {
 
@@ -122,7 +140,6 @@ module.exports = function (passport) {
   }, (err, req, res, next) => {
     res.status(403).json({'message': err, 'status': err.status});
   });
-
 
 
   router.post('/api/posts', (req, res) => {

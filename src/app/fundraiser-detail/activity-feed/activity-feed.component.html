@@ -1,0 +1,8 @@
+<h3 class="text-center bottom30">Latest Donations</h3>
+<div class="activity-feed">
+  <div *ngFor="let m of messages" class="feed-item">
+    <div class="date">{{m.created | date:'medium'}}</div>
+    <div class="text">{{m.donor}} donated £{{m.amount}}</div>
+    <div class="text message">{{m.message}}</div>
+  </div>
+</div>
