@@ -25,7 +25,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.paymentForm = {amount: '50', name: 'Nirav Shah', email: 'nshah@email.com',message:'Good Luck!'};
+    this.paymentForm = {amount: '50', name: 'Nirav Shah', email: 'nshah@email.com', message: 'Good Luck!'};
 
     this.post = this.postService.getCurrentPost();
     if (isUndefined(this.post)) {
@@ -93,7 +93,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
             _this.service.chargeToken(result.token, _this.paymentForm, _this.post.sid, _this.loginService.loggedInJwt()).subscribe(res => {
               console.log('Server Success:', res);
               _this.toggleOverlay();
-              _this.router.navigate(['../share'], {relativeTo: _this.route});
+              _this.router.navigate(['../share'], {relativeTo: _this.route, queryParams: {mcode: 1}});
             }, err => {
               console.log('Error:', err);
               _this.toggleOverlay();

@@ -97,20 +97,17 @@ module.exports = function (passport) {
 
             if (charge.status == "succeeded") {
 
-              post1.collected = post1.collected + charge.amount / 100;
+              var charge_amount_pounds = charge.amount / 100;
+              post1.collected = post1.collected + charge_amount_pounds;
               post1.save(function (err, updatedPost) {
                 if (err) {
                   res.status(500).json({message: 'Charge Successful. Could not update Post.', error: err});
                 } else {
-                  utils.createCharge(rb_uid, updatedPost, charge.id, cust_name, cust_email, charge.amount, function (err, charge) {
+                  utils.createCharge(rb_uid, updatedPost, charge.id, cust_name, cust_email, charge_amount_pounds, function (err, charge) {
                     if (err) {
                       res.status(500).json({message: 'Charge Successful. Could not save Charge.', error: err});
                     } else {
-                      var activity = cust_name + ' donated ' + charge.amount / 100;
-                      if (cust_message) {
-                        activity = activity + ' with the message ' + cust_message;
-                      }
-                      utils.createActivity(updatedPost, activity, function (err, act) {
+                      utils.createActivity(updatedPost, cust_name, charge_amount_pounds, cust_message, function (err, act) {
                         if (err) {
                           res.status(500).json({message: 'Charge Successful. Could not save Activity.', error: err});
                         } else {

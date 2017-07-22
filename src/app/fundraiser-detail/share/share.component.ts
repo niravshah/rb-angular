@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook';
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {isUndefined} from "util";
+import {PostsService} from "../../posts.service";
 
 
 @Component({
@@ -9,11 +12,34 @@ import {FacebookService, LoginResponse, UIParams, UIResponse} from 'ngx-facebook
 })
 export class ShareComponent implements OnInit {
 
+  post;
+  thankYouMessage;
+  shareMessage = 'Every share counts';
+  messageMap = {
+    1: 'Your donation has been successful.'
+  };
 
-  constructor(private fb: FacebookService) {
+  constructor(private router: Router,
+              private fb: FacebookService,
+              private activatedRoute: ActivatedRoute,
+              private postService: PostsService) {
   }
 
   ngOnInit() {
+
+
+    this.post = this.postService.getCurrentPost();
+    if (!isUndefined(this.post)) {
+      this.shareMessage = 'Help ' + this.post.author.fname + ' Raise Better.';
+    }
+
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      const mcode = params['mcode'];
+      if (mcode) {
+        this.thankYouMessage = this.messageMap[mcode];
+      }
+    });
+
 
     this.fb.init({
       appId: '107000206632214',

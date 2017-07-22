@@ -1,8 +1,13 @@
 <section id="stripe_donate" class="bg_edit">
-  <div class="container bg_dblue padding">
-    <div class="row pb40">
+  <div class="container bg_dblue pt60 pb60">
+    <div class="row pb20">
+      <div *ngIf="thankYouMessage" class="col-xs-12 text-center">
+        <h2>Thank You.</h2>
+        <p class="heading_space">{{thankYouMessage}}</p>
+      </div>
       <div class="col-xs-12 text-center">
         <h2 class="uppercase">Spread the Message</h2>
+        <p>{{shareMessage}}</p>
       </div>
     </div>
     <div class="row">
@@ -12,6 +17,11 @@
           <i class="fa fa-facebook" aria-hidden="true"></i> Share Now
         </a>
       </div>
+    </div>
+    <div class="row text-center pt40">
+      <span><i class="icons-md fa fa-facebook-square"></i></span>
+      <p>Every single share on Facebook greatly boosts the chances
+        <br/>of this cause succeeding in reaching its target. Please Share.</p>
     </div>
   </div>
 </section>

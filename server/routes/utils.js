@@ -125,11 +125,13 @@ module.exports = {
       callback(err, charge);
     })
   },
-  createActivity: function(post,description,callback){
+  createActivity: function(post,donor, amount, message,callback){
     const newActivity = new Activity();
     newActivity.sid = shortid.generate();
     newActivity.post = post;
-    newActivity.description = description;
+    newActivity.donor = donor;
+    newActivity.amount = amount;
+    newActivity.message = message;
     newActivity.save(function(err,activity){
       callback(err,activity)
     })

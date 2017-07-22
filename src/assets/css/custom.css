@@ -15,9 +15,12 @@
 }
 
 .pt40 {
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
+.pt60 {
+  padding-top: 60px;
+}
 .pb10 {
   padding-bottom: 10px;
 }
@@ -28,6 +31,10 @@
 
 .pb40 {
   padding-bottom: 40px;
+}
+
+.pb60 {
+  padding-bottom: 60px;
 }
 
 .pr20 {
