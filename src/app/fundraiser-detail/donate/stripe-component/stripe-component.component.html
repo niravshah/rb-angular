@@ -83,10 +83,35 @@
           </div>
           <div class="pt10">
             <small class="error pt10" [hidden]="amount.valid || (amount.pristine && !f.submitted)">
-              Amount is required.
+              Email is required.
             </small>
           </div>
 
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="single-query bottom15">
+          <div class="input-group no-tt">
+            <span class="input-group-addon"
+                  style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                  border: 1px solid transparent;
+                  font-size: 16px;"><i
+              class="fa fa-thumbs-up"></i></span>
+            <input type="text" class="keyword-input t_yellow"
+                   placeholder="Your Message"
+                   style="color:black !important;
+                   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                   font-size: 16px;
+                   -webkit-font-smoothing: antialiased;
+	                 -moz-osx-font-smoothing: grayscale;
+                   border: 1px solid transparent;
+                   border-radius: 0px 4px 4px 0px;
+                   padding-left: 10px;
+                   line-height: 2em;"
+                   name="message" [(ngModel)]="paymentForm.message" #message="ngModel">
+          </div>
         </div>
       </div>
     </div>

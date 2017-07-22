@@ -25,7 +25,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.paymentForm = {amount: '50', name: 'Nirav Shah', email: 'nshah@email.com'};
+    this.paymentForm = {amount: '50', name: 'Nirav Shah', email: 'nshah@email.com',message:'Good Luck!'};
 
     this.post = this.postService.getCurrentPost();
     if (isUndefined(this.post)) {

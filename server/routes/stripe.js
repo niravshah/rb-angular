@@ -60,7 +60,7 @@ module.exports = function (passport) {
       failWithError: true
     }), (req, res, next) => {
 
-      console.log('POST /api/stripe/charge', req.body);
+      // console.log('POST /api/stripe/charge', req.body);
 
 
       var post = req.body.post;
@@ -75,14 +75,12 @@ module.exports = function (passport) {
           var token = req.body.token;
           var cust_email = req.body.attributes.email;
           var cust_name = req.body.attributes.name;
+          var cust_message = req.body.attributes.message;
           var destination_account = post1.account.stripe_account_id;
           var description = rb_uid + ' - Raise Better Donation for ' + post1.title;
-          var statement_descriptor = 'Raise Better Donation ' + rb_uid;
+          var statement_descriptor = 'RaiseBetter ' + rb_uid;
 
-          // 5000 pence, 500 pence
           var charge_amount = req.body.attributes.amount * 100;
-
-          // 60 pence
           var rb_fees = charge_amount * 0.015;
 
           stripe.charges.create({
@@ -98,20 +96,30 @@ module.exports = function (passport) {
           ).then(function (charge) {
 
             if (charge.status == "succeeded") {
-              utils.createCharge(rb_uid, post1, charge.id, cust_name, cust_email, charge.amount, function (err, charge) {
-                if (err) {
-                  res.status(500).json({message: 'Could not save charge'});
-                } else {
-                  var activity = cust_name + ' donated ' + charge.amount;
-                  utils.createActivity(post, activity, function (err, activity) {
-                    if (err) {
-                      res.status(500).json({message: 'Could not save activity'});
-                    } else {
-                      res.json({message: 'Charge Successful', charge: charge});
-                    }
-                  })
-                }
 
+              post1.collected = post1.collected + charge.amount / 100;
+              post1.save(function (err, updatedPost) {
+                if (err) {
+                  res.status(500).json({message: 'Charge Successful. Could not update Post.', error: err});
+                } else {
+                  utils.createCharge(rb_uid, updatedPost, charge.id, cust_name, cust_email, charge.amount, function (err, charge) {
+                    if (err) {
+                      res.status(500).json({message: 'Charge Successful. Could not save Charge.', error: err});
+                    } else {
+                      var activity = cust_name + ' donated ' + charge.amount / 100;
+                      if (cust_message) {
+                        activity = activity + ' with the message ' + cust_message;
+                      }
+                      utils.createActivity(updatedPost, activity, function (err, act) {
+                        if (err) {
+                          res.status(500).json({message: 'Charge Successful. Could not save Activity.', error: err});
+                        } else {
+                          res.json({message: 'Charge Successful', charge: charge});
+                        }
+                      })
+                    }
+                  });
+                }
               });
             } else {
               res.status(500).json({message: 'Charge Unsuccessful', charge: charge});
@@ -119,8 +127,6 @@ module.exports = function (passport) {
           }).catch(function (err) {
             res.status(500).json({message: err.message});
           });
-
-
         }
       });
 
