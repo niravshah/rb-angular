@@ -2,6 +2,8 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const Account = require('../models/account');
 const Customer = require('../models/customer');
+const Charge = require('../models/charge');
+const Activity = require('../models/activity');
 
 const PhoneVerification = require('../models/phone-verification');
 
@@ -106,8 +108,31 @@ module.exports = {
         }
       }
     );
-
-
+  },
+  shortid: function () {
+    return shortid.generate();
+  },
+  createCharge: function (rb_uid,post,stripe_charge_id,cust_name,cust_email,amount,callback) {
+    const newCharge = new Charge();
+    newCharge.sid = shortid.generate();
+    newCharge.rb_uid = rb_uid;
+    newCharge.post = post;
+    newCharge.stripe_charge_id = stripe_charge_id;
+    newCharge.cust_name = cust_name;
+    newCharge.cust_email = cust_email;
+    newCharge.amount = amount;
+    newCharge.save(function (err, charge) {
+      callback(err, charge);
+    })
+  },
+  createActivity: function(post,description,callback){
+    const newActivity = new Activity();
+    newActivity.sid = shortid.generate();
+    newActivity.post = post;
+    newActivity.description = description;
+    newActivity.save(function(err,activity){
+      callback(err,activity)
+    })
   }
 
 };

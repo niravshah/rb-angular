@@ -62,10 +62,8 @@ module.exports = function (passport) {
 
       console.log('POST /api/stripe/charge', req.body);
 
-      var token = req.body.token;
+
       var post = req.body.post;
-      var cust_email = req.body.attributes.email;
-      var charge_amount = req.body.attributes.amount * 100;
 
       Post.findOne({sid: post}).populate('account').exec(function (err, post1) {
 
@@ -73,38 +71,59 @@ module.exports = function (passport) {
           return res.status(500).json({message: err.message});
         } else {
 
+          var rb_uid = utils.shortid();
+          var token = req.body.token;
+          var cust_email = req.body.attributes.email;
+          var cust_name = req.body.attributes.name;
           var destination_account = post1.account.stripe_account_id;
-          var destination_amount = charge_amount - (charge_amount * 0.03);
+          var description = rb_uid + ' - Raise Better Donation for ' + post1.title;
+          var statement_descriptor = 'Raise Better Donation ' + rb_uid;
 
+          // 5000 pence, 500 pence
+          var charge_amount = req.body.attributes.amount * 100;
 
-          stripe.customers.create({
-            email: cust_email,
-            source: token.id,
-          }).then(function (customer) {
-            utils.createCustomer(cust_email, customer.id, function (err, cust) {
-              if (err) {
-                return res.status(500).json({message: err.message});
-              } else {
-                stripe.charges.create({
-                  amount: charge_amount,
-                  currency: "gbp",
-                  customer: cust.stripe_customer_id,
-                  destination: {
-                    amount: destination_amount,
-                    account: destination_account,
-                  },
-                }).then(function (charge) {
-                  res.json({message: 'Charge Successful', charge: charge});
-                }).catch(function (err) {
-                  res.status(500).json({message: err.message});
-                });
-              }
-            });
+          // 60 pence
+          var rb_fees = charge_amount * 0.015;
+
+          stripe.charges.create({
+              amount: charge_amount,
+              currency: "gbp",
+              source: token.id,
+              application_fee: rb_fees,
+              description: description,
+              receipt_email: cust_email,
+              statement_descriptor: statement_descriptor
+            },
+            {stripe_account: destination_account}
+          ).then(function (charge) {
+
+            if (charge.status == "succeeded") {
+              utils.createCharge(rb_uid, post1, charge.id, cust_name, cust_email, charge.amount, function (err, charge) {
+                if (err) {
+                  res.status(500).json({message: 'Could not save charge'});
+                } else {
+                  var activity = cust_name + ' donated ' + charge.amount;
+                  utils.createActivity(post, activity, function (err, activity) {
+                    if (err) {
+                      res.status(500).json({message: 'Could not save activity'});
+                    } else {
+                      res.json({message: 'Charge Successful', charge: charge});
+                    }
+                  })
+                }
+
+              });
+            } else {
+              res.status(500).json({message: 'Charge Unsuccessful', charge: charge});
+            }
           }).catch(function (err) {
             res.status(500).json({message: err.message});
           });
+
+
         }
       });
+
     }, (error, req, res, next) => {
       console.log('POST Error /api/stripe/charge', req.body, error);
       return res.status(500).json({message: error.message});
