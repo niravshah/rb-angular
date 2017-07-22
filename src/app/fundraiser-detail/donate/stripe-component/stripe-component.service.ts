@@ -9,8 +9,8 @@ export class StripeComponentService extends JwtService {
     super();
   }
 
-  chargeToken(token, amount, jwt) {
-    const message = {token: token, amount: amount};
+  chargeToken(token, amount, post, jwt) {
+    const message = {token: token, attributes: amount, post:post};
     const url = '/api/stripe/charge';
     return this.http.post(url, message, {headers: super.getJwtHeader(jwt)})
       .map(res => res.json());

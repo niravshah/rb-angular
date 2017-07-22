@@ -9,6 +9,8 @@ const stripe = require('stripe')(config.STRIPE_KEY);
 const unirest = require('unirest');
 const utils = require('./utils');
 
+const Post = require('../models/post');
+
 module.exports = function (passport) {
 
   router.post('/api/stripe/auth-code', passport.authenticate('jwt', {
@@ -55,14 +57,55 @@ module.exports = function (passport) {
 
 
   router.post('/api/stripe/charge', passport.authenticate('jwt', {
-    failWithError: true
-  }), (req, res, next) => {
-    console.log('POST /api/stripe/charge', req.body);
-    res.json({message: 'Charge Successful'});
-  }, (error, req, res, next) => {
-    console.log('POST Error /api/stripe/charge', req.body, error);
-    return res.status(500).json({message: error.message});
-  });
+      failWithError: true
+    }), (req, res, next) => {
+
+      console.log('POST /api/stripe/charge', req.body);
+
+      var token = req.body.token;
+      var post = req.body.post;
+      var cust_email = req.body.attributes.email;
+      var charge_amount = req.body.attributes.amount;
+
+      Post.findOne({sid: post}).populate('account').exec(function (err, post1) {
+
+        if (err) {
+          return res.status(500).json({message: err.message});
+        } else {
+
+          var destination_account = post1.account.stripe_account_id;
+          var destination_amount = charge_amount - (charge_amount * 0.03);
+
+          stripe.customers.create({
+            email: cust_email,
+            source: token,
+          }).then(function (customer) {
+            utils.createCustomer(cust_email, customer.id, function (err, cust) {
+              if (err) {
+                return res.status(500).json({message: err.message});
+              } else {
+                stripe.charges.create({
+                  amount: charge_amount,
+                  currency: "gbp",
+                  customer: customer.id,
+                  destination: {
+                    amount: destination_amount,
+                    account: destination_account,
+                  },
+                }).then(function (charge) {
+                  res.json({message: 'Charge Successful'});
+                });
+
+              }
+            });
+          });
+        }
+      });
+    }, (error, req, res, next) => {
+      console.log('POST Error /api/stripe/charge', req.body, error);
+      return res.status(500).json({message: error.message});
+    }
+  );
 
   return router;
 };

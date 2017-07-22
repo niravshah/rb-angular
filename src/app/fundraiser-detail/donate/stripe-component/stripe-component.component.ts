@@ -3,6 +3,7 @@ import {StripeComponentService} from './stripe-component.service';
 import {LoginService} from '../../../login/login.service';
 import {isUndefined} from 'util';
 import {ActivatedRoute, Router} from '@angular/router';
+import {PostsService} from "../../../posts.service";
 declare var Stripe, $: any;
 
 @Component({
@@ -14,15 +15,22 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
 
   paymentForm;
   stripe;
+  post;
 
   constructor(private service: StripeComponentService,
               private loginService: LoginService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private postService: PostsService) {
   }
 
   ngOnInit() {
     this.paymentForm = {amount: '50', name: 'Nirav Shah', email: 'nshah@email.com'};
+
+    this.post = this.postService.getCurrentPost();
+    if (isUndefined(this.post)) {
+      this.router.navigate(['home']);
+    }
 
     try {
       this.stripe = Stripe('pk_test_rsKIu2V1fmgDKrpy2yirvZxQ');
@@ -82,7 +90,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
             _this.toggleOverlay();
           } else {
             console.log('Success Token:', result.token);
-            _this.service.chargeToken(result.token, _this.paymentForm, _this.loginService.loggedInJwt()).subscribe(res => {
+            _this.service.chargeToken(result.token, _this.paymentForm, _this.post.sid, _this.loginService.loggedInJwt()).subscribe(res => {
               console.log('Server Success:', res);
               _this.toggleOverlay();
               _this.router.navigate(['../share'], {relativeTo: _this.route});

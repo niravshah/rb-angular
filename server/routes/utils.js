@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 const User = require('../models/user');
 const Account = require('../models/account');
+const Customer = require('../models/customer');
 
 const PhoneVerification = require('../models/phone-verification');
 
@@ -70,6 +71,19 @@ module.exports = {
       callback(err, account);
     })
   },
+
+  createCustomer: function (email, stripe_customer_id, callback) {
+
+    const newCustomer = new Customer();
+    newCustomer.sid = shortid.generate();
+    newCustomer.stripe_customer_id = stripe_customer_id;
+    newCustomer.email = email;
+    newCustomer.save(function (err, cust) {
+      callback(err, cust);
+    })
+
+  },
+
   updatePostWithAccount: function (sid, account, callback) {
 
     Post.findOneAndUpdate({sid: sid}, {account: account}, {new: true}, function (err, post) {
