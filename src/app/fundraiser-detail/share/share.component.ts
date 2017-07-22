@@ -30,7 +30,7 @@ export class ShareComponent implements OnInit {
 
     const options: UIParams = {
       method: 'share',
-      href: 'https://www.raisebetter.uk/fundraisers/undefined'
+      href: 'https://www.raisebetter.uk',
     };
 
     this.fb.ui(options)
