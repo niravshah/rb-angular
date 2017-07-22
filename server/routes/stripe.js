@@ -19,12 +19,12 @@ module.exports = function (passport) {
     // console.log('Request Body: ', req.body);
     unirest.post('https://connect.stripe.com/oauth/token')
       .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
-      .send({client_secret: 'sk_test_aTh0omXn80N08tMdm2UKpyrC', grant_type: 'authorization_code', code: req.body.code})
+      .send({client_secret: config.STRIPE_KEY, grant_type: 'authorization_code', code: req.body.code})
       .end(function (response) {
         if (response.ok) {
           // console.log(response.body);
 
-          var body = JSON.parse(response.body);
+          var body = response.body;
           var access_token = body.access_token;
           var refresh_token = body.refresh_token;
           var stripe_user_id = body.stripe_user_id;
@@ -65,7 +65,7 @@ module.exports = function (passport) {
       var token = req.body.token;
       var post = req.body.post;
       var cust_email = req.body.attributes.email;
-      var charge_amount = req.body.attributes.amount;
+      var charge_amount = req.body.attributes.amount * 100;
 
       Post.findOne({sid: post}).populate('account').exec(function (err, post1) {
 
@@ -76,9 +76,10 @@ module.exports = function (passport) {
           var destination_account = post1.account.stripe_account_id;
           var destination_amount = charge_amount - (charge_amount * 0.03);
 
+
           stripe.customers.create({
             email: cust_email,
-            source: token,
+            source: token.id,
           }).then(function (customer) {
             utils.createCustomer(cust_email, customer.id, function (err, cust) {
               if (err) {
@@ -87,17 +88,20 @@ module.exports = function (passport) {
                 stripe.charges.create({
                   amount: charge_amount,
                   currency: "gbp",
-                  customer: customer.id,
+                  customer: cust.stripe_customer_id,
                   destination: {
                     amount: destination_amount,
                     account: destination_account,
                   },
                 }).then(function (charge) {
-                  res.json({message: 'Charge Successful'});
+                  res.json({message: 'Charge Successful', charge: charge});
+                }).catch(function (err) {
+                  res.status(500).json({message: err.message});
                 });
-
               }
             });
+          }).catch(function (err) {
+            res.status(500).json({message: err.message});
           });
         }
       });

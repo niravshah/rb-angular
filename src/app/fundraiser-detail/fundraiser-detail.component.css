@@ -78,3 +78,9 @@
   margin-top: 0px;
 }
 
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  background-color: rgba(0,0,0,0.3);
+  color:grey;
+}
