@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PostsService} from '../posts.service';
 import {LoginService} from '../login/login.service';
+import {Meta} from "@angular/platform-browser";
 
 declare var $: any;
 
@@ -20,7 +21,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
 
   constructor(private service: PostsService,
               private route: ActivatedRoute,
-              private authService: LoginService) {
+              private authService: LoginService,
+              private meta: Meta) {
 
   }
 
@@ -33,6 +35,15 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
         this.post = post;
         this.service.setCurrentPost(post);
         this.postStatus = this.post.status;
+
+        this.meta.addTags([
+          {property: 'og:url', content: 'https://www.raisebetter.uk/fundraisers/' + this.post.sid},
+          {property: 'og:title', content: this.post.title},
+          {property: 'og:description', content: this.post.subTitle},
+          {property: 'og:image', content: this.post.image},
+          {property: 'fb:app_id', content: '107000206632214'}
+        ]);
+
       });
     });
 
