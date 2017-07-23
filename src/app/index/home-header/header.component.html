@@ -16,7 +16,7 @@
           </div>
           <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right" data-in="fadeIn" data-out="fadeOut">
-              <li><a [routerLink]="['home']">Home</a></li>
+              <li *ngIf="isLogin()"><a [routerLink]="['home']">Home</a></li>
               <li><a [routerLink]="['login']">Login</a></li>
               <li><a [routerLink]="['login']">Sign Up</a></li>
               <li><a href="#">Contact Us</a></li>
