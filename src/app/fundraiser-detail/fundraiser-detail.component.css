@@ -40,19 +40,24 @@
   text-transform: uppercase;
 }
 
-#loggedInMenu .btn-group {
-  width: 100%;
+#loggedInMenu .btn:first-child {
+  width:180px;
 }
 
-#loggedInMenu .btn:first-child {
-  width: 70%;
-}
+/*#loggedInMenu .btn-group {*/
+  /*width: 100%;*/
+/*}*/
+
+/*#loggedInMenu .btn:first-child {*/
+  /*width: 70%;*/
+/*}*/
 
 #loggedInMenu .btn-live {
   background-color: #ffd119;
   color: black;
   text-transform: uppercase;
-  width:80% !important;
+  width: 220px;
+  /*width:80% !important;*/
 }
 
 #editBtn .dropdown-menu a {

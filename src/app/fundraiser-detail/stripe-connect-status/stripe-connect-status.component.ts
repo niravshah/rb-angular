@@ -11,6 +11,7 @@ import {LoginService} from '../../login/login.service';
 export class StripeConnectStatusComponent implements OnInit {
 
   post;
+  connected;
   chargesEnabled;
   detailsSubmitted;
 
@@ -19,11 +20,16 @@ export class StripeConnectStatusComponent implements OnInit {
 
   ngOnInit() {
     this.post = this.postService.getCurrentPost();
-    this.stripeService.getConnectAccountStatus(this.post.account, this.authService.loggedInJwt()).subscribe(resp => {
-      this.chargesEnabled = resp.charges_enabled;
-      this.detailsSubmitted = resp.details_submitted;
-    }, err => {
-    });
+    if (this.post.account) {
+      this.connected = true;
+      this.stripeService.getConnectAccountStatus(this.post.account, this.authService.loggedInJwt()).subscribe(resp => {
+        this.chargesEnabled = resp.charges_enabled;
+        this.detailsSubmitted = resp.details_submitted;
+      }, err => {
+      });
+    } else {
+      this.connected = false;
+    }
   }
 
 }

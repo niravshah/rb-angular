@@ -1,17 +1,31 @@
-<div class="row pb10">
-  <div class="col-md-12">
-    <h5>Stripe Integration Status</h5>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6 col-sm-12" *ngIf="chargesEnabled != 'undefined'">
-    <p>Enabled: <span class="green" *ngIf="chargesEnabled == true"><i class="fa fa-check-circle"></i></span>
-      <span class="red" *ngIf="chargesEnabled == false"><i class="fa fa-times-circle"></i></span>
-    </p>
-  </div>
-  <div class="col-md-6 col-sm-12" *ngIf="detailsSubmitted != 'undefined'">
-    <p>Verified: <span class="green" *ngIf="detailsSubmitted == true"><i class="fa fa-check-circle"></i></span>
-      <span class="red" *ngIf="detailsSubmitted == false"><i class="fa fa-times-circle"></i></span>
-    </p>
-  </div>
-</div>
+<table class="table table-striped table-responsive">
+  <thead>
+  <tr>
+    <th colspan="2">Stripe Integration Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><b>Connected</b></td>
+    <td class="text-right">
+      <span *ngIf="!connected" class="red"><i class="fa fa-times-circle"></i></span>
+      <span *ngIf="connected" class="green"><i class="fa fa-check-circle"></i></span>
+    </td>
+  </tr>
+
+  <tr *ngIf="connected">
+    <td><b>Enabled</b></td>
+    <td class="text-right">
+      <span class="green" *ngIf="chargesEnabled"><i class="fa fa-check-circle"></i></span>
+      <span class="red" *ngIf="!chargesEnabled"><i class="fa fa-times-circle"></i></span>
+    </td>
+  </tr>
+  <tr *ngIf="connected">
+    <td><b>Verified</b></td>
+    <td class="text-right">
+      <span class="green" *ngIf="detailsSubmitted"><i class="fa fa-check-circle"></i></span>
+      <span class="red" *ngIf="!detailsSubmitted"><i class="fa fa-times-circle"></i></span>
+    </td>
+  </tr>
+  </tbody>
+</table>

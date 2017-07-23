@@ -21,7 +21,7 @@
           <p>{{post.subTitle}}</p>
         </div>
         <div class="row top15 post_meta">
-          <span><i class="icon-user"></i> {{post.author.name| titlecase}}</span>
+          <span><i class="icon-user"></i> {{post.author.fname| titlecase}} {{post.author.lname| titlecase}}</span>
           <span><i class=" icon-calendar"></i> {{post.created | date: 'dd/MM/yyyy'}}</span>
         </div>
       </div>
@@ -49,37 +49,58 @@
         <div class="row top30" [innerHtml]="post.story"></div>
       </div>
       <aside class="col-md-4 col-xs-12 ">
-        <div *ngIf="isAuthorLogin()" id="loggedInMenu" class="bt1p bb1p pl20">
-          <div id="editBtn" class="row">
-            <div class="col-md-12 col-sm-12 pt10 pb10 text-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary">
-                  <span class="fa fa-edit"></span>
-                  Edit Details
-                </button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                  <span class="fa fa-chevron-down"></span>
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <div class="dropdown-menu p10">
-                  <a class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit'">Edit Fundraiser</a>
-                  <a class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit-author'">Edit Author</a>
-                </div>
+
+        <div class="row pb20 bb1p">
+          <div class="col-sm-4">
+            <div class="agent_wrap">
+              <div class="image">
+                <img [src]="post.author.avatar" alt="image"/>
               </div>
             </div>
           </div>
-          <div *ngIf="!isPostLive()" id="goLiveBtn" class="row">
-            <div class="col-md-12 col-sm-12 pt10 pb10">
-              <a (click)="scrollTop()" type="button" class="btn btn-live" [routerLink]="'setup-payments'">
-                <span class="fa fa-bolt"></span>
-                Go Live!
-              </a>
+          <div class="col-sm-8">
+            <div class="agent_wrap">
+              <h3>{{post.author.fname | titlecase}} {{post.author.lname | titlecase}}</h3>
+              <p class="bottom30">{{post.author.bio}}</p>
             </div>
           </div>
-          <div>
-            <app-stripe-connect-status></app-stripe-connect-status>
+        </div>
+
+        <div *ngIf="isAuthorLogin()" id="loggedInMenu" class="bb1p row pb20">
+          <div class="col-md-12">
+            <div id="editBtn" class="row">
+              <div class="col-md-12 col-sm-12 pt10 pb10 text-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary">
+                    <span class="fa fa-edit"></span>
+                    Edit Details
+                  </button>
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                          data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                    <span class="fa fa-chevron-down"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu p10">
+                    <a class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit'">Edit Fundraiser</a>
+                    <a class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit-author'">Edit Author</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!isPostLive()" id="goLiveBtn" class="row">
+              <div class="col-md-12 col-sm-12 pt10 pb10 text-center">
+                <a (click)="scrollTop()" type="button" class="btn btn-live" [routerLink]="'setup-payments'">
+                  <span class="fa fa-bolt"></span>
+                  Go Live!
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <app-stripe-connect-status></app-stripe-connect-status>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -101,21 +122,6 @@
           </div>
         </div>
 
-        <div class="row top30 bb1p">
-          <div class="col-sm-4 bottom40">
-            <div class="agent_wrap">
-              <div class="image">
-                <img [src]="post.author.avatar" alt="image"/>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-8 bottom40">
-            <div class="agent_wrap">
-              <h3>{{post.author.fname | titlecase}} {{post.author.lname | titlecase}}</h3>
-              <p class="bottom30">{{post.author.bio}}</p>
-            </div>
-          </div>
-        </div>
 
         <div class="row top30">
           <app-activity-feed></app-activity-feed>
