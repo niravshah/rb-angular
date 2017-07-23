@@ -57,4 +57,10 @@ export class StripeService extends JwtService {
   addStripeUserQueryParam(param, value) {
     return '&stripe_user[' + param + ']=' + value;
   }
+
+  getConnectAccountStatus(stripe_account_id, jwt) {
+    const url = '/api/stripe/account/' + stripe_account_id + '/status';
+    return this.http.get(url, {headers: super.getJwtHeader(jwt)})
+      .map(res => res.json());
+  }
 }

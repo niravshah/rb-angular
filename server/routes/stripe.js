@@ -10,6 +10,7 @@ const unirest = require('unirest');
 const utils = require('./utils');
 
 const Post = require('../models/post');
+const Account = require('../models/account');
 
 module.exports = function (passport) {
 
@@ -132,6 +133,29 @@ module.exports = function (passport) {
       return res.status(500).json({message: error.message});
     }
   );
+
+  router.get('/api/stripe/account/:id/status', passport.authenticate('jwt', {
+    failWithError: true
+  }), (req, res, next) => {
+    Account.findOne({_id: req.params.id}).exec(function (err, account) {
+      if (err) {
+        res.status(500).json({message: err.message});
+      } else {
+        stripe.accounts.retrieve(
+          account.stripe_account_id,
+          function (err, account) {
+            if (err) {
+              res.status(500).json({message: err.message});
+            } else {
+              res.json({charges_enabled: account.charges_enabled, details_submitted: account.details_submitted})
+            }
+          }
+        );
+      }
+    })
+  }, (err, req, res, next) => {
+    res.status(500).json({message: err.message});
+  });
 
   return router;
 };

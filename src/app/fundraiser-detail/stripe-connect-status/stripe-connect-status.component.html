@@ -1,0 +1,17 @@
+<div class="row pb10">
+  <div class="col-md-12">
+    <h5>Stripe Integration Status</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-12" *ngIf="chargesEnabled != 'undefined'">
+    <p>Enabled: <span class="green" *ngIf="chargesEnabled == true"><i class="fa fa-check-circle"></i></span>
+      <span class="red" *ngIf="chargesEnabled == false"><i class="fa fa-times-circle"></i></span>
+    </p>
+  </div>
+  <div class="col-md-6 col-sm-12" *ngIf="detailsSubmitted != 'undefined'">
+    <p>Verified: <span class="green" *ngIf="detailsSubmitted == true"><i class="fa fa-check-circle"></i></span>
+      <span class="red" *ngIf="detailsSubmitted == false"><i class="fa fa-times-circle"></i></span>
+    </p>
+  </div>
+</div>

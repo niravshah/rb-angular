@@ -54,6 +54,7 @@ import {StripeComponentComponent} from './fundraiser-detail/donate/stripe-compon
 import {StripeComponentService} from './fundraiser-detail/donate/stripe-component/stripe-component.service';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
 import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activity-feed.component';
+import { StripeConnectStatusComponent } from './fundraiser-detail/stripe-connect-status/stripe-connect-status.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activit
     GoLiveComponent,
     StripeComponentComponent,
     ShareComponent,
-    ActivityFeedComponent
+    ActivityFeedComponent,
+    StripeConnectStatusComponent
   ],
   imports: [
     BrowserModule,

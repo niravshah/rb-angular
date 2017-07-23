@@ -39,6 +39,7 @@ module.exports = function (passport) {
 
   });
 
+
   router.get('/api/posts/:id', (req, res) => {
 
     if (req.params.id === 'undefined') {
