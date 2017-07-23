@@ -40,12 +40,11 @@ export class ShareComponent implements OnInit {
       }
     });
 
-
     this.fb.init({
       appId: '107000206632214',
       version: 'v2.10'
     }).then(resp => {
-      console.log('FB Loaded!', resp);
+      // console.log('FB Loaded!', resp);
     }).catch(e => {
       console.log('Error loading FB !!', e);
     });
