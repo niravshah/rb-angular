@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../login/login.service';
 
 
 @Component({
@@ -17,5 +17,10 @@ export class HeaderTopComponent implements OnInit {
   isLogin() {
     return this.authService.loggedIn();
   }
+    
+   logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }  
 
 }

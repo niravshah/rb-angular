@@ -34,6 +34,7 @@
               <li><a href="/">Home</a></li>
               <li *ngIf="!isLogin()"><a href="/login">Login</a></li>
               <li *ngIf="!isLogin()"><a href="#">Contact Us</a></li>
+              <li><a *ngIf="isLogin()" href="#" (click)="logout()">Logout</a></li>
             </ul>
           </div>
         </div>
