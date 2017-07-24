@@ -63,4 +63,8 @@ export class StripeService extends JwtService {
     return this.http.get(url, {headers: super.getJwtHeader(jwt)})
       .map(res => res.json());
   }
+
+  getStripeCardElement(eventCallback,submitCallback){
+      
+  }
 }
