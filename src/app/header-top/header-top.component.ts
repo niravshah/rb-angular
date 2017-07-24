@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../login/login.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import {LoginService} from '../login/login.service';
 })
 export class HeaderTopComponent implements OnInit {
 
-  constructor(private authService: LoginService) { }
+  constructor(private router: Router, private authService: LoginService) { }
 
   ngOnInit() {
   }
