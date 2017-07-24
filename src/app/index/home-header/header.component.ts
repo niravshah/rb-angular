@@ -17,9 +17,4 @@ export class HomeHeaderComponent implements OnInit {
     return this.authService.loggedIn();
   }
     
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/']);
-  }
-
 }
