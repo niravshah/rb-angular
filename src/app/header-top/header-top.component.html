@@ -33,6 +33,7 @@
             <ul class="nav navbar-nav" data-in="fadeIn" data-out="fadeOut">
               <li><a href="/">Home</a></li>
               <li *ngIf="!isLogin()"><a href="/login">Login</a></li>
+              <li><a *ngIf="!isLogin()" href="#.">Sign Up</a></li>
               <li *ngIf="!isLogin()"><a href="#">Contact Us</a></li>
               <li><a *ngIf="isLogin()" href="#" (click)="logout()">Logout</a></li>
             </ul>
