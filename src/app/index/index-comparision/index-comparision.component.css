@@ -1,7 +1,10 @@
 .img-info{
-  top:250px;
+  top:240px;
 }
 
+.img-info span{
+  display: block;
+}
 .agent_wrap{
   background-color: #ffffff;
   border-radius: 5px;

@@ -39,7 +39,6 @@ import {ToastyModule} from 'ng2-toasty';
 import {S3UploadService} from './s3-upload.service';
 import {StripeRedirectComponent} from './stripe-redirect/stripe-redirect.component';
 import {StripeService} from './stripe.service';
-import {StripeCreateAccountComponent} from './fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component';
 import {PhonePipe} from './phone.filter';
 import {PhoneVerifyService} from './phone-verify.service';
 import {FirstLoginComponent} from './first-login/first-login.component';
@@ -56,6 +55,7 @@ import {ShareComponent} from './fundraiser-detail/share/share.component';
 import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activity-feed.component';
 import { StripeConnectStatusComponent } from './fundraiser-detail/stripe-connect-status/stripe-connect-status.component';
 import { IndexComparisionComponent } from './index/index-comparision/index-comparision.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +84,6 @@ import { IndexComparisionComponent } from './index/index-comparision/index-compa
     EditAuthorComponent,
     SetupPaymentsComponent,
     StripeRedirectComponent,
-    StripeCreateAccountComponent,
     FirstLoginComponent,
     ResetPasswordComponent,
     MessageDisplayComponent,
@@ -94,7 +93,8 @@ import { IndexComparisionComponent } from './index/index-comparision/index-compa
     ShareComponent,
     ActivityFeedComponent,
     StripeConnectStatusComponent,
-    IndexComparisionComponent
+    IndexComparisionComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -10,18 +10,19 @@ import {HomeComponent} from './home/home.component';
 import {EditAuthorComponent} from './fundraiser-detail/edit-author/edit-author.component';
 import {SetupPaymentsComponent} from './fundraiser-detail/setup-payments/setup-payments.component';
 import {StripeRedirectComponent} from './stripe-redirect/stripe-redirect.component';
-import {StripeCreateAccountComponent} from './fundraiser-detail/setup-payments/stripe-create-account/stripe-create-account.component';
 import {FirstLoginComponent} from './first-login/first-login.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {LogoutComponent} from 'app/logout/logout.component';
 import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
+import {SignupComponent} from './signup/signup.component';
 
 
 export const routes: Routes = [
     {path: '', component: IndexComponent},
     {path: 'login', component: LoginComponent},
     {path: 'logout', component: LogoutComponent},
+    {path: 'signup', component: SignupComponent},
     {path: 'first-login', component: FirstLoginComponent},
     {path: 'reset-password', component: ResetPasswordComponent},
     {path: 'home', component: HomeComponent},
@@ -32,8 +33,7 @@ export const routes: Routes = [
       {path: 'edit-author', component: EditAuthorComponent},
       {
         path: 'setup-payments', children: [
-        {path: '', component: SetupPaymentsComponent},
-        {path: 'create-stripe-account', component: StripeCreateAccountComponent}
+        {path: '', component: SetupPaymentsComponent}
       ]
       },
       {path: 'go-live', component: GoLiveComponent},

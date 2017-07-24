@@ -1,18 +1,34 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {JwtService} from './jwt.service';
+import {isUndefined} from "util";
+
+declare var Stripe, $: any;
+
 
 @Injectable()
 export class StripeService extends JwtService {
 
   oauthLink = 'https://connect.stripe.com/oauth/authorize';
   client_id = 'ca_AzHNx40aNPMx3bGQVksrT2nkLCxNeIyc';
+  stripe_pk = 'pk_test_rsKIu2V1fmgDKrpy2yirvZxQ';
   scope = 'read_write';
   response_type = 'code';
+  stripe;
 
 
   constructor(private http: Http) {
     super();
+  }
+
+  stripeInit() {
+    try {
+      this.stripe = Stripe(this.stripe_pk);
+    } catch (ex) {
+      if (ex instanceof ReferenceError) {
+        console.log('Stripe is not loaded!!');
+      }
+    }
   }
 
   getAccountId(code: string, state: string, scope: string, jwt: string) {
@@ -21,13 +37,6 @@ export class StripeService extends JwtService {
     return this.http.post(url, message, {headers: super.getJwtHeader(jwt)})
       .map(res => res.json());
   }
-
-  createNewAccount(model: any, jwt: string) {
-    const url = '/api/stripe/account/new';
-    return this.http.post(url, model, {headers: super.getJwtHeader(jwt)})
-      .map(res => res.json());
-  }
-
 
   getOAuthUrl(post) {
     return encodeURI(this.oauthLink
@@ -64,7 +73,35 @@ export class StripeService extends JwtService {
       .map(res => res.json());
   }
 
-  getStripeCardElement(eventCallback,submitCallback){
-      
+  getStripeCardElement() {
+    if (isUndefined(this.stripe)) {
+      this.stripeInit();
+    }
+
+    const elements = this.stripe.elements();
+
+    const style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    return elements.create('card', {style: style});
+
+  }
+
+  createToken(card, callback) {
+    this.stripe.createToken(card).then(callback);
   }
 }

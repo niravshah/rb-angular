@@ -1,0 +1,117 @@
+<app-header-top></app-header-top>
+
+<!-- Login -->
+<section id="login" class="padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h2 class="uppercase heading_space">Signup</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="profile-login" style="padding:20px;width:500px;">
+          <form action="#" class="callus clearfix" #f="ngForm" (ngSubmit)="signup(f.value, f.valid)" novalidate>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12 t_white bottom15">
+                <h4>I want to raise:</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="single-query">
+                  <div class="input-group">
+                    <input type="text" class="keyword-input t_yellow"
+                           style="color:black !important; font-size: 24px; border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;"
+                           value="5000" name="amount" [(ngModel)]="signupForm.amount" #amount="ngModel" required>
+                    <span class="input-group-addon"
+                          style="font-family: 'roboto_condensedbold';font-size: 20px;">GBP</span>
+                  </div>
+                  <small class="error" [hidden]="amount.valid || (amount.pristine && !f.submitted)">
+                    Amount is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="t_white col-md-12 bottom15">
+                <h4>to help with:</h4>
+              </div>
+
+              <div class="col-md-12">
+                <div class="single-query bottom15">
+                  <input type="text" class="keyword-input lowercase" placeholder="Title of your Fundraiser"
+                         name="title"
+                         [(ngModel)]="signupForm.title" #title="ngModel" required>
+                  <small class="error" [hidden]="title.valid || (title.pristine && !f.submitted)">
+                    Title is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="t_white col-md-12 bottom15">
+                <h4>your full name:</h4>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="bottom15" style="width: 100%">
+                  <input type="text" class="keyword-input" placeholder="First Name" style="width: 100%" name="fname"
+                         [(ngModel)]="signupForm.fname" #fname="ngModel" required>
+                  <small class="error" [hidden]="fname.valid || (fname.pristine && !f.submitted)">
+                    Name is required.
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="bottom15" style="width: 100%">
+                  <input type="text" class="keyword-input" placeholder="Last Name" style="width: 100%" name="lname"
+                         [(ngModel)]="signupForm.lname" #lname="ngModel" required>
+                  <small class="error" [hidden]="lname.valid || (lname.pristine && !f.submitted)">
+                    Last Name is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="t_white col-md-12 bottom15">
+                <h4>your email address:</h4>
+              </div>
+              <div class="col-md-12">
+                <div class="bottom15" style="width: 100%">
+                  <input type="email" class="keyword-input" placeholder="Email" style="width: 100%" name="email"
+                         [(ngModel)]="signupForm.email" #email="ngModel" required
+                         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                  <small class="error" [hidden]="email.valid || (email.pristine && !f.submitted)">
+                    Email is not valid.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="t_white col-md-12 bottom15">
+                <h4>your mobile phone number:</h4>
+              </div>
+
+              <div class="col-md-12">
+                <div class="bottom15" style="width: 100%">
+                  <input type="text" class="keyword-input"
+                         style="width: 100%" name="mobile"
+                         [(ngModel)]="signupForm.mobile" #mobile="ngModel" placeholder="07222 555555" required
+                         pattern="^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$">
+                  <small class="error" [hidden]="mobile.valid || (mobile.pristine && !f.submitted)">
+                    Phone number is not valid (Ex. 07222 555555, 07222555555)
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class=" col-sm-12">
+              <input type="submit" value="signup now" class="btn-slide border_radius">
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Login end -->
+
+<app-footer></app-footer>

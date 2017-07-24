@@ -22,7 +22,7 @@ export class IndexComparisionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.rb_pf = this.amountRaised * 0.015;
+    this.rb_pf = this.amountRaised * 0.02;
     this.rb_cpf = this.amountRaised * 0.014 + 0.20;
     this.rb_total = this.amountRaised - (this.rb_pf + this.rb_cpf);
 
