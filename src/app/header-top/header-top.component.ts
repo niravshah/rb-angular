@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../../login/login.service';
+
 
 @Component({
   selector: 'app-header-top',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderTopComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: LoginService) { }
 
   ngOnInit() {
+  }
+    
+  isLogin() {
+    return this.authService.loggedIn();
   }
 
 }
