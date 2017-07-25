@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {JwtService} from './jwt.service';
-import {isUndefined} from "util";
+import {isUndefined} from 'util';
+import {environment} from '../environments/environment';
 
 declare var Stripe, $: any;
 
@@ -10,8 +11,10 @@ declare var Stripe, $: any;
 export class StripeService extends JwtService {
 
   oauthLink = 'https://connect.stripe.com/oauth/authorize';
-  client_id = 'ca_AzHNx40aNPMx3bGQVksrT2nkLCxNeIyc';
-  stripe_pk = 'pk_test_rsKIu2V1fmgDKrpy2yirvZxQ';
+  // client_id = 'ca_AzHNx40aNPMx3bGQVksrT2nkLCxNeIyc';
+  // stripe_pk = 'pk_test_rsKIu2V1fmgDKrpy2yirvZxQ';
+  client_id = environment.stripe_ca;
+  stripe_pk = environment.stripe_pk;
   scope = 'read_write';
   response_type = 'code';
   stripe;
