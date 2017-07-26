@@ -6,10 +6,8 @@ const bodyParser = require('body-parser');
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./server.config')[env];
 
-var Rollbar = require("rollbar");
-var rollbar = new Rollbar(config.rollbar_key);
+var rollbar = require("rollbar");
 
-app.use(rollbar.errorHandler());
 
 
 const app = express();
@@ -30,10 +28,8 @@ app.use(passport.initialize());
 var initPassport = require('./server/passport/init');
 initPassport(passport);
 
-
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
-
 
 app.use(function(req, res, next) {
     var start = Date.now();
@@ -60,6 +56,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
+app.use(rollbar.errorHandler(config.rollbar_key,{environment:env}));
 
 /**
  * Get port from environment and store in Express.
