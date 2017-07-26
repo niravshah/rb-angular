@@ -137,6 +137,7 @@ module.exports = function (passport) {
   router.get('/api/stripe/account/:id/status', passport.authenticate('jwt', {
     failWithError: true
   }), (req, res, next) => {
+      throw new Error('Error');
     Account.findOne({_id: req.params.id}).exec(function (err, account) {
       if (err) {
         res.status(500).json({message: err.message});
