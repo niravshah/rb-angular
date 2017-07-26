@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./server.config')[env];
 
+var Rollbar = require("rollbar");
+var rollbar = new Rollbar(config.rollbar_key);
+
+app.use(rollbar.errorHandler());
+
+
 const app = express();
 
 // Parsers for POST data
