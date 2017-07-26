@@ -13,7 +13,7 @@ var rollbar = new Rollbar({
   handleUnhandledRejections: true
 });
 
-
+rollbar.log("Hello world!");
 
 const app = express();
 
