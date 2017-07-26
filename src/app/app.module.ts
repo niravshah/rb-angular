@@ -56,6 +56,7 @@ import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activit
 import { StripeConnectStatusComponent } from './fundraiser-detail/stripe-connect-status/stripe-connect-status.component';
 import { IndexComparisionComponent } from './index/index-comparision/index-comparision.component';
 import { SignupComponent } from './signup/signup.component';
+import {AnalyticsService} from "./ga.service";
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { SignupComponent } from './signup/signup.component';
     FirstLoginService,
     ResetPasswordService,
     GoLiveService,
-    StripeComponentService
+    StripeComponentService,
+    AnalyticsService
   ],
   bootstrap: [AppComponent]
 })

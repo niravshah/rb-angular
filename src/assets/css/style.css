@@ -2778,7 +2778,6 @@ i.icon-safety-shower{font-size:16px !important;}
 	transition: 0.4s;
 	background: rgba(31, 63, 129, 0.9);
 }
-
 #agent-2 .explore {
 	padding-top: 30px;
 	margin-bottom: 45px;
@@ -2789,7 +2788,7 @@ i.icon-safety-shower{font-size:16px !important;}
 }
 .agent_wrap:hover .img-info {
   background: rgba(31, 63, 129, 0.9);
-  top: 0 !important;
+  /*top: 0 !important;*/
 }
 .agent_media{ overflow:hidden;}
 .agent_media .agents, .agent_media .agents_white{

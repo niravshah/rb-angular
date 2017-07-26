@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {PostsService} from '../posts.service';
 import {LoginService} from '../login/login.service';
 import {Meta} from "@angular/platform-browser";
