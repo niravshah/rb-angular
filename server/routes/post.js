@@ -123,8 +123,6 @@ module.exports = function (passport) {
     failWithError: true
   }), (req, res, next) => {
       
-      throw new Error('my error');
-
     Post.find({
       author: req.user
     }).populate('author', 'sid fname lname email').exec(function (err, posts) {
@@ -141,7 +139,6 @@ module.exports = function (passport) {
 
     });
   }, (err, req, res, next) => {
-      console.log('Niravs Error came here',err);
     res.status(403).json({'message': err, 'status': err.status});
   });
 
