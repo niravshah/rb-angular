@@ -122,6 +122,8 @@ module.exports = function (passport) {
   router.get('/api/user/:id/posts', passport.authenticate('jwt', {
     failWithError: true
   }), (req, res, next) => {
+      
+      throw new Error('my error');
 
     Post.find({
       author: req.user
