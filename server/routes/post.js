@@ -141,6 +141,7 @@ module.exports = function (passport) {
 
     });
   }, (err, req, res, next) => {
+      console.log('Niravs Error came here',err);
     res.status(403).json({'message': err, 'status': err.status});
   });
 
