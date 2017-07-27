@@ -128,7 +128,7 @@
       </div>
     </div>
     <div class="row pt20 pb20">
-      <button [attr.ga-on]="click" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="stripe-donate-btn"
+      <button [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="'stripe-donate-btn'"
         id="donateWithStripeBtn" type="submit" class="stripe-connect"><span>Donate with Stripe</span></button>
     </div>
   </form>
