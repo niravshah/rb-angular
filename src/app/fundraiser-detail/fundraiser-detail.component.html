@@ -35,7 +35,7 @@
             </a>
             <a [ngClass]="{'disabled':!isPostLive()}" id="donateBtn2" (click)="scrollTop()" [routerLink]="'share'"
                class="border_radius btn-yellow btn-fb-blue text-uppercase"
-               [attr.ga-on]="click" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="post-share-btn">
+               [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="'post-share-btn'">
               <i class="fa fa-facebook" aria-hidden="true"></i> Share Now
             </a>
             <p class="text-center pt10" style="color:darkred" [ngClass]="{'hidden':isPostLive()}">
@@ -84,9 +84,9 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu p10">
-                    <a [attr.ga-on]="click" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="post-edit-btn"
+                    <a [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="'post-edit-btn'"
                        class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit'">Edit Fundraiser</a>
-                    <a [attr.ga-on]="click" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="post-edit-author-btn"
+                    <a [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="'post-edit-author-btn'"
                        class="dropdown-item" (click)="scrollTop()" [routerLink]="'edit-author'">Edit Author</a>
                   </div>
                 </div>
@@ -94,7 +94,7 @@
             </div>
             <div *ngIf="!isPostLive()" id="goLiveBtn" class="row">
               <div class="col-md-12 col-sm-12 pt10 pb10 text-center">
-                <a [attr.ga-on]="click" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="post-go-live-btn"
+                <a [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="'post-go-live-btn'"
                    (click)="scrollTop()" type="button" class="btn btn-live" [routerLink]="'setup-payments'">
                   <span class="fa fa-bolt"></span>
                   Go Live!
