@@ -13,8 +13,6 @@ var rollbar = new Rollbar({
   handleUnhandledRejections: true
 });
 
-//rollbar.log("Hello world!");
-
 const app = express();
 
 // Parsers for POST data
@@ -36,13 +34,13 @@ initPassport(passport);
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use(function(req, res, next) {
-    var start = Date.now();
-    res.on('finish', function() {
-        var duration = Date.now() - start;
-        console.log(req.url, duration)
-    });
-    next();
+app.use(function (req, res, next) {
+  var start = Date.now();
+  res.on('finish', function () {
+    var duration = Date.now() - start;
+    console.log(req.url, duration)
+  });
+  next();
 });
 
 // Get our API routes
@@ -62,18 +60,9 @@ app.get('*', (req, res) => {
 });
 
 app.use(rollbar.errorHandler());
-/**
- * Get port from environment and store in Express.
- */
+
 const port = process.env.PORT || '8089';
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
 const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 server.listen(port, () => console.log(`API running on localhost:${port}`));

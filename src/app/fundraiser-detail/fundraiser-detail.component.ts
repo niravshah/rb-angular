@@ -3,6 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {PostsService} from '../posts.service';
 import {LoginService} from '../login/login.service';
 import {Meta} from "@angular/platform-browser";
+import {AnalyticsService} from "../ga.service";
 
 declare var $: any;
 
@@ -22,7 +23,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
   constructor(private service: PostsService,
               private route: ActivatedRoute,
               private authService: LoginService,
-              private meta: Meta) {
+              private meta: Meta,
+              private analyticsService: AnalyticsService) {
 
   }
 
@@ -30,6 +32,12 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
     $(document).trigger('initializeBootsnav');
     // console.log('Logged In >> ', this.authService.loggedIn());
     this.sub = this.route.params.subscribe(params => {
+
+      if (this.authService.loggedIn()) {
+        this.analyticsService.setUser(this.authService.loggedInUserSid());
+      }
+
+
       const id = params['id'];
       this.service.getFundraiserById(id).subscribe(post => {
         this.post = post;
@@ -53,6 +61,11 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
     this.qsub = this.route.queryParams.subscribe(qparams => {
       const created = qparams['created'];
       if (created) {
+      }
+      console.log('QSUB!');
+      const g = qparams['g'];
+      if (g) {
+        this.analyticsService.setUser(g);
       }
     });
   }

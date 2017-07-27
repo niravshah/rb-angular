@@ -15,4 +15,8 @@ export class AnalyticsService {
     });
 
   }
+
+  public setUser(USER_ID) {
+    ga('set', 'userId', USER_ID);
+  }
 }

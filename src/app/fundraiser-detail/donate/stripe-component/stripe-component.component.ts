@@ -5,6 +5,7 @@ import {isUndefined} from 'util';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostsService} from '../../../posts.service';
 import {StripeService} from '../../../stripe.service';
+import {AnalyticsService} from "../../../ga.service";
 declare var $: any;
 
 @Component({
@@ -22,7 +23,8 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
               private router: Router,
               private route: ActivatedRoute,
               private postService: PostsService,
-              private stripeService: StripeService) {
+              private stripeService: StripeService,
+              private analyticsService: AnalyticsService) {
   }
 
   ngOnInit() {
@@ -64,6 +66,7 @@ export class StripeComponentComponent implements OnInit, AfterViewInit {
           console.log('Success Token:', result.token);
           _this.service.chargeToken(result.token, _this.paymentForm, _this.post.sid, _this.loginService.loggedInJwt()).subscribe(res => {
             console.log('Server Success:', res);
+            _this.analyticsService.emitEvent(_this.post.sid, 'stripe-charge-success', 'rb', 5);
             _this.toggleOverlay();
             _this.router.navigate(['../share'], {relativeTo: _this.route, queryParams: {mcode: 1}});
           }, err => {

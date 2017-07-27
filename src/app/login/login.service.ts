@@ -72,6 +72,10 @@ export class LoginService {
     return localStorage.getItem('currentUser');
   }
 
+  loggedInUserSid() {
+    return JSON.parse(localStorage.getItem('currentUser')).sid;
+  }
+
   loggedInJwt() {
     return localStorage.getItem('token');
   }
