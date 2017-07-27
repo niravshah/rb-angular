@@ -30,7 +30,7 @@
           <div class="row" id="donateRow">
             <a [ngClass]="{'disabled':!isPostLive()}" id="donateBtn" (click)="scrollTop()" [routerLink]="'donate'"
                class="border_radius btn-yellow text-uppercase"
-               [attr.ga-on]="click" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="post-donate-btn">
+               [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid] [attr.ga-event-action]="'post-donate-btn'">
               Donate Now
             </a>
             <a [ngClass]="{'disabled':!isPostLive()}" id="donateBtn2" (click)="scrollTop()" [routerLink]="'share'"
