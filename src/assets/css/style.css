@@ -643,7 +643,7 @@ header{
 	position:relative;
 	background:transparent;
 	width:100%;
-    z-index:999;
+    z-index:80;
 }
 .layout_boxed{
 	background:transparent;
@@ -1234,7 +1234,8 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content.bg .col-menu{
   display: inline-table;
   overflow:hidden;
   position:absolute;
-  right:0; top:0; z-index:990;
+  right:0; top:0;
+  z-index:50;
   width:40%;
 }
 .tp_overlay .topbar{
@@ -1337,7 +1338,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content.bg .col-menu{
 	background:#fff;
 	padding:6px 12px;
 	font-size:14px;
-	color: #999999;
+	color: #000000;
 }
 .callus textarea{
 	min-height:160px;

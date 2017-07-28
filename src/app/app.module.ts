@@ -59,6 +59,7 @@ import { SignupComponent } from './signup/signup.component';
 import {AnalyticsService} from "./ga.service";
 import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.component';
 import {CookieModule} from "ngx-cookie";
+import { ContactModalComponent } from './contact-modal/contact-modal.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import {CookieModule} from "ngx-cookie";
     StripeConnectStatusComponent,
     IndexComparisionComponent,
     SignupComponent,
-    CookiesRibbonComponent
+    CookiesRibbonComponent,
+    ContactModalComponent
   ],
   imports: [
     BrowserModule,

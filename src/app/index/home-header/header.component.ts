@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../login/login.service';
 import {Router} from '@angular/router';
 
@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 })
 export class HomeHeaderComponent implements OnInit {
 
-  constructor(private router: Router,private authService: LoginService) { }
+  constructor(private router: Router, private authService: LoginService) {
+  }
 
   ngOnInit() {
   }
@@ -17,9 +18,16 @@ export class HomeHeaderComponent implements OnInit {
   isLogin() {
     return this.authService.loggedIn();
   }
-    
-    logout(): void {
-        this.authService.logout();
-        this.router.navigate(['/']);
-    }  
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  openContactModal() {
+    const modal = document.querySelector('#modal');
+    const modalOverlay = document.querySelector('#modal-overlay');
+    modal.classList.toggle('closed');
+    modalOverlay.classList.toggle('closed');
+  }
 }
