@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ContactModalService} from './contact-modal.service';
 import {MessageDisplayComponent} from '../message-display/message-display.component';
+import {LoginService} from "../login/login.service";
 
 declare var $: any;
 
@@ -10,18 +11,29 @@ declare var $: any;
   styleUrls: ['./contact-modal.component.css']
 })
 export class ContactModalComponent extends MessageDisplayComponent implements OnInit {
-
+  @Input('loggedIn') loggedIn = false;
   contactForm;
   messages = [];
 
-  constructor(private service: ContactModalService) {
+  constructor(private service: ContactModalService, private loginService: LoginService) {
     super();
   }
 
   ngOnInit() {
+
     this.contactForm = {
-      fname: '07596162765', lname: '07596162765', email: '07596162765@c.c', mobile: '07596162765', query: '07596162765'
+      fname: '',
+      lname: '',
+      email: '',
+      mobile: '',
+      query: '',
+      existingUser: null,
     };
+
+    if (this.loggedIn === true) {
+      this.contactForm.existingUser = this.loginService.loggedInUserSid();
+    }
+
   }
 
   close() {
@@ -33,12 +45,12 @@ export class ContactModalComponent extends MessageDisplayComponent implements On
 
   save(model, valid) {
     if (valid) {
-      console.log(model);
-      this.service.sendContactForm(model.fname, model.lname, model.email, model.mobile, model.query).subscribe(res => {
+      // console.log(model);
+      this.service.sendContactForm(this.contactForm.existingUser, model.fname, model.lname, model.email, model.mobile, model.query).subscribe(res => {
         $('#contactForm').hide();
         this.addSuccessMessage('Query sent Successfully. Your Reference Number is: ' + res.ref, this.messages);
       }, err => {
-        this.addErrorMessage(err.message, this.messages);
+        this.addErrorMessage(err, this.messages);
       });
     }
   }

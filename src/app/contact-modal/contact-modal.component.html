@@ -12,8 +12,8 @@
       </div>
     </div>
     <form id="contactForm" class="callus clearfix pt40" #f="ngForm" (ngSubmit)="save(f.value, f.valid)" novalidate>
-      <div class="row bottom15">
-        <div class="col-md-6 col-sm-6 col-xs-6">
+      <div *ngIf="!loggedIn" class="row bottom15">
+        <div  class="col-md-6 col-sm-6 col-xs-6">
           <div class="" style="width: 100%">
             <input type="text" class="keyword-input" placeholder="First Name" style="width: 100%" name="fname"
                    [(ngModel)]="contactForm.fname" #fname="ngModel" required>
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="row bottom15">
+      <div *ngIf="!loggedIn" class="row bottom15">
         <div class="col-md-12">
           <div class="" style="width: 100%">
             <input type="email" class="keyword-input" placeholder="Email" style="width: 100%" name="email"
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="row bottom15">
+      <div *ngIf="!loggedIn" class="row bottom15">
         <div class="col-md-12">
           <div class="" style="width: 100%">
             <input type="text" class="keyword-input"

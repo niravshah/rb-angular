@@ -38,6 +38,7 @@
               <li><a *ngIf="!isLogin()" href="#.">Sign Up</a></li>
               <li *ngIf="!isLogin()"><a href="#">Contact Us</a></li>
               <li><a *ngIf="isLogin()" href="#" (click)="logout()">Logout</a></li>
+              <li><a (click)="openContactModal()">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -46,3 +47,5 @@
   </nav>
 </header>
 <!--Header Ends-->
+
+<app-contact-modal [loggedIn]="isLogin()"></app-contact-modal>

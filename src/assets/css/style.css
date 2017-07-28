@@ -476,8 +476,8 @@ ul.getin_touch li i {
 	background:#f2f2f2;
 }
 .bg_gallery{
-	background: url(/assets/images/bg-gallery.jpg) no-repeat;
-	background-position:bottom;
+	//background: url(/assets/images/bg-gallery.jpg) no-repeat;
+	//background-position:bottom;
 	background-color:#edf3f8;
 }
 a.back-to{

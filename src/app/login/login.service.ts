@@ -76,6 +76,11 @@ export class LoginService {
     return JSON.parse(localStorage.getItem('currentUser')).sid;
   }
 
+  loggedInUserEmail() {
+    return JSON.parse(localStorage.getItem('currentUser')).email;
+  }
+
+
   loggedInJwt() {
     return localStorage.getItem('token');
   }

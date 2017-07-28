@@ -137,7 +137,7 @@ module.exports = {
       callback(err, activity)
     })
   },
-  createQuery: function (fname, lname, email, mobile, query, callback) {
+  createQuery: function (fname, lname, email, mobile, query, existingUser, callback) {
     const newQuery = new Query();
     newQuery.sid = shortid.generate();
     newQuery.fname = fname;
@@ -145,6 +145,7 @@ module.exports = {
     newQuery.email = email;
     newQuery.mobile = mobile;
     newQuery.query = query;
+    newQuery.existingUser = existingUser;
     newQuery.save((err, query) => {
       callback(err, query)
     });
