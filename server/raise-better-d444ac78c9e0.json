@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "raise-better",
+  "private_key_id": "d444ac78c9e072b26dc7b0d0b293053f76329faf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCUKt2Js4GLGDGy\ndrdOoJ/rWn5R+PwS2u8PFiCgZn9p7JOekB8Cza4X2TsTjNxWoeWTd0f7pLpE2KrC\navcEzGlserZ2p0P74OTPtIjwMpIAsgOJWZJ++7dIKbIACMg2DQrmnxh8QIS3ZDcn\n2Vwk9MeQjm/1D4LQXvqly34UrfAaZGArEA8brGKczTzocbqoLbj6MJGWHo7BTI7P\nwDi2NiZZL+mJ2P+KsQucZJkYpOM9SRGbM9DbXwO2VvvryDhiq440l7WWTpgqmWVz\nyo/fkIYHZ1aolKDWCmvqH8H3Hn/9CDE0oc8DovlcP1YtznufMjnYyq8RV5XWGMJ/\nzJXZzVIpAgMBAAECggEAAP6XP7kCQA4MdXaL7/Uq3Z7VhUeRQRkG290QZKUaiOOX\nYg/Hsq6mB6unmFOHAebLG5E5Chyms+IvAGg9vhdTgCzl+ZFvfWFto/irTINQB1PB\nI/gpHkSa9YCvUYYm+lbWqPN/PrGM36vkpTu1jGLk7AQOYUKWc3uXP5Cxvba7wBGW\nu18fOPshH/59LeJCtmnOa/5pC6owJHJFwnOc6SwtbEUIhMQeWACv27FYYvpkTdQH\nxcshMEn0D+yoXiDvZRSJe2yMnVPKxXX+xssEV9woKcyubemWZnvYk4rgID6ibqPf\ns6QGh0HobIpDsqfgIYYwYf2OwKPBdh62hsQSzNGMAQKBgQDHCIH3rfkRrVao0mSK\ntA2+koUh5U9Gx5a/o2M0qAjN6/to8irRw56oV7/xm5mDByHaOrje2zlxHPeyHrvg\nLFgrTJlp5R0X8l12CZZJRLWRtOVr7JVqrjxctO/i/NYy8pVCjgltb4TVMVEF96/N\nAE5hyb9MS1vyKh/KcYFsAmGfQQKBgQC+k1Zsisy5cpkE+jzEem4XwcSTQAKs8Cg8\nTMV1HgthnWoiBMoD8SCSs1blvh1jx9zjMiaARalOIl4XXLAfTojOWroC2JlyEiGB\naHnLMgOt03zsKz8u/k6kAE6IMZKJXz0xEqilgT2dx3UxWEJxjf9sDK7L0xtZdPXJ\nHdQ2z3tg6QKBgQC+LjTyE7yw1W6+9fq4Rn/zn1GzJ8fum/xBtb+vqvhuu5SJnQyp\nT0ClHuP723B+MSx5uC66U8O5f7J28sMW24iMJy9YbmK0ZRRFG7gM3qiYR8AIthG3\n1DE9bG7j+DA8kmtpIwuDFFJa3DrNdvT279n1uq8eGcwLw5CJAphmOohJgQKBgC8T\nfEzRuKKywUPugKZUS+/IaMOrEz4fEQFcQYadxlf1p6sBndl9bftvG68i2GW2kET7\nNXGIQ7tOWAnTVppVLwwyczKSyMzZ17b81OEx2KDO1lQMls4H+esfPEb+X+FZSmdd\n4ZUIqOzZwYRP9hHQ7uCE/YTSADaH4tMscCid9i9JAoGAauLt2kOnds2xshq7k61z\nRHiD8XFTmDVguFLNH/k+2o2rEUYaLC4aXM/jgF8bt8zeQbRBaAeu6RIx5BD3odmC\nhFlzMNnelICuVmDFzNUW4A1pPnIrUaAhp4Sn1jP61F9WoURIpdfk0WVDv/cr8tUK\n7lECCzIbBPiCOT2bb4MV2s8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "rb-analytics-report@raise-better.iam.gserviceaccount.com",
+  "client_id": "101763837160452147016",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rb-analytics-report%40raise-better.iam.gserviceaccount.com"
+}

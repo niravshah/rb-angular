@@ -62,7 +62,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
       const created = qparams['created'];
       if (created) {
       }
-      console.log('QSUB!');
+
       const g = qparams['g'];
       if (g) {
         console.log('Setting User ID to: ' +  g) ;
