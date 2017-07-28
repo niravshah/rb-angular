@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie';
 declare var $: any;
 
@@ -9,7 +9,8 @@ declare var $: any;
 })
 export class CookiesRibbonComponent implements OnInit, AfterViewInit {
 
-  rb_cookie = 'rb-cookie';
+  @Input('name') name = 'home';
+  cookieMap = {home: 'rb-cookie-home', fundraiser: 'rb-cookie-fundraiser'};
 
   constructor(private cookieService: CookieService) {
   }
@@ -18,7 +19,8 @@ export class CookiesRibbonComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.cookieService.get(this.rb_cookie)) {
+    if (this.cookieService.get(this.cookieMap[this.name])
+    ) {
       $('#cookie-ribbon').hide();
     }
   }
@@ -26,7 +28,7 @@ export class CookiesRibbonComponent implements OnInit, AfterViewInit {
 
   close() {
     $('#cookie-ribbon').hide();
-    this.cookieService.put(this.rb_cookie, 'rb-cookie');
+    this.cookieService.put(this.cookieMap[this.name], 'rb-cookie-home');
   }
 
 }
