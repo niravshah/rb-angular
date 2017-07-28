@@ -58,6 +58,7 @@ import { IndexComparisionComponent } from './index/index-comparision/index-compa
 import { SignupComponent } from './signup/signup.component';
 import {AnalyticsService} from "./ga.service";
 import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.component';
+import {CookieModule} from "ngx-cookie";
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.componen
     StickyModule,
     routing,
     FacebookModule.forRoot(),
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    CookieModule.forRoot()
   ],
   providers: [
     PostsService,
