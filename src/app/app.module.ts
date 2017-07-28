@@ -57,6 +57,7 @@ import { StripeConnectStatusComponent } from './fundraiser-detail/stripe-connect
 import { IndexComparisionComponent } from './index/index-comparision/index-comparision.component';
 import { SignupComponent } from './signup/signup.component';
 import {AnalyticsService} from "./ga.service";
+import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import {AnalyticsService} from "./ga.service";
     ActivityFeedComponent,
     StripeConnectStatusComponent,
     IndexComparisionComponent,
-    SignupComponent
+    SignupComponent,
+    CookiesRibbonComponent
   ],
   imports: [
     BrowserModule,

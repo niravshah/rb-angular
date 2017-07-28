@@ -1,3 +1,7 @@
 small.error {
   color: red !important;
 }
+
+input[type="text"] {
+  color: black;
+}
