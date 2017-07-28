@@ -9,7 +9,7 @@ export class ContactModalService {
 
   sendContactForm(fname, lname, email, mobile, query) {
 
-    const url = '/api/contact';
+    const url = '/api/contact/query';
     const body = {fname: fname, lname: lname, email: email, mobile: mobile, query: query};
 
     return this.http.post(url, body).map(response => {

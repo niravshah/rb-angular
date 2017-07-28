@@ -45,16 +45,20 @@ app.use(function (req, res, next) {
 
 // Get our API routes
 const auth = require('./server/routes/auth')(passport);
+const contactApi = require('./server/routes/contact')(passport);
 const post = require('./server/routes/post')(passport);
 const phone = require('./server/routes/phone')(passport);
 const stripe = require('./server/routes/stripe')(passport);
 const analytics = require('./server/routes/analytics')(passport);
+
+
 // Set our api routes
 app.use(post);
 app.use(phone);
 app.use(stripe);
 app.use(auth);
 app.use(analytics);
+app.use(contactApi);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

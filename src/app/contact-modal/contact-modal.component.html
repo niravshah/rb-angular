@@ -4,7 +4,14 @@
   <button (click)="close()" class="close-button" id="close-button"><i class="fa fa-close"></i></button>
   <div class="modal-guts">
     <h2 class="uppercase">How can we help?</h2>
-    <form class="callus clearfix pt40" #f="ngForm" (ngSubmit)="save(f.value, f.valid)" novalidate>
+    <div class="row pt20 pb20" id="messageSection">
+      <div *ngIf="messages.length > 0" class="col-md-12 text-center">
+        <ul class="messages">
+          <li class="{{m.type}}" *ngFor="let m of messages">{{m.text}}</li>
+        </ul>
+      </div>
+    </div>
+    <form id="contactForm" class="callus clearfix pt40" #f="ngForm" (ngSubmit)="save(f.value, f.valid)" novalidate>
       <div class="row bottom15">
         <div class="col-md-6 col-sm-6 col-xs-6">
           <div class="" style="width: 100%">

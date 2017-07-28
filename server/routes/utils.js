@@ -4,6 +4,7 @@ const Account = require('../models/account');
 const Customer = require('../models/customer');
 const Charge = require('../models/charge');
 const Activity = require('../models/activity');
+const Query = require('../models/query');
 
 const PhoneVerification = require('../models/phone-verification');
 
@@ -112,7 +113,7 @@ module.exports = {
   shortid: function () {
     return shortid.generate();
   },
-  createCharge: function (rb_uid,post,stripe_charge_id,cust_name,cust_email,amount,callback) {
+  createCharge: function (rb_uid, post, stripe_charge_id, cust_name, cust_email, amount, callback) {
     const newCharge = new Charge();
     newCharge.sid = shortid.generate();
     newCharge.rb_uid = rb_uid;
@@ -125,16 +126,28 @@ module.exports = {
       callback(err, charge);
     })
   },
-  createActivity: function(post,donor, amount, message,callback){
+  createActivity: function (post, donor, amount, message, callback) {
     const newActivity = new Activity();
     newActivity.sid = shortid.generate();
     newActivity.post = post;
     newActivity.donor = donor;
     newActivity.amount = amount;
     newActivity.message = message;
-    newActivity.save(function(err,activity){
-      callback(err,activity)
+    newActivity.save(function (err, activity) {
+      callback(err, activity)
     })
+  },
+  createQuery: function (fname, lname, email, mobile, query, callback) {
+    const newQuery = new Query();
+    newQuery.sid = shortid.generate();
+    newQuery.fname = fname;
+    newQuery.lname = lname;
+    newQuery.email = email;
+    newQuery.mobile = mobile;
+    newQuery.query = query;
+    newQuery.save((err, query) => {
+      callback(err, query)
+    });
   }
 
 };
