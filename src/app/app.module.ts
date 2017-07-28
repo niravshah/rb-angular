@@ -60,6 +60,7 @@ import {AnalyticsService} from "./ga.service";
 import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.component';
 import {CookieModule} from "ngx-cookie";
 import { ContactModalComponent } from './contact-modal/contact-modal.component';
+import {ContactModalService} from "./contact-modal/contact-modal.service";
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { ContactModalComponent } from './contact-modal/contact-modal.component';
     ResetPasswordService,
     GoLiveService,
     StripeComponentService,
-    AnalyticsService
+    AnalyticsService,
+    ContactModalService
   ],
   bootstrap: [AppComponent]
 })

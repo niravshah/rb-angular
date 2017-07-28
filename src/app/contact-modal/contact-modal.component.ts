@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ContactModalService} from './contact-modal.service';
 
 @Component({
   selector: 'app-contact-modal',
@@ -9,12 +10,12 @@ export class ContactModalComponent implements OnInit {
 
   contactForm;
 
-  constructor() {
+  constructor(private service: ContactModalService) {
   }
 
   ngOnInit() {
     this.contactForm = {
-      fname: '', lname: '', email: '', mobile: ''
+      fname: '', lname: '', email: '', mobile: '', query: ''
     };
   }
 
@@ -28,6 +29,9 @@ export class ContactModalComponent implements OnInit {
   save(model, valid) {
     if (valid) {
       console.log(model);
+      this.service.sendContactForm(model.fname, model.lname, model.email, model.mobile, model.query).subscribe(res => {
+      }, err => {
+      });
     }
   }
 
