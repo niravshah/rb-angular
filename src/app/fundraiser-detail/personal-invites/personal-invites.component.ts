@@ -19,4 +19,7 @@ export class PersonalInvitesComponent implements OnInit {
   sendInvite(model, valid) {
 
   }
+
+  closeBtn(command) {
+  }
 }

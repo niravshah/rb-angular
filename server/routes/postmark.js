@@ -1,6 +1,9 @@
+const env = process.env.NODE_ENV || 'dev';
+const config = require('./../../server.config')[env];
+
 var postmark = require("postmark");
 
-var client = new postmark.Client("db8872a6-95f7-46aa-9b61-b3f236d13fb4");
+var client = new postmark.Client(config.postmark);
 
 
 module.exports = {
