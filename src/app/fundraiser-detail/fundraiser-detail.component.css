@@ -60,6 +60,13 @@
   /*width:80% !important;*/
 }
 
+#loggedInMenu .btn-invite {
+  background-color: #3b5998;
+  color: #ffffff;
+  text-transform: uppercase;
+  width: 240px !important;
+}
+
 #editBtn .dropdown-menu a {
   padding: 5px 10px;
   display: block;

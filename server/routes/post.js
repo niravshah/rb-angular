@@ -13,7 +13,8 @@ const Activities = require('../models/activity');
 
 const utils = require('./utils');
 const mailgun = require('./mailgun');
-
+const mailer = require('./nodemailer');
+const postmark = require('./postmark');
 
 module.exports = function (passport) {
 
@@ -122,7 +123,7 @@ module.exports = function (passport) {
   router.get('/api/user/:id/posts', passport.authenticate('jwt', {
     failWithError: true
   }), (req, res, next) => {
-      
+
     Post.find({
       author: req.user
     }).populate('author', 'sid fname lname email').exec(function (err, posts) {
@@ -200,6 +201,10 @@ module.exports = function (passport) {
     });
   });
 
+  router.get('/api/mailer/test', function (req, res) {
+    postmark.sendEmail('nirav@raisebetter.uk', 'test', 'test');
+    res.json({message: 'ok'});
+  });
   return router;
 };
 

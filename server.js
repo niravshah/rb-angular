@@ -6,12 +6,6 @@ const bodyParser = require('body-parser');
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./server.config')[env];
 
-var Rollbar = require("rollbar");
-var rollbar = new Rollbar({
-  accessToken: config.rollbar_key,
-  handleUncaughtExceptions: true,
-  handleUnhandledRejections: true
-});
 
 const app = express();
 
@@ -65,7 +59,15 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-app.use(rollbar.errorHandler());
+if (env == 'production') {
+  var Rollbar = require("rollbar");
+  var rollbar = new Rollbar({
+    accessToken: config.rollbar_key,
+    handleUncaughtExceptions: true,
+    handleUnhandledRejections: true
+  });
+  app.use(rollbar.errorHandler());
+}
 
 const port = process.env.PORT || '8089';
 app.set('port', port);

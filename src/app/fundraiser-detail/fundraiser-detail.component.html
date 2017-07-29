@@ -96,7 +96,7 @@
               </div>
             </div>
             <div *ngIf="!isPostLive()" id="goLiveBtn" class="row">
-              <div class="col-md-12 col-sm-12 pt10 pb10 text-center">
+              <div class="col-md-12 col-sm-12 pb10 text-center">
                 <a [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid]
                    [attr.ga-event-action]="'post-go-live-btn'"
                    (click)="scrollTop()" type="button" class="btn btn-live" [routerLink]="'setup-payments'">
@@ -105,7 +105,17 @@
                 </a>
               </div>
             </div>
-            <div class="row">
+            <div id="personalInviteBtn" class="row">
+              <div class="col-md-12 col-sm-12 pb10 text-center">
+                <a [attr.ga-on]="'click'" [attr.ga-event-category]=[post.sid]
+                   [attr.ga-event-action]="'post-personal-invite-btn'"
+                   (click)="scrollTop()" type="button" class="btn btn-invite" [routerLink]="'invite'">
+                  <span class="fa fa-envelope"></span>
+                  Send Personalized Invites
+                </a>
+              </div>
+            </div>
+            <div class="row pt10">
               <div class="col-md-12 col-sm-12">
                 <app-stripe-connect-status></app-stripe-connect-status>
               </div>

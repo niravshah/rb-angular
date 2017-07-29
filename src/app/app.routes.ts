@@ -16,6 +16,7 @@ import {LogoutComponent} from 'app/logout/logout.component';
 import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
 import {SignupComponent} from './signup/signup.component';
+import {PersonalInvitesComponent} from './fundraiser-detail/personal-invites/personal-invites.component';
 
 
 export const routes: Routes = [
@@ -38,7 +39,8 @@ export const routes: Routes = [
       },
       {path: 'go-live', component: GoLiveComponent},
       {path: 'donate', component: DonateComponent},
-      {path: 'share', component: ShareComponent}
+      {path: 'share', component: ShareComponent},
+      {path: 'invite', component: PersonalInvitesComponent}
     ]
     },
     {path: 'stripe-connect', component: StripeRedirectComponent},

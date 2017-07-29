@@ -56,11 +56,13 @@ import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activit
 import { StripeConnectStatusComponent } from './fundraiser-detail/stripe-connect-status/stripe-connect-status.component';
 import { IndexComparisionComponent } from './index/index-comparision/index-comparision.component';
 import { SignupComponent } from './signup/signup.component';
-import {AnalyticsService} from "./ga.service";
+import {AnalyticsService} from './ga.service';
 import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.component';
-import {CookieModule} from "ngx-cookie";
+import {CookieModule} from 'ngx-cookie';
 import { ContactModalComponent } from './contact-modal/contact-modal.component';
-import {ContactModalService} from "./contact-modal/contact-modal.service";
+import {ContactModalService} from './contact-modal/contact-modal.service';
+import { PersonalInvitesComponent } from './fundraiser-detail/personal-invites/personal-invites.component';
+import {PersonalInvitesService} from './fundraiser-detail/personal-invites/personal-invites.service';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,8 @@ import {ContactModalService} from "./contact-modal/contact-modal.service";
     IndexComparisionComponent,
     SignupComponent,
     CookiesRibbonComponent,
-    ContactModalComponent
+    ContactModalComponent,
+    PersonalInvitesComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +129,8 @@ import {ContactModalService} from "./contact-modal/contact-modal.service";
     GoLiveService,
     StripeComponentService,
     AnalyticsService,
-    ContactModalService
+    ContactModalService,
+    PersonalInvitesService
   ],
   bootstrap: [AppComponent]
 })
