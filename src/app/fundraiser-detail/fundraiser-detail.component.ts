@@ -19,6 +19,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
   private qsub: any;
   public post;
   public postStatus = 'draft';
+  public userSid = 'unknown';
 
   constructor(private service: PostsService,
               private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
     this.sub = this.route.params.subscribe(params => {
 
       if (this.authService.loggedIn()) {
+        this.userSid = this.authService.loggedInUserSid();
         this.analyticsService.setUser(this.authService.loggedInUserSid());
       }
 
@@ -43,6 +45,8 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
         this.post = post;
         this.service.setCurrentPost(post);
         this.postStatus = this.post.status;
+
+        this.analyticsService.emitEvent(this.post.sid, 'page-view', this.userSid, 1);
 
         this.meta.addTags([
           {property: 'og:url', content: 'https://www.raisebetter.uk/fundraisers/' + this.post.sid},
@@ -65,8 +69,10 @@ export class FundraiserDetailsComponent implements OnInit, OnDestroy, AfterViewI
 
       const g = qparams['g'];
       if (g) {
-        console.log('Setting User ID to: ' +  g) ;
+        console.log('Setting User ID to: ' + g);
+        this.userSid = g;
         this.analyticsService.setUser(g);
+        this.analyticsService.emitEvent(this.post.sid, 'page-view', g, 1);
       }
     });
   }
