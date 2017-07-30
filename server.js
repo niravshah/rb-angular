@@ -3,8 +3,6 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
-const env = process.env.NODE_ENV || 'dev';
-// const config = require('./server.config')[env];
 require('dotenv').config();
 
 const app = express();
@@ -17,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const mongoose = require('mongoose');
 //mongoose.Promise = require('bluebird');
 
-mongoose.connect(process.env.mongoUrl);
+mongoose.connect(process.env.MONGO_URL);
 
 const passport = require('passport');
 app.use(passport.initialize());
@@ -60,10 +58,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-if (env == 'production') {
+if (process.env.NODE_ENV == 'production') {
   var Rollbar = require("rollbar");
   var rollbar = new Rollbar({
-    accessToken: config.rollbar_key,
+    accessToken: process.env.ROLLBAR_KEY,
     handleUncaughtExceptions: true,
     handleUnhandledRejections: true
   });

@@ -1,5 +1,5 @@
 var postmark = require("postmark");
-var client = new postmark.Client(process.env.postmark);
+var client = new postmark.Client(process.env.POSTMARK_KEY);
 
 
 module.exports = {
