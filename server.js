@@ -26,7 +26,7 @@ initPassport(passport);
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use(require('express-bunyan-logger')({name: 'request-log',
+app.use(require('express-bunyan-logger')({name: 'rb-request-log',
   streams: [{
     type: 'rotating-file',
     level: 'info',
