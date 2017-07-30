@@ -1,10 +1,7 @@
-const env = process.env.NODE_ENV || 'dev';
-const config = require('./../../server.config')[env];
-
 const express = require('express');
 const router = express.Router();
 
-const stripe = require('stripe')(config.STRIPE_KEY);
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 const unirest = require('unirest');
 const utils = require('./utils');
@@ -137,7 +134,7 @@ module.exports = function (passport) {
   router.get('/api/stripe/account/:id/status', passport.authenticate('jwt', {
     failWithError: true
   }), (req, res, next) => {
-      
+
     Account.findOne({_id: req.params.id}).exec(function (err, account) {
       if (err) {
         res.status(500).json({message: err.message});

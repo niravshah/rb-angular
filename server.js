@@ -4,8 +4,8 @@ const http = require('http');
 const bodyParser = require('body-parser');
 
 const env = process.env.NODE_ENV || 'dev';
-const config = require('./server.config')[env];
-
+// const config = require('./server.config')[env];
+require('dotenv').config();
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 const mongoose = require('mongoose');
 //mongoose.Promise = require('bluebird');
 
-mongoose.connect(config.mongoUrl);
+mongoose.connect(process.env.mongoUrl);
 
 const passport = require('passport');
 app.use(passport.initialize());
@@ -32,7 +32,7 @@ app.use(require('express-bunyan-logger')({name: 'request-log',
   streams: [{
     type: 'rotating-file',
     level: 'info',
-    path: config.LOG_DIR,
+    path: process.env.LOG_DIR,
     period: '1d',
     count: 3,
   }]

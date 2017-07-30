@@ -1,6 +1,3 @@
-const env = process.env.NODE_ENV || 'dev';
-const config = require('./../../server.config')[env];
-
 const express = require('express');
 const router = express.Router();
 

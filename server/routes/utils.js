@@ -12,13 +12,9 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 var shortid = require('shortid');
 
-const env = process.env.NODE_ENV || 'dev';
-const config = require('./../../server.config')[env];
-
-
 const twilio = require('twilio')(
-  config.TWILIO_ACCOUNT_SID,
-  config.TWILIO_AUTH_TOKEN
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
 );
 
 

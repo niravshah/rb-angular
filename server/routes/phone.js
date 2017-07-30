@@ -5,14 +5,6 @@ const utils = require('./utils');
 const PV = require('../models/phone-verification');
 const User = require('../models/user');
 
-const env = process.env.NODE_ENV || 'dev';
-const config = require('./../../server.config')[env];
-
-const client = require('twilio')(
-  config.TWILIO_ACCOUNT_SID,
-  config.TWILIO_AUTH_TOKEN
-);
-
 module.exports = function (passport) {
 
   router.post('/api/phone/code/request', (req, res) => {

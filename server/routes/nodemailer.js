@@ -1,8 +1,5 @@
 const path = require('path');
-
-const env = process.env.NODE_ENV || 'dev';
-const config = require('./../../server.config')[env];
-const mailgun = require('mailgun-js')({apiKey: config.MAILGUN_API_KEY, domain: config.MAILGUN_DOMAIN});
+const mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
 
 
 
