@@ -28,14 +28,15 @@ initPassport(passport);
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use(function (req, res, next) {
-  var start = Date.now();
-  res.on('finish', function () {
-    var duration = Date.now() - start;
-    console.log(req.url, duration)
-  });
-  next();
-});
+app.use(require('express-bunyan-logger')({name: 'request-log',
+  streams: [{
+    type: 'rotating-file',
+    level: 'info',
+    path: config.LOG_DIR,
+    period: '1d',
+    count: 3,
+  }]
+}));
 
 // Get our API routes
 const auth = require('./server/routes/auth')(passport);
