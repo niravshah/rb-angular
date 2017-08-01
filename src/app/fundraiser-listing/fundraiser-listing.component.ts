@@ -1,8 +1,8 @@
 import {Component, Input, NgZone, OnInit} from '@angular/core';
 import {PostsService} from '../posts.service';
 import {Post} from '../post.model';
-import {LoginService} from "../login/login.service";
-import {Router} from "@angular/router";
+import {LoginService} from '../login/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-fundraiser-listing',

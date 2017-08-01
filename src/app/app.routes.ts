@@ -17,6 +17,8 @@ import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
 import {SignupComponent} from './signup/signup.component';
 import {PersonalInvitesComponent} from './fundraiser-detail/personal-invites/personal-invites.component';
+import {BlogComponent} from "./blog/blog.component";
+import {BlogPostComponent} from "./blog/blog-post/blog-post.component";
 
 
 export const routes: Routes = [
@@ -44,7 +46,8 @@ export const routes: Routes = [
     ]
     },
     {path: 'stripe-connect', component: StripeRedirectComponent},
-
+    {path: 'blog', component: BlogComponent},
+    {path: 'blog/:id', component: BlogPostComponent}
   ]
 ;
 

@@ -52,17 +52,22 @@ import {GoLiveService} from './fundraiser-detail/go-live/go-live.service';
 import {StripeComponentComponent} from './fundraiser-detail/donate/stripe-component/stripe-component.component';
 import {StripeComponentService} from './fundraiser-detail/donate/stripe-component/stripe-component.service';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
-import { ActivityFeedComponent } from './fundraiser-detail/activity-feed/activity-feed.component';
-import { StripeConnectStatusComponent } from './fundraiser-detail/stripe-connect-status/stripe-connect-status.component';
-import { IndexComparisionComponent } from './index/index-comparision/index-comparision.component';
-import { SignupComponent } from './signup/signup.component';
+import {ActivityFeedComponent} from './fundraiser-detail/activity-feed/activity-feed.component';
+import {StripeConnectStatusComponent} from './fundraiser-detail/stripe-connect-status/stripe-connect-status.component';
+import {IndexComparisionComponent} from './index/index-comparision/index-comparision.component';
+import {SignupComponent} from './signup/signup.component';
 import {AnalyticsService} from './ga.service';
-import { CookiesRibbonComponent } from './cookies-ribbon/cookies-ribbon.component';
+import {CookiesRibbonComponent} from './cookies-ribbon/cookies-ribbon.component';
 import {CookieModule} from 'ngx-cookie';
-import { ContactModalComponent } from './contact-modal/contact-modal.component';
+import {ContactModalComponent} from './contact-modal/contact-modal.component';
 import {ContactModalService} from './contact-modal/contact-modal.service';
-import { PersonalInvitesComponent } from './fundraiser-detail/personal-invites/personal-invites.component';
+import {PersonalInvitesComponent} from './fundraiser-detail/personal-invites/personal-invites.component';
 import {PersonalInvitesService} from './fundraiser-detail/personal-invites/personal-invites.service';
+import {BlogComponent} from './blog/blog.component';
+import {BlogListingComponent} from './blog/blog-listing/blog-listing.component';
+import {BlogListingService} from './blog/blog-listing/blog-listing.service';
+import {BlogPostComponent} from './blog/blog-post/blog-post.component';
+import {BlogPostService} from "./blog/blog-post/blog-post.service";
 
 @NgModule({
   declarations: [
@@ -104,7 +109,10 @@ import {PersonalInvitesService} from './fundraiser-detail/personal-invites/perso
     SignupComponent,
     CookiesRibbonComponent,
     ContactModalComponent,
-    PersonalInvitesComponent
+    PersonalInvitesComponent,
+    BlogComponent,
+    BlogListingComponent,
+    BlogPostComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +138,9 @@ import {PersonalInvitesService} from './fundraiser-detail/personal-invites/perso
     StripeComponentService,
     AnalyticsService,
     ContactModalService,
-    PersonalInvitesService
+    PersonalInvitesService,
+    BlogListingService,
+    BlogPostService
   ],
   bootstrap: [AppComponent]
 })

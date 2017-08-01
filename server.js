@@ -43,6 +43,7 @@ const post = require('./server/routes/post')(passport);
 const phone = require('./server/routes/phone')(passport);
 const stripe = require('./server/routes/stripe')(passport);
 const analytics = require('./server/routes/analytics')(passport);
+const blog = require('./server/routes/blog')(passport);
 
 
 // Set our api routes
@@ -52,6 +53,7 @@ app.use(stripe);
 app.use(auth);
 app.use(analytics);
 app.use(contactApi);
+app.use(blog);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

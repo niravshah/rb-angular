@@ -13,7 +13,7 @@ export class PersonalInvitesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inviteForm = {name: ''};
+    this.inviteForm = {fname: '', lname: '', email: '', bio: ''};
   }
 
   sendInvite(model, valid) {

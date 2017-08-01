@@ -1,0 +1,75 @@
+<!-- Gallery -->
+
+
+<section id="property" class="padding bg_gallery">
+  <div class="container">
+    <div class="row">
+      <div class="pb40 col-sm-12 text-center">
+        <h2 class="uppercase">Blog Posts</h2>
+      </div>
+    </div>
+
+
+    <div class="row listing1">
+      <div class="col-md-4 cbp-item" [ngClass]="post.type" *ngFor="let post of posts | postfilter: filterValue">
+        <div class="property_item">
+          <div class="image">
+            <a [routerLink]="['/blog', post.sid]"><img [src]="post.image" alt="latest property"
+                                                              class="img-responsive"></a>
+            <div class="price clearfix">
+              <span class="tag pull-right">Collected: {{post.collected | currency:post.currency:true}}</span>
+              <span class="tag pull-left">Target: {{post.target| currency:post.currency:true}}</span>
+            </div>
+
+            <div [ngSwitch]="post.type">
+              <span *ngSwitchCase="'charity'" class="tag_t">Charity</span>
+              <span *ngSwitchCase="'rent'" class="tag_t">For Rent</span>
+              <span *ngSwitchDefault class="tag_t">Other</span>
+            </div>
+
+            <span *ngIf="post.featured" class="tag_l">Featured</span>
+          </div>
+          <div class="proerty_content">
+            <div class="proerty_text">
+              <h3 class="captlize"><a [routerLink]="['/fundraisers', post.sid]">{{post.title}}</a></h3>
+              <p>{{post.subTitle}}</p>
+            </div>
+            <div class="favroute clearfix post-bb">
+              <p><i class="icon-user"></i>&nbsp; {{post.author.fname| titlecase}} {{post.author.lname| titlecase}}</p>
+              <ul class="pull-right time-left">
+                <li><span><i class="icon-clock"></i> <span appTimeleft [dateCreated]="post.created">31 days left</span></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="favroute clearfix">
+              <p><i class="icon-users"></i>&nbsp;{{post.supporters}} supporters</p>
+              <ul class="pull-right">
+                <li><a href="javascript:void(0)"><i class="icon-like"></i></a></li>
+                <li><a href="#seventy{{post.id}}" class="share_expender" data-toggle="collapse"><i
+                  class="icon-share3"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="toggle_share collapse" id="seventy{{post.id}}">
+              <ul>
+                <li><a href="javascript:void(0)" class="facebook"><i class="icon-facebook-1"></i> Facebook</a></li>
+                <li><a href="javascript:void(0)" class="twitter"><i class="icon-twitter-1"></i> Twitter</a></li>
+                <li><a href="javascript:void(0)" class="vimo"><i class="icon-vimeo3"></i> Vimeo</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="type!=='loggedInUser'" class="col-sm-12 text-center top20">
+      <a href="listing1.html" class="btn-dark border_radius uppercase margin40">More Causes</a>
+    </div>
+    <div class="col-sm-12 text-center top20">
+      <a href="listing1.html" class="btn-yellow border_radius uppercase margin20">Create New Fundraiser</a>
+    </div>
+    <div>
+    </div>
+  </div>
+</section>
+<!-- Gallery End -->
