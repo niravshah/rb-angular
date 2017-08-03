@@ -1,5 +1,6 @@
 const posts =
   {
+    "sid": 1,
     "id": 1,
     "type": "charity",
     "featured": true,

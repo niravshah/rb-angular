@@ -12,13 +12,13 @@ import {SetupPaymentsComponent} from './fundraiser-detail/setup-payments/setup-p
 import {StripeRedirectComponent} from './stripe-redirect/stripe-redirect.component';
 import {FirstLoginComponent} from './first-login/first-login.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
-import {LogoutComponent} from 'app/logout/logout.component';
+import {LogoutComponent} from './logout/logout.component';
 import {GoLiveComponent} from './fundraiser-detail/go-live/go-live.component';
 import {ShareComponent} from './fundraiser-detail/share/share.component';
 import {SignupComponent} from './signup/signup.component';
 import {PersonalInvitesComponent} from './fundraiser-detail/personal-invites/personal-invites.component';
-import {BlogComponent} from "./blog/blog.component";
-import {BlogPostComponent} from "./blog/blog-post/blog-post.component";
+import {BlogComponent} from './blog/blog.component';
+import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 
 
 export const routes: Routes = [

@@ -19,8 +19,7 @@ export class CookiesRibbonComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.cookieService.get(this.cookieMap[this.name])
-    ) {
+    if (this.cookieService.get(this.cookieMap[this.name])) {
       $('#cookie-ribbon').hide();
     }
   }

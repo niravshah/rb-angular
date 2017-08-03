@@ -27,8 +27,6 @@ import {FundraiserHeaderComponent} from './fundraiser-detail/fundraiser-header/f
 import {LoginService} from './login/login.service';
 import {EditFundraiserComponent} from './fundraiser-detail/edit-fundraiser/edit-fundraiser.component';
 import {DonateComponent} from './fundraiser-detail/donate/donate.component';
-import {WizardComponent} from './form-wizard/wizard.component';
-import {WizardStepComponent} from './form-wizard/wizard-step.component';
 import {PostsFilter} from './posts.filter';
 import {FacebookModule} from 'ngx-facebook';
 import {HomeComponent} from './home/home.component';
@@ -67,7 +65,7 @@ import {BlogComponent} from './blog/blog.component';
 import {BlogListingComponent} from './blog/blog-listing/blog-listing.component';
 import {BlogListingService} from './blog/blog-listing/blog-listing.service';
 import {BlogPostComponent} from './blog/blog-post/blog-post.component';
-import {BlogPostService} from "./blog/blog-post/blog-post.service";
+import {BlogPostService} from './blog/blog-post/blog-post.service';
 
 @NgModule({
   declarations: [
@@ -87,8 +85,6 @@ import {BlogPostService} from "./blog/blog-post/blog-post.service";
     FundraiserHeaderComponent,
     EditFundraiserComponent,
     DonateComponent,
-    WizardComponent,
-    WizardStepComponent,
     PostsFilter,
     PhonePipe,
     HomeComponent,
@@ -115,7 +111,7 @@ import {BlogPostService} from "./blog/blog-post/blog-post.service";
     BlogPostComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'rb-angular'}),
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParallexAboutComponent } from './home-difference.component';
+import { HomeDifferenceComponent } from './home-difference.component';
 
 describe('ParallexAboutComponent', () => {
-  let component: ParallexAboutComponent;
-  let fixture: ComponentFixture<ParallexAboutComponent>;
+  let component: HomeDifferenceComponent;
+  let fixture: ComponentFixture<HomeDifferenceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParallexAboutComponent ]
+      declarations: [ HomeDifferenceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ParallexAboutComponent);
+    fixture = TestBed.createComponent(HomeDifferenceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

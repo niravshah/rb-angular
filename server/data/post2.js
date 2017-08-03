@@ -1,6 +1,7 @@
 const posts =
   {
-    "id": 1,
+    "sid": 2,
+    "id": 2,
     "type": "other",
     "featured": false,
     "title": "One UK Appeal",
