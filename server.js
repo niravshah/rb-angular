@@ -7,9 +7,7 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(require('prerender-node').set('prerenderToken', 'xdmx04EGAKV1O7qvFNCy').set('afterRender', function(err, req, prerender_res) {
-	console.log('After Render',prerender_res)
-}));
+app.use(require('prerender-node').set('prerenderToken', 'xdmx04EGAKV1O7qvFNCy'));
 
 // Parsers for POST data
 app.use(bodyParser.json());
